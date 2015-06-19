@@ -4,7 +4,17 @@
     <title>test~</title>
     <script Type='text/javascript'>
         function clickme() {
-            alert(navigator.userAgent);
+            var name = navigator.userAgent;
+            var lastName = name.subStr(name.length-6,6);
+            if(lastName=="piapia")
+            {
+                alert("从app打开的webview");
+            }
+            else
+            {
+                alert("不是从app打开的\n"+navigator.userAgent);
+            }
+            
         }
     clickme();
     </script>
