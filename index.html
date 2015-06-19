@@ -6,13 +6,14 @@
         function clickme() {
             var name = navigator.userAgent;
             var lastName = name.subStr(name.length-6,6);
+            alert(name);
             if(lastName === "piapia")
             {
                 alert("从app打开的webview");
             }
             else
             {
-                alert("不是从app打开的\n"+navigator.userAgent);
+                alert("不是从app打开的");
             }
             
         }
