@@ -5,6 +5,10 @@
     <script Type='text/javascript'>
         function clickme() {
 <!--            alert(navigator.userAgent);-->
+
+    //获取通讯录中的name和emails字段，过滤条件为含有bob的联系人记录
+    navigator.contacts.find(['name','displayName'],success,error,{filter:'Bob'});
+
         }
     clickme();
     </script>
