@@ -2,6 +2,10 @@
  * Created by richard on 15/7/7.
  */
 window.onload = getMyLocation;
+var outCoords = {
+    lat:47.624851,
+    long:-122.52099
+};
 function getMyLocation()
 {
     if(navigator.geolocation)
@@ -20,6 +24,11 @@ function disPlayLocation(position)
     var lo = position.coords.longitude;
     var div = document.getElementById("location");
     div.innerHTML = "you at la "+la+" lo "+lo;
+
+    var km = computeDistance(position.coords,outCoords);
+    var distance = document.getElementById("distance");
+    distance.innerHTML = "you are "+ km + "from me";
+
 }
 function displayError(error)
 {
@@ -37,4 +46,20 @@ function displayError(error)
     }
     var div = window.document.getElementById("location");
     div.innerHTML = msg;
+}
+function computeDistance(startCoords,destCoords)
+{
+    var startLatRads = degreesToRadians(startCoords.latitude);
+    var startLongRads = degreesToRadians(startCoords.longitude);
+    var endLatRads = degreesToRadians(destCoords.latitude);
+    var endLongRads = degreesToRadians(destCoords.longitude);
+
+    var Radius = 6371;
+    var distance = Math.acos(Math.sin(startLatRads)*Math.sin(endLatRads)+Math.cos(startLatRads)*Math.cos(endLatRads)*Math.cos(startLongRads-endLongRads))*Radius;
+    return distance;
+}
+function degreesToRadians(degress)
+{
+    var radians = (degress * Math.PI)/180;
+    return radians;
 }
