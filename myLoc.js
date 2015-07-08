@@ -56,6 +56,8 @@ function computeDistance(startCoords,destCoords)
 
     var Radius = 6371;
     var distance = Math.acos(Math.sin(startLatRads)*Math.sin(endLatRads)+Math.cos(startLatRads)*Math.cos(endLatRads)*Math.cos(startLongRads-endLongRads))*Radius;
+    alert(distance);
+
     return distance;
 }
 function degreesToRadians(degress)
