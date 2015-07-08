@@ -3,8 +3,8 @@
  */
 window.onload = getMyLocation;
 var outCoords = {
-    lat:47.624851,
-    long:-122.52099
+    latitude:47.624851,
+    longitude:-122.52099
 };
 function getMyLocation()
 {
