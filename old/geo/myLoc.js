@@ -2,6 +2,8 @@
  * Created by richard on 15/7/7.
  */
 window.onload = getMyLocation;
+
+var map;
 var outCoords = {
     latitude:47.624851,
     longitude:-122.52099
@@ -27,7 +29,8 @@ function disPlayLocation(position)
 
     var km = computeDistance(position.coords,outCoords);
     var distance = document.getElementById("distance");
-    distance.innerHTML = "you are "+ km + "from me";
+    distance.innerHTML = "you are "+ km + " km from me";
+    showMap(position.coords);
 
 }
 function displayError(error)
@@ -64,4 +67,32 @@ function degreesToRadians(degress)
 {
     var radians = (degress * Math.PI)/180;
     return radians;
+}
+function showMap(coords)
+{
+    var googleLatAndLong = new google.maps.LatLng(coords.latitude,coords.longitude);
+    var mapOptions = {
+        zoom:10,
+        center:googleLatAndLong,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var mapDiv = document.getElementById("map");
+    map = new google.maps.Map(mapDiv,mapOptions);
+}
+function addMarker(map,latlong,title,content)
+{
+    var markOptions = {
+        position:latlong,
+        map:map,
+        title:title,
+        clickable:true
+    };
+    var marker = new google.maps.Marker(markOptions);
+
+    var infoWindowOptions = {
+        content:content,
+        position:latlong
+    };
+    var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+    google.maps.event.addListener(marker,"click",function(){infoWindow.open(map)});
 }
