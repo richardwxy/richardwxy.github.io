@@ -12,8 +12,10 @@ window.onload = function()
             alert(request.responseText);
         }
     }
+    def
     request.open("GET",url);
     request.send(null);//null表示不传入任何数据
 
     JSON.stringify()
+    window.document.gete
 }
