@@ -1,82 +1,333 @@
+
 <!DOCTYPE htmls>
 <html lang="zh">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
-        <title>我与你之间的距离是一个W12——试驾宾利新飞驰</title>
-        <style>
-            @font-face{font-family:"STHeiti Light";src:url(css/STHeiti Light.ttc);}
-            *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-            html{-ms-touch-action:none;overflow-x:hidden;}
-            header article section footer nav aside{display:block;}
-            body,p,ul,li{margin:0;padding:0;border:0;}
-            ul,li{list-style:none;}
-            body{font:1.5em/100% "STHeiti Light";}
-            a{text-decoration:none;}
-            .xqBox{width:100%;}
-            .xqCont{padding:10px 8px;width:100%;}
-            .xqCont h1{color:#494445;font-size:1.32em;line-height:100%;margin:0 0 0.5em;}
-            .xqCont h3{color:#929292;line-height:100%;font-size:.9em;}
-            .xqCont h3 span{margin-left:3.125%;}
-            .zMain img{max-width:100%!important;}
-             /*.zMain p{color:#494445;margin-top:15px;font-size:1.2em;line-height:120%;}*/
-            .zMain p{margin-top:15px;font-size:16px;line-height:1.7em; font-family:微软雅黑;}
-            .appDown{background:rgba(0,0,0,.8);position:fixed;bottom:0;width:100%;padding:1.125em 1.25em 1.04167em 0.875em;}
-            .appDown ul{overflow:hidden;}
-            .appDown ul li,.appClose{float:right;display:inline;}
-            .appDown li.text,.appClose,.appXiaz{display:inline-block;height:1.833em;}
-            .appDown li.text{background:url(http://iwostatic.qiniudn.com/img/appText.png) no-repeat 0 50% / contain;width:12.625em;float:left;}
-            .appClose{background:url(http://iwostatic.qiniudn.com/img/appClose.png) no-repeat 0 50% / contain;width:1.167em;margin:0 0 0 1.29167em;}
-            .appXiaz{background:rgb(21,174,230);width:6.25em;line-height:1.833em;color:rgb(254,254,254);text-align:center;border-radius:2px;-o-border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;}
-            /*窗口在1023以上*/
-            @media screen and (min-width: 1023px) {
-                .xqCont{width:640px;margin:auto;}
-                .appDown{width:640px;left:50%;margin:0 0 0 -320px;}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    
+    <title>我与你之间的距离是一个W12——试驾宾利新飞驰</title>
+
+            <link href="/css/qiche_style.css?3312341" type="text/css" rel="stylesheet">
+    
+    <script src="/js/jquery-1.8.0.min.js"></script>
+<!--    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+    <style rel="stylesheet">
+        .iframeWidth{width:100%;max-width:100%}
+        .video_bg{background:rgb(233,233,233);position:relative;/*display:table-cell;*/text-align:center;vertical-align:middle;*display:block;max-height:342px;}
+        .video_bg img{vertical-align:middle;max-height:342px}
+        .ico_video_play{background:url(/img/ico_play_large@2x.png) no-repeat scroll 50% 50%/10% 19%;width:100%;height:100%;position:absolute;left:0;top:0;cursor:pointer}
+        @media only screen and (max-width:639px) {.ico_video_play{background:url(/img/ico_play_large@2x.png) no-repeat scroll 50% 50%/13% 19%;}}
+    </style>
+
+    <script>
+        function closeAD(id) {
+            var ad = document.getElementById(id);
+            ad.style.display = "none";
+        }
+        function append(btnId, tId) {
+            var ifr = document.createElement('iframe');  
+
+        ifr.src = 'carmarketguide://';  
+
+        ifr.style.display = 'none';  
+
+        document.body.appendChild(ifr);  
+        window.setTimeout(function(){  
+        
+            document.body.removeChild(ifr);  
+
+        },3000);
+        
+            var oBox = document.getElementById(tId);
+            var o = document.getElementById(btnId);
+            function show() {
+                oBox.style.display = 'block';
             }
-            /*窗口在640px以上*/
-            @media screen and (min-width:640px;){
-                .dh nav{height:40px;padding:24px 0;}
-                .ico_reviewW{line-height:40px;}
-                .mainMenu nav{padding:15px 0;}
+            show();
+        }
+        function hide(id) {
+            var oBox = document.getElementById(id);
+            oBox.style.display = 'none';
+        }
+
+    </script>
+
+<!--    <script type="text/javascript">
+        var prevTop = 0, currTop = 0;
+        $(function() {
+            $('.appDown').hide();
+            $(window).scroll(function() {
+                currTop = $(window).scrollTop();
+                if(currTop == 0) {
+                    $('.appDown').hide();
+                } else {
+                    if(currTop < prevTop) { //向上
+                        $('.appup').show();
+                    } else { //向下
+                        $('.appup').hide();
+                        $('.appDown').show();
+                    }
+                }
+                setTimeout(function() {
+                    prevTop = currTop;
+                }, 0);
+            });
+        });
+    </script>-->
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            var ua = navigator.userAgent.toLowerCase();
+            var inWechat = document.getElementById("inWechat");
+            var notInWechat = document.getElementById("notInWechat");
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                inWechat.style.display = 'block';
+            } else {
+                notInWechat.style.display = 'block';
             }
-            /*窗口在480px以上、639px以下*/
-            @media screen and (min-width:480px) and (max-width:639px) {
-                .dh nav{height:20px;padding:14px 0;}
-                .ico_reviewW{line-height:20px;}
-                .mainMenu nav{padding:5px 0;}
-                body{font:1.25em/100% "STHeiti Light";}
-                .iwo_reviewB, .zanB, .traceB, .shareB{margin-bottom:5px;}
-                .appDown li.text{background:url(http://iwostatic.qiniudn.com/img/appText480.png) no-repeat 0 50% / contain;width:10.8125em;}
+            var haveAD = 0;
+            if(haveAD == 1){
+                inWechat.style.display = 'none';
+                notInWechat.style.display = 'none';
             }
-            /*窗口在320px以上、479px以下*/
-            @media screen and (min-width:320px) and (max-width:479px) {
-                .dh nav{height:20px;padding:14px 0;}
-                .ico_reviewW{line-height:20px;}
-                .mainMenu nav{padding:5px 0;}
-                body{font:1em/100% "STHeiti Light";}
-                .iwo_reviewB, .zanB, .traceB, .shareB{margin-bottom:5px;}
-                .appDown li.text{background:url(http://iwostatic.qiniudn.com/img/appText320.png) no-repeat 0 50% / contain;width:5.4375em;}
+        });
+
+//        wx.config({
+//            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+
+//            jsApiList: [
+//                'onMenuShareTimeline'
+//            ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+//        });
+//        wx.onMenuShareTimeline({
+//            title: '我与你之间的距离是一个W12——试驾宾利新飞驰', // 分享标题
+
+//            imgUrl: 'http://7mnpeu.com1.z0.glb.clouddn.com/ad/1452141076482496.png', // 分享图标
+//            success: function () {
+//                // 用户确认分享后执行的回调函数
+//            },
+//            cancel: function () {
+//                // 用户取消分享后执行的回调函数
+//            }
+//        });
+        Date.prototype.format = function(format) {
+            /*
+             * eg:format="YYYY-MM-dd hh:mm:ss";
+             */
+            var o = {
+                "M+" :this.getMonth() + 1, // month
+                "d+" :this.getDate(), // day
+                "h+" :this.getHours(), // hour
+                "m+" :this.getMinutes(), // minute
+                "s+" :this.getSeconds(), // second
+                "q+" :Math.floor((this.getMonth() + 3) / 3), // quarter
+                "S" :this.getMilliseconds() // millisecond
             }
-            /*窗口在319px以下*/
-            @media screen and (max-width:319px) {
-                .dh nav{height:20px;padding:14px 0;}
-                .ico_reviewW{line-height:20px;}
-                .mainMenu nav{padding:5px 0;}
-                body{font:1em/100% "STHeiti Light";}
-                .iwo_reviewB, .zanB, .traceB, .shareB{margin-bottom:5px;}
-                .appDown li.text{background:url(http://iwostatic.qiniudn.com/img/appText320.png) no-repeat 0 50% / contain;width:5.4375em;}
+
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "")
+                    .substr(4 - RegExp.$1.length));
             }
-            table{max-width:100%!important;width:100%!important;}
-        </style>
-    </head>
-    <body >
-        <div class="xqBox"  id="wrapper">
-            <section class="xqCont" id="scroller">
-                <h1>我与你之间的距离是一个W12——试驾宾利新飞驰</h1>
-                <h3>2016-01-08<span>09:01</span>&nbsp;<span>汽车导购 王静</span></h3>
-                <article class="zMain" >
-                    <p style="line-height: 1.5em;">&nbsp; &nbsp;我和你的距离是白与黑的差距，你和我的纠葛是一辆被偷的玛莎拉蒂；我们和它的距离只是一个W12。本期爽爽侃车，爽爽女神将和“霉神”，不对，是“煤神”百诺一起为您零距离，全方位体验宾利新飞驰。</p><p style="line-height: 1.5em;">&nbsp;&nbsp;<iframe src="http://www.tudou.com/programs/view/html5embed.action?type=1&code=i0jxPAw4u3w&lcode=Q0MiBE2DPCs&resourceId=0_06_05_99" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe></p>                </article>
+
+            for ( var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        }
+
+        $(document).ready(function(){
+            document.all("test").width=test.document.body.scrollWidth;
+
+            /*
+            var startID = $(".xq-cont h4:last").html();
+            $("div.xqCont-more").click(function(){
+                $.get("/v1/comment/list", {
+                    aid : 10666,
+                    startId : startID,
+                    count : 2
+                }, function(data,status)
+                {
+                    var comments = $.parseJSON(data);
+                    if(comments.result.items.length == 0){
+                        $("div.xqCont-more").hide();
+                    }else {
+                        $.each(comments.result.items, function (i, item) {
+                            var comment = "<li>";
+                            if (item.author.sex == 1) {
+                                comment += "<div class='xq-img'><img src='/img/app-boys.png' /></div>";
+                            } else {
+                                comment += "<div class='xq-img'><img src='/img/app-grile.png' /></div>";
+                            }
+                            comment += "<div class='xq-cont'>";
+                            comment +=
+                                "<h4 style='display:none'>" + item.id + "</h4>" +
+                                "<h2>" + item.author.nickname + "<span class='xq-cont-img'><a class='zan' href='#'><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>" + item.zan_nums + "</span></h2>" +
+                                "<h1>" + item.content + "</h1>" +
+                                "<h3>" + new Date(parseInt(item.instime) * 1000).format("yyyy-MM-dd hh:mm") + "</h3></div>" +
+                                "<div style='clear:both'></div></li>";
+                            $("ul.xqCont-pl01").append(comment);
+                            startID = item.id;
+                        });
+                    }
+                });
+            });
+
+            $(".zan").click(function(){
+                var zan = $(this);
+                if(zan.children().attr("src") == "/img/listZanOn-red.png") {
+                    var commentID = $(this).parent().parent().prev().html();
+                    var count = parseInt($(this).parent().next().html());
+                    $.post("/v1/comment/zan", {
+                        id: commentID
+                    }, function (data, status) {
+                        var json = $.parseJSON(data);
+                        if (json.code == 0) {
+                            count += 1;
+                            zan.parent().next().html(count);
+                            zan.children().attr("src", "/img/listZanOn-red-sx.png");
+                        }
+                    });
+                }
+            });
+
+            $("#text").focus(function(){
+                $(".app-comment").attr("style","display:block");
+            });
+
+            var sid = 0;
+            $("button.app-btn").click(function(){
+                var comment = $("textarea").val();
+                if(comment == ""){
+                    alert("再写几句话吧");
+                } else {
+                    $.ajax({
+                        url: "/v1/comment/create",
+                        type: "POST",
+                        headers:{
+                            "SID" : sid
+                        },
+                        data: {
+                            aid: 10666,
+                            content: comment
+                        },
+                        error: function(data, status){
+                            var json = $.parseJSON(data);
+                            alert(json);
+                        },
+                        success: function (data, status) {
+                            var json = $.parseJSON(data);
+                            if (json.code == 0) {
+                                $(".app-comment").attr("style","display:none");
+                                alert("发送成功");
+                            } else {
+                                alert("发送失败");
+                            }
+                        }
+                    });
+                }
+            });
+            */
+        });
+    </script>
+</head>
+
+<body>
+<div class="xqBox">
+    <header class="appup">
+        <a href="/m/app/download">
+                <input id="text" type="text" value="说两句吧..." readonly="readonly">
+                <span><i class="ico_comment"></i>87</span>
+        </a>
+    </header>
+    <!---填写评论开始-->
+    <section class="app-comment" style="display:none">
+        <textarea class="app-txare"></textarea>
+        <br>
+        </br>
+        <button type="button" value="发送" class="app-btn">发送</button>
+    </section>
+    <!---填写评论结束-->
+    <section class="xqCont" style="padding-top:88px;">
+        <h1>我与你之间的距离是一个W12——试驾宾利新飞驰</h1>
+        <h3>2016-01-08<span>09:01</span>&nbsp;&nbsp;汽车导购 王静</h3>
+        <article class="zMain">
+            <p style="line-height: 1.5em;">&nbsp; &nbsp;我和你的距离是白与黑的差距，你和我的纠葛是一辆被偷的玛莎拉蒂；我们和它的距离只是一个W12。本期爽爽侃车，爽爽女神将和“霉神”，不对，是“煤神”百诺一起为您零距离，全方位体验宾利新飞驰。</p><p style="line-height: 1.5em;">&nbsp;&nbsp;<iframe src="http://player.youku.com/embed/XMTQzNjk5MzcyOA==" frameborder="0" allowfullscreen="allowfullscreen" align="none"></iframe></p>            <div style="display: none"><img src='/img/wx_500.jpg'></div>
+        </article>
+    </section>
+    <section class="xqCont">
+        <div id="notInWechat" style="display:none"><img src="/img/ad_nowechat.jpg"></div>
+        <div id="inWechat" style="display:none"><img src="/img/ad_wechat.jpg"></div>
+    </section>
+    <section class="xqCont">
+        <hr class="septal-line">
+    </section>
+    <section class="xqCont">
             </section>
+    <section class="xqCont">
+        <div class="link-font"><img src="/img/xq-linejig.png" /></div>
+    </section>
+    <section class="xqCont">
+        <article class="zMain">
+            <p><a href='http://api.daogou.bjzzcb.com/m/article/detail?id=8422'>汽车界已无对手，开始死磕火车了？！宾利激战沙漠列车</a></p><p><a href='http://api.daogou.bjzzcb.com/m/article/detail?id=8136'>既崇文、又宣武的燕尾服舞者——宾利欧陆GT赛道体验日</a></p><p><a href='http://api.daogou.bjzzcb.com/m/article/detail?id=8134'>达则兼济天下</a></p>        </article>
+    </section>
+    <br>
+    <section class="xqCont xqCont-bgrund">
+        <div class="xqCont-bg">
+            <ul class="xqCont-pl01">
+                    <li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>57207</h4><h2><span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>回复<span style='color:#e60012'>倾尽天下</span>:</h1><h3>2016-01-12 20:23</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>57206</h4><h2><span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>回复<span style='color:#e60012'>愤青喷子给我滚犊子！</span>:女看见了</h1><h3>2016-01-12 20:21</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>56747</h4><h2>倾尽天下<span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>完美</h1><h3>2016-01-11 18:03</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>56198</h4><h2><span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>ρΤ</h1><h3>2016-01-10 10:42</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>56197</h4><h2><span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>ρΤ</h1><h3>2016-01-10 10:42</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>56196</h4><h2><span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>ρΤ</h1><h3>2016-01-10 10:42</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>56195</h4><h2><span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>ρΤ</h1><h3>2016-01-10 10:42</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>56194</h4><h2><span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>ρΤ</h1><h3>2016-01-10 10:42</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>56193</h4><h2><span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>ρΤ</h1><h3>2016-01-10 10:42</h3></div><div style='clear:both'></div></li><li><div class='xq-img'><img src='/img/app-grile.png' /></div><div class='xq-cont'><h4 style='display:none'>56142</h4><h2>阿那那那那<span class='xq-cont-img'><a class='zan' href='javascript:;' onClick="append('o', 'box')"><img src='/img/listZanOn-red.png'></a></span><span class='font-cl-rd'>0</span></h2><h1>感觉咋样，没试过</h1><h3>2016-01-10 09:54</h3></div><div style='clear:both'></div></li>            </ul>
         </div>
-    </body>
+    </section>
+    <section class="xqCont">
+        <div class="xqCont-more"><a href="/m/app/download" >点击查看更多评论</a></div>
+    </section>
+
+    <footer class="appDown" id="close">
+        <div class="fs"> <a href='javascript:;' onClick="location.href='/m/app/download'"><img src="/img/qiche_wenda_bj.gif" /></a></div>
+        <ul>
+            <li></li>
+            <li>
+                <a href="javascript:;" title="" class="appClose" onclick="closeAD('close')"></a>
+                <a href="javascript:;" title="" class="appXiaz"  onClick="location.href='/m/app/download'"></a>
+            </li>
+        </ul>
+    </footer>
+    <!--有、无评论弹出-->
+    <div class="pappDown" id="box">
+        <h1>下载<i>汽车导购</i>&nbsp;享受更多倾心服务和体验</h1>
+        <p><a href="javascript:;" onClick="location.href='/m/app/download'" title="" class="appXiaz-tc">下载</a><a href="javascript:;" title="" class="appQux" onClick="hide('box');">取消</a></p>
+    </div>
+    <!--有、无评论弹出end-->
+</div>
+<!--<script type="text/javascript">
+    // 分享
+    var shareobj = {
+        appid: 'wx1066b54ad20f8907',
+        img_url: "http://7mnpeu.com1.z0.glb.clouddn.com/ad/1452141076482496.png",
+        link: window.location.href + '&share=1',
+        title: '我与你之间的距离是一个W12——试驾宾利新飞驰',
+        desc: '&nbsp; &nbsp;我和你的距离是白与黑的差距，你和我的纠葛是一辆被偷的玛莎拉蒂；我们和它的距离只是一个W12。本期爽爽侃车，爽爽女神将和“霉神”，不对，',
+        img_width: '200',
+        img_height: '200'
+    };
+
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            WeixinJSBridge.invoke('sendAppMessage', shareobj);
+        });
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            WeixinJSBridge.invoke('shareTimeline', shareobj);
+        });
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+            WeixinJSBridge.invoke('shareWeibo', {"content": shareobj.title + '。' + shareobj.desc, "url": shareobj.link});
+        });
+    }, false);
+</script>-->
+</body>
 </html>
+
