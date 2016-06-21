@@ -1,12 +1,6 @@
-defineClass("JSViewController", {
-  //instance method definitions
+defineClass('JSViewController', {
   viewDidLoad: function() {
-var alertView = require('UIAlertView').alloc().init();
-     alertView.setTitle('Alert');
-     alertView.setMessage('AlertView from js'); 
-     alertView.addButtonWithTitle('OK');
-     alertView.show(); 
-    }
+   
   }
 })
 
