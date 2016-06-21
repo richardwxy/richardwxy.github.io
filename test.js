@@ -1,7 +1,7 @@
 defineClass('JSViewController', {
   viewDidLoad: function() {
-        self.ORIGviewDidLoad();
-  }
+ self.super().viewDidLoad();
+   }
 })
 
 
