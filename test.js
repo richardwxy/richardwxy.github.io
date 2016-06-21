@@ -12,6 +12,6 @@ defineClass("JSViewController", {
 
     }
   }
-}, {})
+})
 
 
