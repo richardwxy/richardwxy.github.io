@@ -1,6 +1,6 @@
-defineClass('JSViewController', {
-  viewDidLoad: function() {
- self.super().viewDidLoad();
+defineClass('ViewController', {
+  click: function() {
+ 	
    }
 })
 
