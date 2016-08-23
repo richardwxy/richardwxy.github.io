@@ -1,33 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 6.6.1 (453373)"/><meta name="altitude" content="47.99403762817383"/><meta name="author" content="779483709@qq.com"/><meta name="created" content="2016-05-07 10:53:09 +0000"/><meta name="latitude" content="40.03321818095426"/><meta name="longitude" content="116.3508838128936"/><meta name="source" content="desktop.mac"/><meta name="updated" content="2016-05-08 06:47:13 +0000"/><title>无标题</title></head>
+---
+layout: page
+description: "A Clean Blog Theme by Start Bootstrap"
+---
 
-<style type="text/css">
-</style>
-<script>
-	window.onload = function () {
-		document.getElementById("test").onclick = function (){
-			alert("success");
-		}
-	}
+{% for post in paginator.posts %}
+<div class="post-preview">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+        <h2 class="post-title">            {{ post.title }}
+        </h2>
+        {% if post.subtitle %}
+        <h3 class="post-subtitle">
+            {{ post.subtitle }}
+        </h3>
+        {% endif %}
+    </a>
+    <p class="post-meta">Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}</p>
+</div>
+<hr>
+{% endfor %}
 
-
-</script>
-
-<body>
-
-	<div>
-		<p><a href="stock.html">债券市场和股票市场的投资策略</a></p>
-		<p><a href="spss.html">毕业论文用</a></p>
-	</div>
-
-	<div>
-		<br /><br /><br /><br /><br />
-		<a id="test">施工中~~</a>
-		<a id="btn">你看不到我~~</a>
-
-		<img style="width=100px; height=auto;" src="./images/mua.jpg" />
-	</div>
-
-
-</body></html>
+<!-- Pager -->
+{% if paginator.total_pages > 1 %}
+<ul class="pager">
+    {% if paginator.previous_page %}
+    <li class="previous">
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+    </li>
+    {% endif %}
+    {% if paginator.next_page %}
+    <li class="next">
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
