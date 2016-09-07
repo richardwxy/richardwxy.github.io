@@ -1,100 +1,110 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>website for my honey~</title></head>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>website for my honey~</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
+
+</head>
 <style type="text/css">
-	body {margin: 0 ;}
-
-	@media all and (orientation:portrait)  {
-		#bg {
-			position: absolute;
-			top: 0;
-			display: flex;
-			height: 100%;
-			width: auto;
-			z-index: -1;
-		}
-	}
-
-	@media all and  (orientation: landscape){
-		#bg {
-			position: absolute;
-			top: 0;
-			display: flex;
-			width: 100%;
-			height: auto;
-			z-index: -1;
-		}
-
-	}
-	#head {
-		display: none;
-		width: 100%;
-		height: 120px;
-		opacity: 0.6;
-		background-color: white;
-	}
-	a,span ul {
-		font-size: 30px;
-		color: aliceblue;
-		text-align: center;
-		text-decoration: none;
-	}
-	a:hover ul{
-		color: cadetblue;
-	}
-	ul{
-		list-style: none;
-		padding: 0;
-	}
-	li{
-		padding-left: 20px;
-	}
-
+.container {
+	margin-bottom: 50px;
+}
+.col-md-4 {
+	margin-top: 35px;
+}
 </style>
+
 <script>
-	window.onload = function () {
-		document.getElementById("test").onclick = function (){
-//			alert("success");
-			window.open('motionTest.html');
-		}
-	}
+
 
 
 
 </script>
 
 <body>
-	<img id="bg" src="images/home_bg.jpg" alt="" />
-	<div id="head">
-
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="http://richardwxy.github.io">richard的小站</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							 <a href="./menus/homeworkMenu.html">给老婆看的~</a>
+						</li>
+						<li>
+							 <a href="./menus/webMenu.html">web playground~</a>
+						</li>
+						<li>
+							<a href="./menus/iOSMenu.html">iOS playground~</a>
+						</li>
+					</ul>
+					
+				</div>
+			</nav>
+			<div class="jumbotron">
+				<h1>
+					Hello, world!
+				</h1>
+				<p>
+					一个iOS程序员 目前在自学前端。
+				</p>
+				<p style="color:#eee">
+					惊了！bootstrap这么好用的！本来准备都自己写的 看来多虑了~
+				</p>
+			</div>
+			<h2>
+				贝塔系数
+			</h2>
+			<p>
+				使用贝塔系数分析财务风险的例子。
+			</p>
+			<p>
+				 <a class="btn" href="./articles/homework/贝塔系数.html">View details »</a>
+			</p> <span class="label label-default">最新</span>
+		</div>
 	</div>
-	<div>
-		<p><a href="stock.html">债券市场和股票市场的投资策略</a></p>
-		<p><a href="spss.html">毕业论文用----spss</a></p>
-		<p><a href=""></a></p>
-		<ul><a>毕业论文用----相关文献</a>
-			<li><a href="债务结构指标.html">---债务结构指标</a></li>
-			<li><a href="股权结构指标.html">---股权结构指标</a></li>
-			<li><a href="财务杠杆系数法.html">---财务杠杆系数法</a></li>
-			<li><a href="贝塔系数.html">---贝塔系数法</a></li>
-
-
-		</ul>
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+			<h2>
+				给老婆看的
+			</h2>
+			<p>
+				主要是一些专业资料的搜集展示
+			</p>
+			<p>
+				 <a class="btn" href="./menus/homeworkMenu.html">View details »</a>
+			</p>
+		</div>
+		<div class="col-md-4 column">
+			<h2>
+				web相关
+			</h2>
+			<p>
+				都是自己做的小demo啦
+			</p>
+			<p>
+				 <a class="btn" href="./menus/webMenu.html">View details »</a>
+			</p>
+		</div>
+		<div class="col-md-4 column">
+			<h2>
+				iOS相关
+			</h2>
+			<p>
+				平常遇到的问题 会逐步写到上面来
+			</p>
+			<p>
+				 <a class="btn" href="./menus/iOSMenu.html">View details »</a>
+			</p>
+		</div>
 	</div>
-
-	<div>
-		<p><a href="firendsS01.html">老友记第一季</a></p>
-
-	</div>
-
-	<div>
-		<br /><br /><br /><br /><br />
-		<span id="test">施工中~~</span>
-		<span id="btn">你看不到我~~</span>
-
-		<img style="width=100px; height=auto;" src="./images/mua.jpg" />
-	</div>
+</div>
 
 
 </body></html>
