@@ -15,6 +15,24 @@
 .col-md-4 {
 	margin-top: 35px;
 }
+	#gradient-title{
+		font-size: 6em;
+
+		color: #f35626;
+		background-image: linear-gradient(92deg,#f35626, #feab3a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: hue 6s infinite linear
+	}
+@-webkit-keyframes hue {
+	from {
+		-webkit-filter: hue-rotate(0deg);
+	}
+
+	to {
+		-webkit-filter: hue-rotate(-360deg);
+	}
+}
 </style>
 
 <script>
@@ -48,7 +66,7 @@
 				</div>
 			</nav>
 			<div class="jumbotron">
-				<h1>
+				<h1 id="gradient-title">
 					Hello, world!
 				</h1>
 				<p>
@@ -106,5 +124,4 @@
 	</div>
 </div>
 </body>
-<!-- 啧啧 居然被你发现了 那就告诉你个小秘密 有什么意见可以发送至 📮：fandongyu356@gmail.com 不过我也不一定会回 不要抱太多期望哦 -->
 </html>
