@@ -45,7 +45,7 @@
 
     (function () {
         var index = (function () {
-            var scene, camera, renderer, controls,
+            var scene, camera, renderer, controls,controlsM,
                     renderCount = 0;
 
             return {
@@ -53,10 +53,10 @@
                     index.initScene();
                     //添加事件
                     index.addEvent();
+                    index.initMotion();
                     //执行
                     index.render();
                     index.animate();
-                    index.initMotion();
 
                 },
 
@@ -117,66 +117,12 @@
                     }
                     requestAnimationFrame(index.animate);
                     controls.update();
+                    controlsM.update();
                 },
                 initMotion:function(){
-                    if (window.DeviceOrientationEvent) {
-                        window.addEventListener("deviceorientation", orientationHandler, false);
-                        alert("success step1");
-                    } else {
-                        alert("What user agent u r using");
-                    };
 
+                    controlsM = new THREE.DeviceOrientationControls( camera );
 
-                    function orientationHandler(event) {
-
-                        document.getElementById("alpha").innerHTML = event.alpha;
-                        document.getElementById("beta").innerHTML = event.beta;
-//                        var ev = event.touches[ 0 ].pageX, event.touches[ 0 ].pageY;
-                        var ev = document.createEvent("MouseEvents");
-//                        ev.touches[0].pageX = event.alpha;
-//                        ev.touches[0].pageY = event.beta;
-                        ev.touches = [{pageX:event.alpha,pageY:event.beta}];
-                        controls.handleTouchMovePan(ev);
-                        $("#heading").innerText=ev.touches[0].pageX;
-//                        render(event.alpha,event.beta);
-//                        var ev  = document.createEventObject("TouchMove");
-//                        event.eventType = 'touchmove';
-//                        ev.touches[0].pageX=event.alpha*window.innerWidth/90;
-//                        ev.touches[0].pageY=event.beta*window.innerHeight/90;
-//                        window.dispatchEvent(ev);
-//
-//
-//                        var newEvt = document.createEvent("MouseEvents");
-//                        var type = null;
-//                        var touch = null;
-//                        event.touches[0].pageX=event.alpha*window.innerWidth/90;
-//                        event.touches[0].pageY=event.beta*window.innerHeight/90;
-////                        switch (event.type) {
-////                            case "touchstart": type = "mousedown"; touch = event.changedTouches[[0];
-//                              type = "mousemove"; touch = event.touches;
-////                            case "touchend":   type = "mouseup"; touch = event.changedTouches[0];
-////                        }
-//                        newEvt.initMouseEvent(type, true, true, event.originalTarget.ownerDocument.defaultView, 0,
-//                                touch.screenX, touch.screenY, touch.clientX, touch.clientY,
-//                                evt.ctrlKey, evt.altKey, evt.shirtKey, evt.metaKey, 0, null);
-//                        event.originalTarget.dispatchEvent(newEvt);
-
-                    }
-//                    function render(detX,detY) {
-//
-//                        var timer = -0.0002 * Date.now();
-//
-////            pointLight.position.x = 1500 * Math.cos( timer );
-////            pointLight.position.z = 1500 * Math.sin( timer );
-//
-//                        camera.position.x += (detX - camera.position.x ) ;
-//                        camera.position.y += ( - detY - camera.position.y ) ;
-//
-//                        camera.lookAt( scene.position );
-//
-//                        renderer.render( scene, camera );
-//
-//                    }
 
                 },
                 windowResize:function(){
@@ -186,6 +132,7 @@
 
                     renderer.setSize(window.innerWidth, window.innerHeight);
                     controls.reset();
+                    controlsM.reset();
                     index.render();
                 }
             };
