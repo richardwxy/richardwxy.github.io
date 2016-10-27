@@ -133,8 +133,9 @@
                         document.getElementById("beta").innerHTML = event.beta;
 //                        var ev = event.touches[ 0 ].pageX, event.touches[ 0 ].pageY;
                         var ev = document.createEvent("MouseEvents");
-                        ev.touches[0].pageX = event.alpha;
-                        ev.touches[0].pageY = event.beta;
+//                        ev.touches[0].pageX = event.alpha;
+//                        ev.touches[0].pageY = event.beta;
+                        ev.touches = [{pageX:event.alpha,pageY:event.beta}];
                         controls.handleTouchMovePan(ev);
                         $("#heading").innerText=ev.touches[0].pageX;
 //                        render(event.alpha,event.beta);
