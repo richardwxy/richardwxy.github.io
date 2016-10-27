@@ -121,12 +121,14 @@
                 initMotion:function(){
                     if (window.DeviceOrientationEvent) {
                         window.addEventListener("deviceorientation", orientationHandler, false);
+                        alert("success step1");
                     } else {
                         alert("What user agent u r using");
                     };
 
 
                     function orientationHandler(event) {
+
                         document.getElementById("alpha").innerHTML = event.alpha;
                         document.getElementById("beta").innerHTML = event.beta;
 //                        var ev = event.touches[ 0 ].pageX, event.touches[ 0 ].pageY;
@@ -134,7 +136,7 @@
                         ev.touches[0].pageX = event.alpha;
                         ev.touches[0].pageY = event.beta;
                         controls.handleTouchMovePan(ev);
-                        $("#heading").innerHTML=ev;
+                        $("#heading").innerHTML=ev.touches[0].pageX;
 //                        render(event.alpha,event.beta);
 //                        var ev  = document.createEventObject("TouchMove");
 //                        event.eventType = 'touchmove';
