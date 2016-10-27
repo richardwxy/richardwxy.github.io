@@ -56,7 +56,12 @@
                     //执行
                     index.render();
                     index.animate();
+                    index.initMotion();
+
                 },
+
+
+
                 initScene: function () {
                     scene = new THREE.Scene();
                     var ext = '.png'
@@ -113,6 +118,40 @@
                     requestAnimationFrame(index.animate);
                     controls.update();
                 },
+                initMotion:function(){
+                    if (window.DeviceOrientationEvent) {
+                        window.addEventListener("deviceorientation", orientationHandler, false);
+                    } else {
+                        alert("What user agent u r using");
+                    };
+
+
+                    function orientationHandler(event) {
+                        document.getElementById("alpha").innerHTML = event.alpha;
+                        document.getElementById("beta").innerHTML = event.beta;
+                        document.getElementById("gamma").innerHTML = event.gamma;
+                        document.getElementById("heading").innerHTML = event.webkitCompassHeading;
+                        document.getElementById("accuracy").innerHTML = event.webkitCompassAccuracy;
+                        render(event.alpha,event.beta);
+
+                    }
+                    function render(detX,detY) {
+
+                        var timer = -0.0002 * Date.now();
+
+//            pointLight.position.x = 1500 * Math.cos( timer );
+//            pointLight.position.z = 1500 * Math.sin( timer );
+
+                        camera.position.x += (detX - camera.position.x ) ;
+                        camera.position.y += ( - detY - camera.position.y ) ;
+
+                        camera.lookAt( scene.position );
+
+                        renderer.render( scene, camera );
+
+                    }
+
+                },
                 windowResize:function(){
                     console.log(new Date());
                     camera.aspect = window.innerWidth / window.innerHeight;
@@ -129,15 +168,6 @@
     })();
     window.onload = function(){
 
-        function orientationHandler(event) {
-            document.getElementById("alpha").innerHTML = event.alpha;
-            document.getElementById("beta").innerHTML = event.beta;
-            document.getElementById("gamma").innerHTML = event.gamma;
-            document.getElementById("heading").innerHTML = event.webkitCompassHeading;
-            document.getElementById("accuracy").innerHTML = event.webkitCompassAccuracy;
-            render(event.alpha,event.beta);
-
-        }
 
 //
 //        function motionHandler(event) {
@@ -156,21 +186,7 @@
 //            document.getElementById("Rgamma").innerHTML = rotationRate.gamma;
 //        }
 
-        function render(detX,detY) {
 
-            var timer = -0.0002 * Date.now();
-
-//            pointLight.position.x = 1500 * Math.cos( timer );
-//            pointLight.position.z = 1500 * Math.sin( timer );
-
-            camera.position.x += (detX - camera.position.x ) ;
-            camera.position.y += ( - detY - camera.position.y ) ;
-
-            camera.lookAt( scene.position );
-
-            renderer.render( scene, camera );
-
-        }
 
 //        if (window.DeviceMotionEvent) {
 //            window.addEventListener("devicemotion", motionHandler, false);
@@ -178,11 +194,7 @@
 //            alert("What user agent u r using");
 //        }
 
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", orientationHandler, false);
-        } else {
-            alert("What user agent u r using");
-        };
+
     };
 
 </script>
