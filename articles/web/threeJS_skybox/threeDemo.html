@@ -129,6 +129,10 @@
                     function orientationHandler(event) {
                         document.getElementById("alpha").innerHTML = event.alpha;
                         document.getElementById("beta").innerHTML = event.beta;
+//                        var ev = event.touches[ 0 ].pageX, event.touches[ 0 ].pageY;
+                        event.touches[0].pageX = event.alpha;
+                        event.touches[0].pageY = event.beta;
+                        controls.handleTouchMovePan(event);
 //                        render(event.alpha,event.beta);
 //                        var ev  = document.createEventObject("TouchMove");
 //                        event.eventType = 'touchmove';
