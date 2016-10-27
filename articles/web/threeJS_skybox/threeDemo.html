@@ -132,7 +132,7 @@
                         document.getElementById("alpha").innerHTML = event.alpha;
                         document.getElementById("beta").innerHTML = event.beta;
 //                        var ev = event.touches[ 0 ].pageX, event.touches[ 0 ].pageY;
-                        var ev = document.createEvent("touchmove",false,false);
+                        var ev = document.createEvent("MouseEvents");
                         ev.touches[0].pageX = event.alpha;
                         ev.touches[0].pageY = event.beta;
                         controls.handleTouchMovePan(ev);
