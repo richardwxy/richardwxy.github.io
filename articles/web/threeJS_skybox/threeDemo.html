@@ -130,11 +130,27 @@
                         document.getElementById("alpha").innerHTML = event.alpha;
                         document.getElementById("beta").innerHTML = event.beta;
 //                        render(event.alpha,event.beta);
-                        var ev  = document.createEventObject();
+                        var ev  = document.createEventObject("TouchMove");
                         event.eventType = 'touchmove';
                         ev.touches[0].pageX=event.alpha*window.innerWidth/90;
                         ev.touches[0].pageY=event.beta*window.innerHeight/90;
                         window.dispatchEvent(ev);
+
+
+                        var newEvt = document.createEvent("MouseEvents");
+                        var type = null;
+                        var touch = null;
+                        event.touches[0].pageX=event.alpha*window.innerWidth/90;
+                        event.touches[0].pageY=event.beta*window.innerHeight/90;
+//                        switch (event.type) {
+//                            case "touchstart": type = "mousedown"; touch = event.changedTouches[[0];
+                              type = "mousemove"; touch = event.touches;
+//                            case "touchend":   type = "mouseup"; touch = event.changedTouches[0];
+//                        }
+                        newEvt.initMouseEvent(type, true, true, event.originalTarget.ownerDocument.defaultView, 0,
+                                touch.screenX, touch.screenY, touch.clientX, touch.clientY,
+                                evt.ctrlKey, evt.altKey, evt.shirtKey, evt.metaKey, 0, null);
+                        event.originalTarget.dispatchEvent(newEvt);
 
                     }
 //                    function render(detX,detY) {
