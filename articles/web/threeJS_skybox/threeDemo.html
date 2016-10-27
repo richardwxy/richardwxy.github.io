@@ -129,27 +129,29 @@
                     function orientationHandler(event) {
                         document.getElementById("alpha").innerHTML = event.alpha;
                         document.getElementById("beta").innerHTML = event.beta;
-                        document.getElementById("gamma").innerHTML = event.gamma;
-                        document.getElementById("heading").innerHTML = event.webkitCompassHeading;
-                        document.getElementById("accuracy").innerHTML = event.webkitCompassAccuracy;
-                        render(event.alpha,event.beta);
+//                        render(event.alpha,event.beta);
+                        var ev  = document.createEventObject();
+                        event.eventType = 'touchmove';
+                        ev.touches[0].pageX=event.alpha*window.innerWidth/90;
+                        ev.touches[0].pageY=event.beta*window.innerHeight/90;
+                        window.dispatchEvent(ev);
 
                     }
-                    function render(detX,detY) {
-
-                        var timer = -0.0002 * Date.now();
-
-//            pointLight.position.x = 1500 * Math.cos( timer );
-//            pointLight.position.z = 1500 * Math.sin( timer );
-
-                        camera.position.x += (detX - camera.position.x ) ;
-                        camera.position.y += ( - detY - camera.position.y ) ;
-
-                        camera.lookAt( scene.position );
-
-                        renderer.render( scene, camera );
-
-                    }
+//                    function render(detX,detY) {
+//
+//                        var timer = -0.0002 * Date.now();
+//
+////            pointLight.position.x = 1500 * Math.cos( timer );
+////            pointLight.position.z = 1500 * Math.sin( timer );
+//
+//                        camera.position.x += (detX - camera.position.x ) ;
+//                        camera.position.y += ( - detY - camera.position.y ) ;
+//
+//                        camera.lookAt( scene.position );
+//
+//                        renderer.render( scene, camera );
+//
+//                    }
 
                 },
                 windowResize:function(){
