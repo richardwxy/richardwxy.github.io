@@ -9,43 +9,18 @@
             width: 100%;
             height: 100%;
         }
-        p{background-color: transparent;color: #EEEEEE}
     </style>
     <script type="text/javascript" src="http://cdn.bootcss.com/three.js/r82/three.min.js"></script>
     <script src="OrbitControls.js"></script>
 </head>
 <body style="background-color: #000000">
 
-<p>左右：<span id="alpha">0</span>
-</p>
-<p>前后：<span id="beta">0</span>
-</p>
-<p>扭转：<span id="gamma">0</span>
-</p>
-<p id="heading">指北针指向：<span >0</span>度</p>
-<!--<p>指北针精度：<span id="accuracy">0</span>度</p>-->
-<!--<hr />-->
-<!--<p>x轴加速度：<span id="x">0</span>米每二次方秒</p>-->
-<!--<p>y轴加速度：<span id="y">0</span>米每二次方秒</p>-->
-<!--<p>z轴加速度：<span id="z">0</span>米每二次方秒</p>-->
-<!--<hr />-->
-<!--<p>x轴加速度(考虑重力加速度)：<span id="xg">0</span>米每二次方秒</p>-->
-<!--<p>y轴加速度(考虑重力加速度)：<span id="yg">0</span>米每二次方秒</p>-->
-<!--<p>z轴加速度(考虑重力加速度)：<span id="zg">0</span>米每二次方秒</p>-->
-<!--<hr />-->
-<!--<p>左右旋转速度：<span id="Ralpha">0</span>度每秒</p>-->
-<!--<p>前后旋转速度：<span id="Rbeta">0</span>度每秒</p>-->
-<!--<p>扭转速度：<span id="Rgamma">0</span>度每秒</p>-->
-<!--<hr />-->
-<!--<p>上次收到通知的间隔：<span id="interval">0</span>毫秒</p>-->
-
-
 <script>
 
 
     (function () {
         var index = (function () {
-            var scene, camera, renderer, controls,controlsM,
+            var scene, camera, renderer, controls,
                     renderCount = 0;
 
             return {
@@ -53,7 +28,6 @@
                     index.initScene();
                     //添加事件
                     index.addEvent();
-//                    index.initMotion();
                     //执行
                     index.render();
                     index.animate();
@@ -61,9 +35,12 @@
                 },
 
 
-
+                //创建场景（画布）
                 initScene: function () {
                     scene = new THREE.Scene();
+
+
+                    /*以下代码需要改变*/
                     var ext = '.png'
                             , textureCube = new THREE.CubeTextureLoader()
                                     .setPath('')
@@ -75,6 +52,10 @@
                                         'pz' + ext,
                                         'nz' + ext
                                     ]);
+                    //贴图命名 基于右手坐标系（脑补一下吧 具体效果还需参考camera lookat什么位置）
+
+                    /*以上代码需要改变*/
+
                     scene.background = textureCube;
                     //加入环境光,浅灰色
                     scene.add(new THREE.AmbientLight(0xffffff));
@@ -86,11 +67,13 @@
                 initCamera: function () {
                     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
 
-//                    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
-
+                    /*如需改变视角 以下代码需要改变*/
 
                     camera.position.set(200, 200, 200);
                     camera.lookAt(scene.position);
+
+                    /*如需改变视角 以上代码需要改变*/
+
                     console.log(scene.position);
                     scene.add(camera);
                 },
@@ -104,8 +87,6 @@
                     controls.addEventListener('change', index.render);
                     controls.autoRotate = false;//自动旋转开关
                     controls.autoRotateSpeed = 2;
-//                    controls = new THREE.DeviceOrientationControls( camera );
-
                 },
                 addEvent:function(){
                     window.addEventListener('resize', index.windowResize, false);
@@ -123,13 +104,6 @@
                     }
                     requestAnimationFrame(index.animate);
                     controls.update();
-//                    controlsM.update();
-                },
-                initMotion:function(){
-
-//                    controlsM = new THREE.DeviceOrientationControls( camera );
-
-
                 },
                 windowResize:function(){
                     console.log(new Date());
@@ -138,7 +112,6 @@
 
                     renderer.setSize(window.innerWidth, window.innerHeight);
                     controls.reset();
-//                    controlsM.reset();
                     index.render();
                 }
             };
@@ -146,36 +119,6 @@
 
         index.init();
     })();
-    window.onload = function(){
-
-
-//
-//        function motionHandler(event) {
-//            document.getElementById("interval").innerHTML = event.interval;
-//            var acc = event.acceleration;
-//            document.getElementById("x").innerHTML = acc.x;
-//            document.getElementById("y").innerHTML = acc.y;
-//            document.getElementById("z").innerHTML = acc.z;
-//            var accGravity = event.accelerationIncludingGravity;
-//            document.getElementById("xg").innerHTML = accGravity.x;
-//            document.getElementById("yg").innerHTML = accGravity.y;
-//            document.getElementById("zg").innerHTML = accGravity.z;
-//            var rotationRate = event.rotationRate;
-//            document.getElementById("Ralpha").innerHTML = rotationRate.alpha;
-//            document.getElementById("Rbeta").innerHTML = rotationRate.beta;
-//            document.getElementById("Rgamma").innerHTML = rotationRate.gamma;
-//        }
-
-
-
-//        if (window.DeviceMotionEvent) {
-//            window.addEventListener("devicemotion", motionHandler, false);
-//        } else {
-//            alert("What user agent u r using");
-//        }
-
-
-    };
 
 </script>
 </body>
