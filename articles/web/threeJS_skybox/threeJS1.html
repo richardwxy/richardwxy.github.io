@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>website for my honey~</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+	a:active{
+		color: #165379;
+	}
+	a:hover{
+		color: cadetblue;
+	}
+
+</style>
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="http://richardwxy.github.io">richard的小站</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							 <a href="../../menus/homeworkMenu.html">给老婆看的~</a>
+						</li>
+						<li>
+							 <a href="../../menus/webMenu.html">web playground~</a>
+						</li>
+						<li>
+							<a href="../../menus/iOSMenu.html">iOS playground~</a>
+						</li>
+					</ul>
+
+				</div>
+			</nav>
+			<div class="content col-xs-10 col-xs-offset-1 ">
+
+				<div>需求：实现一个类似街景地图360°环绕的效果。</div>
+				<div>工具：JavaScript和<a href="https://github.com/mrdoob/three.js/tree/master">three.js</a>。</div>
+				<div>（three.js 是基于WebGL开发的 可以使用js来编写3D程序）</div>
+				<div><br/></div>
+				<div>那么three.js包含几个部分呢？应该怎么使用呢？</div>
+				<div><br/></div>
+				<div>1.three.js渲染器：</div>
+				<div>     THREE.WebGLRenderer 负责设置画布大小，是否抗锯齿，背景颜色等属性。</div>
+				<div>2.three.js相机：</div>
+				<div><font face="Verdana, Arial, Helvetica, sans-serif">    camera 有透视相机和正投影相机两种。(<a href="http://www.ituring.com.cn/article/48954">详情</a>)</font></div>
+				<div><span style="color: rgb(0, 0, 0); font-size: 14px; font-style: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); float: none;">     THREE.PerspectiveCamera<span style="font-family: Verdana;"> </span></span></div>
+				<div><span style="color: rgb(0, 0, 0); font-style: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); float: none;">     THREE.OrthographicCamera  </span></div>
+				<div><span style="background-color: rgb(255, 255, 255);">     本例选取透视相机。</span></div>
+				<div><span style="background-color: rgb(255, 255, 255);">3.three.js场景：</span></div>
+				<div><span style="background-color: rgb(255, 255, 255);">     THREE.Scene 场景就是一个三维空间。</span></div>
+				<div><span style="background-color: rgb(255, 255, 255);">4.three.js光源：</span></div>
+				<div><span style="background-color: rgb(255, 255, 255);">     光源分为：</span></div>
+				<div>     THREE.AmbientLight 环境光</div>
+				<div>     THREE.DirectionalLight 平行光</div>
+				<div>     THREE.PointLight 点光源</div>
+				<div>     THREE.SpotLight 聚光灯 等光源</div>
+				<div>     本例选取环境光。</div>
+				<div>5.three.js 3D对象：</div>
+				<div>     这个看需要什么 比如需要显示一个球体 可以使用 THREE.SphereGeometry。</div>
+				<div><br/></div>
+				<div><br/></div>
+				<div>参考官方demo <a href="https://threejs.org/examples/#webgl_materials_cubemap">cubemap</a> 关于贴图顺序参考可查询<a href="https://learnopengl-cn.readthedocs.io/zh/latest/04%20Advanced%20OpenGL/06%20Cubemaps/">cubemap</a> 其中：</div>
+				<div>                var path = "textures/cube/SwedishRoyalCastle/";</div>
+				<div>                var format = '.jpg';</div>
+				<div>                var urls = [</div>
+				<div>                        path + 'px' + format, path + 'nx' + format,</div>
+				<div>                        path + 'py' + format, path + 'ny' + format,</div>
+				<div>                        path + 'pz' + format, path + 'nz' + format</div>
+				<div>                    ];</div>
+				<div><br/></div>
+				<div>                var reflectionCube = new THREE.CubeTextureLoader().load( urls );</div>
+				<div>                reflectionCube.format = THREE.RGBFormat;</div>
+				<div><br/></div>
+				<div>                scene = new THREE.Scene();</div>
+				<div>                scene.background = reflectionCube;</div>
+				<div>可实现360贴图。</div>
+				<div><br/></div>
+				<div>参考 <a href="https://threejs.org/examples/#misc_controls_orbit">control/orbit</a> 可实现 滑动改变视角。（需要引入 OrbitControls.js ）</div>
+				<div>                 controls = new THREE.OrbitControls( camera, renderer.domElement );</div>
+				<div><br/></div>
+				<div>最终效果：<br />
+					<a href="threeDemo.html">滑动改变视角</a>
+				</div>
+				<div><br/></div>
+				<div>使用 DeviceOrientationControls 替代 OrbitControls 可使用设备陀螺仪实现vr效果</div>
+				<br />
+				<a href="oriDemo.html">陀螺仪改变视角</a>
+				<div><br/></div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</body>

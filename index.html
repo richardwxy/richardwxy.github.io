@@ -43,15 +43,16 @@ margin: 0;
 </style>
 
 <script>
-	$.ajax({
-		url:"http://apis.map.qq.com/ws/location/v1/ip?"+"key=4QGBZ-VM53F-7W3JT-JST5Q-YRMXE-2UFVP&callback=jsonpcallback",
-		type:"GET",
-		dataType:"jsonp",
-		jsonp:"callback",
-		success: function (data) {
-			console.log(data);
+	$(document).ready(function(){
+
+		function moveHandler(ev){
+			console.log(ev);
 		}
-	})
+
+		$("body")[0].addEventListener("touchmove",moveHandler,false);
+
+
+	});
 
 
 
