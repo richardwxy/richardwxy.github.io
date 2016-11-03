@@ -108,13 +108,13 @@
 
                         isTouching = true;
                         document.body.innerHTML = "hello0000";
-                    },false);
+                    },true);
                     document.body.addEventListener('touchend',function(){
                         controlsM.connect();
                         controls.enable = false;
                         document.body.innerHTML = 'end';
                         isTouching = false;
-                    },false)
+                    },true)
                     onBorderMouseUp();
                 },
                 render: function () {
