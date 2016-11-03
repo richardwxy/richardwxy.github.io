@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>全景图开发测试</title>
+    <style>
+        *{overflow: hidden;margin:0;padding:0;}
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript" src="http://cdn.bootcss.com/three.js/r82/three.min.js"></script>
+    <script src="OrbitControls.js"></script>
+    <script src="oriJS.js"></script>
+</head>
+<body style="background-color: #000000">
+
+<script>
+
+
+    (function () {
+        var index = (function () {
+            var scene, camera, renderer, controls,controlsM,
+                    renderCount = 0;
+
+            return {
+                init: function () {
+                    index.initScene();
+                    //添加事件
+                    index.addEvent();
+                    //执行
+                    index.render();
+                    index.animate();
+
+                },
+
+
+                //创建场景（画布）
+                initScene: function () {
+                    scene = new THREE.Scene();
+
+
+                    /*以下代码需要改变*/
+                    var ext = '.png'
+                            , textureCube = new THREE.CubeTextureLoader()
+                                    .setPath('')
+                                    .load([
+                                        'px' + ext,
+                                        'nx' + ext,
+                                        'py' + ext,
+                                        'ny' + ext,
+                                        'pz' + ext,
+                                        'nz' + ext
+                                    ]);
+                    //贴图命名 基于右手坐标系（脑补一下吧 具体效果还需参考camera lookat什么位置）
+
+                    /*以上代码需要改变*/
+
+                    scene.background = textureCube;
+                    //加入环境光,浅灰色
+                    scene.add(new THREE.AmbientLight(0xffffff));
+
+                    index.initCamera();
+                    index.initRenderer();
+                    index.initControls();
+                },
+                initCamera: function () {
+                    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+
+                    /*如需改变视角 以下代码需要改变*/
+
+                    camera.position.set(200, 200, 200);
+                    camera.lookAt(scene.position);
+
+                    /*如需改变视角 以上代码需要改变*/
+
+                    console.log(scene.position);
+                    scene.add(camera);
+                },
+                initRenderer: function () {
+                    renderer = new THREE.WebGLRenderer();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    document.body.appendChild(renderer.domElement);
+                },
+                initControls:function(){
+                    controls = new THREE.OrbitControls(camera);
+                    controls.addEventListener('change', index.render);
+                    controls.autoRotate = false;//自动旋转开关
+                    controls.autoRotateSpeed = 2;
+
+                    controlsM= new THREE.DeviceOrientationControls( camera );
+
+
+                },
+                addEvent:function(){
+                    window.addEventListener('resize', index.windowResize, false);
+                    function onBorderMouseUp(ev) {
+                        window.addEventListener("drag", function(){alert('drag')});
+                    }
+                    onBorderMouseUp();
+                },
+                render: function () {
+                    renderer.render(scene, camera);
+                },
+                animate: function () {
+                    if (renderCount === 0) {
+                        index.render();
+                    }
+                    requestAnimationFrame(index.animate);
+                    controls.update();
+//                    controlsM.update();
+                },
+                windowResize:function(){
+                    console.log(new Date());
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    controls.reset();
+                    index.render();
+                }
+            };
+        })();
+
+        index.init();
+    })();
+
+</script>
+</body>
