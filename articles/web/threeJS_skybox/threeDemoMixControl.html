@@ -105,7 +105,8 @@
 //                        controlsM.disconnect();
 //                        controlsM.enabled = false;
 //                        controls.enable = true;
-
+                        controls.position = controlsM.position;
+                        controls.position0 = controlsM.position0;
                         isTouching = true;
 //                        document.body.innerHTML = "111111";
                     },false);
@@ -114,6 +115,8 @@
 //                        controlsM.enabled = true;
 //                        controlsM.connect();
 //                        document.body.innerHTML = 'end';
+                        controlsM.position = controls.position;
+                        controlsM.position0 = controls.position0;
                         isTouching = false;
                     },false)
                     onBorderMouseUp();
