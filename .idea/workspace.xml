@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50c62412-bcc7-431c-8c88-502605d99f76" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/articles/web/threeJS_skybox/threeDemoMixControl.html" afterPath="$PROJECT_DIR$/articles/web/threeJS_skybox/threeDemoMixControl.html" />
     </list>
     <ignored path="richardwxy.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
