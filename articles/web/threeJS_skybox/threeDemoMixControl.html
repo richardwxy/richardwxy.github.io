@@ -102,15 +102,16 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     document.body.addEventListener('touchstart',function(){
-                        controls.enable = true;
                         controlsM.disconnect();
+                        controls.enable = true;
 
                         isTouching = true;
 //                        document.body.innerHTML = "111111";
                     },false);
                     document.body.addEventListener('touchend',function(){
-                        controlsM.connect();
                         controls.enable = false;
+
+                        controlsM.connect();
 //                        document.body.innerHTML = 'end';
                         isTouching = false;
                     },false)
