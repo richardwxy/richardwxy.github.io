@@ -116,14 +116,12 @@
                     requestAnimationFrame(index.animate);
                     if(isTouching){
                         controlsM.disconnect();
-                        controls.enable(true);
                         controls.enable = true;
                         controls.update();
                     }
                     else {
                         controlsM.connect();
                         controlsM.update();
-                        controls.enable(false);
                         controls.enable = false;
                     }
                 },
