@@ -103,7 +103,6 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     window.addEventListener('touchstart',function(){
-                        alert('start');
                         controlsM.disconnect();
                         controlsM.stop();
                         controls.enable = true;
@@ -114,7 +113,6 @@
                         controlsM.connect();
                         controls.enable = false;
                         document.body.innerHTML = 'end';
-                        alert('end');
                         isTouching = false;
                     },false)
                     onBorderMouseUp();
