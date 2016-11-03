@@ -91,6 +91,7 @@
                     controls.addEventListener('change', index.render);
                     controls.autoRotate = false;//自动旋转开关
                     controls.autoRotateSpeed = 2;
+                    controls.enabled = false;
 
                     controlsM= new THREE.DeviceOrientationControls( camera );
                     controlsM.connect();
@@ -102,7 +103,9 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     window.addEventListener('touchstart',function(){
+                        alert('start');
                         controlsM.disconnect();
+                        controlsM.stop();
                         controls.enable = true;
                         isTouching = true;
                         document.body.innerText = "start";
@@ -111,6 +114,7 @@
                         controlsM.connect();
                         controls.enable = false;
                         document.body.innerHTML = 'end';
+                        alert('end');
                         isTouching = false;
                     },false)
                     onBorderMouseUp();
