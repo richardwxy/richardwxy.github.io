@@ -101,13 +101,13 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     window.addEventListener('touchstart',function(){
-                        $('#log').innerHTML = "start";
+                        $('#log').text = "start";
                         isTouching = true;
-                    });
+                    },false);
                     window.addEventListener('touchend',function(){
-                        $('#log').innerHTML = "end";
+                        $('#log').text = "end";
                         isTouching = false;
-                    })
+                    },false)
                     onBorderMouseUp();
                 },
                 render: function () {
