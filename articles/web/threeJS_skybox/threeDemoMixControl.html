@@ -99,9 +99,14 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     window.addEventListener('touchstart',function(){
+                        controlsM.disconnect();
+                        controls.enable = true;
                         isTouching = true;
                     },false);
                     window.addEventListener('touchend',function(){
+                        controlsM.connect();
+                        controls.enable = false;
+
                         isTouching = false;
                     },false)
                     onBorderMouseUp();
@@ -115,14 +120,13 @@
                     }
                     requestAnimationFrame(index.animate);
                     if(isTouching){
-                        controlsM.disconnect();
-                        controls.enable = true;
+                        console.log("is touching");
+
                         controls.update();
                     }
                     else {
-                        controlsM.connect();
+                        console.log("end touching");
                         controlsM.update();
-                        controls.enable = false;
                     }
                 },
                 windowResize:function(){
