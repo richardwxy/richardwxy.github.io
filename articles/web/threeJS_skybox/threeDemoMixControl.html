@@ -101,16 +101,17 @@
                     function onBorderMouseUp(ev) {
                         window.addEventListener("drag", function(){alert('drag')});
                     }
-                    document.body.addEventListener('touchstart',function(){
-                        controlsM.disconnect();
+                    window.addEventListener('touchstart',function(){
+//                        controlsM.disconnect();
+                        controlsM.enabled = false;
                         controls.enable = true;
 
                         isTouching = true;
 //                        document.body.innerHTML = "111111";
                     },false);
-                    document.body.addEventListener('touchend',function(){
+                    window.addEventListener('touchend',function(){
                         controls.enable = false;
-
+                        controlsM.enabled = true;
                         controlsM.connect();
 //                        document.body.innerHTML = 'end';
                         isTouching = false;
