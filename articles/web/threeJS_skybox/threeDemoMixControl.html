@@ -90,7 +90,7 @@
                     controls.autoRotateSpeed = 2;
 
                     controlsM= new THREE.DeviceOrientationControls( camera );
-
+                    controlsM.connect();
 
                 },
                 addEvent:function(){
@@ -109,7 +109,7 @@
                     }
                     requestAnimationFrame(index.animate);
                     controls.update();
-//                    controlsM.update();
+                    controlsM.update();
                 },
                 windowResize:function(){
                     console.log(new Date());
