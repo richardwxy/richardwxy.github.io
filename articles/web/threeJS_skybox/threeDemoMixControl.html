@@ -16,7 +16,7 @@
     <script src="oriJS.js"></script>
 </head>
 <body style="background-color: #000000">
-<p id="log" style="background-color: #000000 ;color: #ffffff">null</p>
+<p id="testlog" style="background-color: #000000 ;color: #ffffff">null</p>
 <script>
 
 
@@ -101,11 +101,11 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     window.addEventListener('touchstart',function(){
-                        $('#log').text = "start";
+                        $('#testlog').innerText = "start";
                         isTouching = true;
                     },false);
                     window.addEventListener('touchend',function(){
-                        $('#log').text = "end";
+                        document.getElementById('testlog').innerHTML = "end";
                         isTouching = false;
                     },false)
                     onBorderMouseUp();
@@ -133,6 +133,7 @@
                     renderer.setSize(window.innerWidth, window.innerHeight);
                     controls.reset();
                     index.render();
+                    alert('resize');
                 }
             };
         })();
