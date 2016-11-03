@@ -125,15 +125,15 @@
                         index.render();
                     }
                     requestAnimationFrame(index.animate);
-                    if(isTouching){
+//                    if(isTouching){
                         console.log("is touching");
 
                         controls.update();
-                    }
-                    else {
+//                    }
+//                    else {
                         console.log("end touching");
                         controlsM.update();
-                    }
+//                    }
                 },
                 windowResize:function(){
                     console.log(new Date());
