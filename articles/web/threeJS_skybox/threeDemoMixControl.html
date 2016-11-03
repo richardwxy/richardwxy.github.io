@@ -100,9 +100,11 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     window.addEventListener('touchstart',function(){
+                        alert('start');
                         isTouching = true;
                     });
                     window.addEventListener('touchend',function(){
+                        alert('end');
                         isTouching = false;
                     })
                     onBorderMouseUp();
