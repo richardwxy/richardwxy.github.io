@@ -9,6 +9,9 @@
             width: 100%;
             height: 100%;
         }
+        body {
+            color: #ffffff;
+        }
     </style>
     <script type="text/javascript" src="http://cdn.bootcss.com/three.js/r82/three.min.js"></script>
     <script src="OrbitControls.js"></script>
@@ -102,11 +105,12 @@
                         controlsM.disconnect();
                         controls.enable = true;
                         isTouching = true;
+                        document.body.innerText = "start";
                     },false);
                     window.addEventListener('touchend',function(){
                         controlsM.connect();
                         controls.enable = false;
-
+                        document.body.innerHTML = 'end';
                         isTouching = false;
                     },false)
                     onBorderMouseUp();
