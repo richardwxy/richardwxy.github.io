@@ -103,8 +103,9 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     window.addEventListener('touchstart',function(){
-                        controlsM.disconnect();
                         controls.enable = true;
+                        controlsM.disconnect();
+
                         isTouching = true;
                         document.body.innerHTML = "start";
                     },false);
