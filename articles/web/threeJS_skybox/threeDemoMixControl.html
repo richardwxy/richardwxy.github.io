@@ -94,7 +94,6 @@
                     //controls.enabled = false;
 //需要判断
                     controlsM= new THREE.DeviceOrientationControls( camera );
-                    controlsM.connect();
 
                 },
                 addEvent:function(){
@@ -107,14 +106,14 @@
 //                        controlsM.disconnect();
 
                         isTouching = true;
-                        document.body.innerHTML = "hello0000";
-                    },true);
+                        document.body.innerHTML = "111111";
+                    },false);
                     document.body.addEventListener('touchend',function(){
                         controlsM.connect();
                         controls.enable = false;
                         document.body.innerHTML = 'end';
                         isTouching = false;
-                    },true)
+                    },false)
                     onBorderMouseUp();
                 },
                 render: function () {
