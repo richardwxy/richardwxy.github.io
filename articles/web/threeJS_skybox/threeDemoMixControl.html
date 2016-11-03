@@ -91,7 +91,7 @@
                     controls.addEventListener('change', index.render);
                     controls.autoRotate = false;//自动旋转开关
                     controls.autoRotateSpeed = 2;
-                    controls.enabled = false;
+//                    controls.enabled = false;
 //需要判断
                     controlsM= new THREE.DeviceOrientationControls( camera );
 
@@ -103,16 +103,16 @@
                     }
                     window.addEventListener('touchstart',function(){
 //                        controlsM.disconnect();
-                        controlsM.enabled = false;
-                        controls.enable = true;
+//                        controlsM.enabled = false;
+//                        controls.enable = true;
 
                         isTouching = true;
 //                        document.body.innerHTML = "111111";
                     },false);
                     window.addEventListener('touchend',function(){
-                        controls.enable = false;
-                        controlsM.enabled = true;
-                        controlsM.connect();
+//                        controls.enable = false;
+//                        controlsM.enabled = true;
+//                        controlsM.connect();
 //                        document.body.innerHTML = 'end';
                         isTouching = false;
                     },false)
@@ -126,15 +126,15 @@
                         index.render();
                     }
                     requestAnimationFrame(index.animate);
-//                    if(isTouching){
+                    if(isTouching){
                         console.log("is touching");
 
                         controls.update();
-//                    }
-//                    else {
+                    }
+                    else {
                         console.log("end touching");
                         controlsM.update();
-//                    }
+                    }
                 },
                 windowResize:function(){
                     console.log(new Date());
