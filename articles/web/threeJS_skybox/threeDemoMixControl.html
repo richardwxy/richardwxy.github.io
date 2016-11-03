@@ -23,6 +23,7 @@
         var index = (function () {
             var scene, camera, renderer, controls,controlsM,
                     renderCount = 0;
+            var isTouching = false;
 
             return {
                 init: function () {
@@ -98,6 +99,12 @@
                     function onBorderMouseUp(ev) {
                         window.addEventListener("drag", function(){alert('drag')});
                     }
+                    window.addEventListener('touchstart',function(){
+                        isTouching = true;
+                    });
+                    window.addEventListener('touchend',function(){
+                        isTouching = false;
+                    })
                     onBorderMouseUp();
                 },
                 render: function () {
@@ -108,8 +115,12 @@
                         index.render();
                     }
                     requestAnimationFrame(index.animate);
-                    controls.update();
-                    controlsM.update();
+                    if(isTouching){
+                        controls.update();
+                    }
+                    else {
+                        controlsM.update();
+                    }
                 },
                 windowResize:function(){
                     console.log(new Date());
