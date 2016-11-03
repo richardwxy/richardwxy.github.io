@@ -11,12 +11,10 @@
         }
     </style>
     <script type="text/javascript" src="http://cdn.bootcss.com/three.js/r82/three.min.js"></script>
-    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
     <script src="OrbitControls.js"></script>
     <script src="oriJS.js"></script>
 </head>
 <body style="background-color: #000000">
-<p id="testlog" style="background-color: #000000 ;color: #ffffff">null</p>
 <script>
 
 
@@ -101,11 +99,9 @@
                         window.addEventListener("drag", function(){alert('drag')});
                     }
                     window.addEventListener('touchstart',function(){
-                        $('#testlog').innerText = "start";
                         isTouching = true;
                     },false);
                     window.addEventListener('touchend',function(){
-                        document.getElementById('testlog').innerHTML = "end";
                         isTouching = false;
                     },false)
                     onBorderMouseUp();
@@ -119,10 +115,16 @@
                     }
                     requestAnimationFrame(index.animate);
                     if(isTouching){
+                        controlsM.disconnect();
+                        controls.enable(true);
+                        controls.enable = true;
                         controls.update();
                     }
                     else {
+                        controlsM.connect();
                         controlsM.update();
+                        controls.enable(false);
+                        controls.enable = false;
                     }
                 },
                 windowResize:function(){
