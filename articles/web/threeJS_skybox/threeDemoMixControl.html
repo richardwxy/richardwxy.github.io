@@ -91,7 +91,7 @@
                     controls.addEventListener('change', index.render);
                     controls.autoRotate = false;//自动旋转开关
                     controls.autoRotateSpeed = 2;
-                    controls.enabled = false;
+                    //controls.enabled = false;
 //需要判断
                     controlsM= new THREE.DeviceOrientationControls( camera );
                     controlsM.connect();
@@ -107,7 +107,7 @@
 //                        controlsM.disconnect();
 
                         isTouching = true;
-                        document.body.innerHTML = "hello";
+                        document.body.innerHTML = "hello0000";
                     },false);
                     window.addEventListener('touchend',function(){
                         controlsM.connect();
