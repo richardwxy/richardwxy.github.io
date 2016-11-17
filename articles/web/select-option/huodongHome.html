@@ -7,82 +7,54 @@
     <meta name="keywords" content="【五月.致青春】制作超级海报免费得红包"/>
     <meta name="description" content="【五月.致青春】制作超级海报免费得红包"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="http://static.ichaotu.com/wx10//dest/js/c/css/active.css?31"/>
-    <style>
-        #maskLayer{
-            width:100%; height:900px; background-color:#000000; opacity:0.9; -moz-opacity:0.5;position:fixed;z-index:1000;top:0;left:0;display:none;
-        }
-        #maskLayer img{margin:20% auto;border:0;}
-        select{
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance:none;
-
-        }
-    </style>
+    <link rel="stylesheet" href="http://static.ichaotu.com/wx10//dest/css/active.css?31"/>
 </head>
 <body>
-<div class="wrap page-upload">
+<div class="wrap page-index">
     <div class="content">
-        <!-- hidden crop params -->
-        <input type="hidden" id="x1" name="x1" autocomplete="off"/>
-        <input type="hidden" id="y1" name="y1" autocomplete="off"/>
-        <input type="hidden" id="x2" name="x2" autocomplete="off"/>
-        <input type="hidden" id="y2" name="y2" autocomplete="off"/>
-
-
-        <div class="img J_uploadContent">
-            <div class="J_uploadWrap"><img src="http://static.ichaotu.com/wx10//dest/img/icon-photo.png?31"></div>
-        </div>
-        <div class="preview-img J_preview" style="display: none;">
-            <img id="preview-upload-img"></div>
-
-        <div class="container J_viewContent" style="display: none;">
-            <a href="#J_main" class="btn-goto J_goto">确认裁剪</a>
-            <img id="preview"/>
-        </div>
-
-
-        <ul style="display: none;">
-            <li><label>图像尺寸</label> <input type="text" id="filedim" name="filedim" class="input"
-                                           autocomplete="off"/></li>
-            <li><label>宽度</label> <input type="text" id="w" name="w" class="input" autocomplete="off"/></li>
-            <li><label>高度</label> <input type="text" id="h" name="h" class="input" autocomplete="off"/></li>
-        </ul>
-
-        <div class="J_main" id="J_main">
-            <div class="introduce"><p>（预设主文案）</p></div>
-            <div class="item">
-                <input type="text" name="manager" id="manager" disabled="yes" placeholder="" value="相信，改变未来
-12.16日，发布会见">
+        <div class="img">
+            <div class="img-wrap">
+                <div class="img-inner J_imgs">
+                    <img src="http://static.ichaotu.com/wx10//dest/img/tmp/active-index.png" class="on">
+                    <img src="http://static.ichaotu.com/wx10//dest/img/1.png?31">
+                    <img src="http://static.ichaotu.com/wx10//dest/img/2.png?31">
+                </div>
             </div>
-            <div class="introduce"><p>（用户自定义文案）</p></div>
-            <div class="item">
-                <input type="text" name="desc1" id="desc1" placeholder="选填,最长18个字符">
+        </div>
+        <div class="option">
+            <div class="btns">
+                <!--<a href="javascript:" class="change J_change">换一张</a>-->
+                <a href="huodong.html" class="join" style="float: right;margin:0.13rem 0.25rem 0.25rem 0.25rem ">制作我的海报</a>
             </div>
-            <!--<div class="item">-->
-                <!--<input type="text" name="desc2" id="desc2"placeholder="描述2选填,最长40个字符,如:超级海报,让品牌宣传瞬间引爆">-->
-            <!--</div>-->
-            <button class="btn-submit J_submit">生成我的海报</button>
+            <div class="bill"><img src="http://static.ichaotu.com/wx10//dest/img/active-text.png?31"></div>
             <div class="money">此活动金额均由超级图片支持</div>
         </div>
     </div>
 </div>
-<div id="maskLayer">
-    <img src="/images/loading.gif?31" />
-</div>
-<script src="http://static.ichaotu.com/wx10//dest/js/c/jquery-1.min.js?31"></script>
-<script src="http://static.ichaotu.com/wx10//dest/js/c/jquery.Jcrop.min.js?31"></script>
-<script src="http://static.ichaotu.com/wx10//dest/js/c/SP.js?31"></script>
-<script src="http://static.ichaotu.com/wx10//dest/js/c/active-wx.js?31"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/jquery.min.js"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/SP.js"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/active.js?31"></script>
+<script type="text/javascript">
+    window.shareData = {
+        "moduleName":"五月天",
+        "moduleID":"0",
+        "imgUrl": "",
+        "timeLineLink": "http://ali.ichaotu.com/index.php?g=Wap&m=Huodong&a=index&token=yvwrpv1459910246",
+        "sendFriendLink": "http://ali.ichaotu.com/index.php?g=Wap&m=Huodong&a=index&token=yvwrpv1459910246",
+        "tTitle": "【五月.致青春】制作超级海报免费得红包",
+        "tContent": "【五月.致青春】制作超级海报免费得红包",
+        "fTitle": "【五月.致青春】制作超级海报免费得红包",
+        "fContent": "【五月.致青春】制作超级海报免费得红包"
+    };
+</script>
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
     wx.config({
         debug: false,
         appId: 	'wxb36b6b0972dde66f',
-        timestamp: 1479346685,
-        nonceStr: '953885',
-        signature: '3f242fb68b1e6b22aac01012dcc56a9b2145e2ba',
+        timestamp: 1479364162,
+        nonceStr: '693940',
+        signature: '4992b050ad1ca4bca6308e8842828caac9de1a60',
         jsApiList: [
             'checkJsApi',
             'onMenuShareTimeline',
@@ -202,36 +174,5 @@
             $.post('index.php?g=Wap&m=Share&a=ShareNum&token=yvwrpv1459910246&wecha_id=oIUBpuGfqKReHEMCjAy1O1mq5qPg',ShareNum,function (data) {if(window.shareData.isShareNumReload == 1){location.reload();}},'json');
         }
     }
-</script><script>
-    $('.J_preview,.J_uploadContent').on('click', function(){
-        wx.chooseImage({
-            count: 1,
-            sizeType: ['original', 'compressed'],
-            sourceType: ['album', 'camera'],
-            success: function (res) {
-                var localIds = res.localIds;
-                wx.uploadImage({
-                    localId: localIds[0],
-                    isShowProgressTips: 1,
-                    success: function (res) {
-                        $.ajax({
-                            type: 'POST',
-                            url:'/index.php?g=Wap&m=Huodong&a=wxPic',
-                            data:{serverId:res.serverId},
-                            dataType:'json',
-                            success:function(res){
-                                if(res.code == 0) {
-                                    cropImage(res.pic, 800, 900);
-                                }else{
-                                    SP.dialog.tip(res.msg);
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    })
-</script>
-</body>
+</script></body>
 </html>
