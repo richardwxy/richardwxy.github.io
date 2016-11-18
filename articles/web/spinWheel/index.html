@@ -8,6 +8,20 @@
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<style>
+		.winner-item-img{
+			height: 80px;width: 80px; position: relative;top: 0;bottom: 0;left: 0;
+		}
+		.winner-item-name{
+			position: relative;top: 5px;left: 85px;
+			height: 20px;
+			font-size: 15px;
+
+		}
+		.winner-list{
+			margin: 0 auto;
+		}
+	</style>
 </head>
 <body>
 <div class="htmleaf-container">
@@ -22,6 +36,16 @@
 			</div>
 		</div>
 	</div>
+	<div>
+		<!--<ul class="winner-list">-->
+			<!--<li class="winner-item" style="width:300px;height: 80px;margin: 0 auto;position: absolute">-->
+				<!--<img class="winner-item-img" src="images/turnplate-bg.png" >-->
+				<!--<p class="winner-item-name">张三</p>-->
+
+
+			<!--</li>-->
+		<!--</ul>-->
+	</div>
 
 </div>
 
@@ -32,9 +56,9 @@
 	var turnplate={
 		restaraunts:[],				//大转盘奖品名称
 		colors:[],					//大转盘奖品区块对应背景颜色
-		outsideRadius:140,			//大转盘外圆的半径
-		textRadius:120,				//大转盘奖品位置距离圆心的距离
-		insideRadius:40,			//大转盘内圆的半径
+		outsideRadius:135,			//大转盘外圆的半径
+		textRadius:100,				//大转盘奖品位置距离圆心的距离
+		insideRadius:50,			//大转盘内圆的半径
 		startAngle:0,				//开始角度
 
 		bRotate:false				//false:停止;ture:旋转
@@ -42,8 +66,8 @@
 
 	$(document).ready(function(){
 		//动态添加大转盘的奖品与奖品区域背景颜色
-		turnplate.restaraunts = ["50M免费流量包", "10金币", "谢谢参与", "5金币", "10M免费流量包", "20M免费流量包", "20金币 ", "30M免费流量包", "100M免费流量包", "2金币"];
-		turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF"];
+		turnplate.restaraunts = ["iPhone7 32G", "iPad   mini2 32G", "50元京东E卡", "5元现金红包", "1元现金红包","谢谢惠顾"];
+		turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF"];
 
 
 		var rotateTimeOut = function (){
@@ -170,15 +194,15 @@
 				if(text.indexOf("M")>0){//流量包
 					var texts = text.split("M");
 					for(var j = 0; j<texts.length; j++){
-						ctx.font = j == 0?'bold 16px Microsoft YaHei':'13px Microsoft YaHei';
+						ctx.font = j == 0?'bold 13px Microsoft YaHei':'11px Microsoft YaHei';
 						if(j == 0){
 							ctx.fillText(texts[j]+"M", -ctx.measureText(texts[j]+"M").width / 2, j * line_height);
 						}else{
 							ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height);
 						}
 					}
-				}else if(text.indexOf("M") == -1 && text.length>6){//奖品名称长度超过一定范围
-					text = text.substring(0,6)+"||"+text.substring(6);
+				}else if(text.indexOf("M") == -1 && text.length>=7){//奖品名称长度超过一定范围
+					text = text.substring(0,7)+"||"+text.substring(7);
 					var texts = text.split("||");
 					for(var j = 0; j<texts.length; j++){
 						ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height);
@@ -196,7 +220,7 @@
 						ctx.drawImage(img,-15,10);
 					};
 					ctx.drawImage(img,-15,10);
-				}else if(text.indexOf("谢谢参与")>=0){
+				}else if(text.indexOf("谢谢惠顾")>=0){
 					var img= document.getElementById("sorry-img");
 					img.onload=function(){
 						ctx.drawImage(img,-15,10);
