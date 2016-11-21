@@ -19,6 +19,15 @@
             appearance:none;
 
         }
+        option{
+            width: 80px;
+            height: 35px;
+        }
+        .optionColorBlock{
+            width: 30px;
+            height: 30px;
+        }
+
     </style>
 </head>
 <body>
@@ -60,6 +69,10 @@
             <div class="item">
                 <input type="text" name="desc1" id="desc1" placeholder="选填,最长18个字符">
             </div>
+            <select>
+                <option style="background-color: red" id="red"><span class="optionColorBlock"></span>红色</option>
+                <option style="background-color: green" id="green">绿色</option>
+            </select>
             <!--<div class="item">-->
                 <!--<input type="text" name="desc2" id="desc2"placeholder="描述2选填,最长40个字符,如:超级海报,让品牌宣传瞬间引爆">-->
             <!--</div>-->
