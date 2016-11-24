@@ -42,6 +42,8 @@ div.cs-skin-elastic {
 }
 
 .cs-skin-elastic.cs-active .cs-options {
+	position:initial;
+
 	pointer-events: auto;
 }
 
