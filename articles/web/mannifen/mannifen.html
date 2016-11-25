@@ -1,0 +1,270 @@
+
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+<html>
+<head lang="zh">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth > 750 ? 750 : docEl.clientWidth;
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = 100 * (clientWidth/750 ) + 'px';
+                    };
+            recalc();
+            window.addEventListener('resize',recalc, false);
+        })(document, window);
+    </script>
+
+    <title>注册</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="jquery.2.1.1.min.js"></script>
+    <script type="text/javascript" src="WXUtil.js"></script>
+    <script type="text/javascript" src="global.js"></script>
+    <style>
+        .reg-wrap fieldset p {display: none; color: #c10000; margin-top: 0px; margin-bottom: 10px; font-size: 12px;}
+        .pop {display: none; color: #c10000; margin-top: 0px; margin-bottom: 10px; font-size: 12px;}
+        .label-sex:before {
+            content: '';
+            margin-right: .2rem;
+            background: #f36362;
+            display: inline-block;
+            height: .3rem;
+            width: .1rem;
+        }
+    </style>
+</head>
+<body class="reg-wrap">
+<form method="post" id="myform" name="myform" action="/wap/mnfpartnernew/bandCard">
+    <input type="hidden" id="hyUserId" name="hyUserId" value="52756cdf-35b6-4cb2-b56c-df35b6ecb2dd"/>
+    <h3>注册会员</h3>
+    <fieldset>
+        <label>手机号码</label>
+        <input type="text" name="mobile" id="mobile" value="" placeholder="请输入你的手机号码">
+        <p></p>
+    </fieldset>
+    <fieldset class="pr">
+        <label>验证码</label>
+        <input name="vercode" id="vercode" maxlength="8" type="text" placeholder="请输入验证码">
+        <p></p>
+        <a href="javascript:void(0);" onclick="codeForPhone();" class="send-code-btn" id="getCode">获取验证码</a>
+    </fieldset>
+    <div class="pop" id="tip" onclick="$('#tip').hide();">验证码已发送</div>
+    <fieldset>
+        <label>姓名</label>
+        <input type="text" name="memberName" id="memberName" placeholder="请输入你的姓名">
+        <p></p>
+    </fieldset>
+    <fieldset>
+        <label>生日</label>
+        <input id="birthday" name="birthday" type="date" placeholder="请选择你的生日">
+        <p></p>
+    </fieldset>
+    <div>
+        <label class="label-sex">性别：</label>
+        <input type="radio" id="sex" name="sex" value="1" style="-webkit-appearance:radio!important;" />&nbsp;男&nbsp;&nbsp;&nbsp;&nbsp;
+        <input id="sex" type="radio" name="sex" value="2" class="last" style="-webkit-appearance:radio!important;" checked="checked"/>&nbsp;女
+    </div>
+    <div style="height: 10px;">&nbsp;</div>
+    <fieldset class="f-br">
+        <a href="javascript:void(0);" class="submit-btn" id="binding" onclick="bandCard();">开始绑定</a>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+    var isPass = true;
+    //获取验证码
+    function codeForPhone()
+    {
+        var hyUserId="52756cdf-35b6-4cb2-b56c-df35b6ecb2dd";
+        var shopId="4a3779eb-5f27-4515-b779-eb5f27551503";
+        var mobile=$("#mobile").val();
+        mobile = $.trim(mobile);
+        if (isEmpty(mobile)) {
+            $("#mobile").next('p').html("手机号码不能为空");
+            $("#mobile").next('p').show();
+            return false;
+        }
+        if (isMobile(mobile)) {
+            $("#mobile").next('p').html("手机号码格式不正确！");
+            $("#mobile").next('p').show();
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/wap/dsfapi/sendMsgToPhone",
+            async : false,
+            datatype : "json",
+            data: {shopId:shopId,hyUserId:hyUserId,mobile:mobile},
+            success:function(obj) {
+                if(obj.result == "true"){
+                    timeCount("#getCode");
+                    $("#tip").html("验证码发送成功，请查收");
+                    $("#tip").show();
+                }else{
+                    if(obj.refreshDate !=null && obj.refreshDate != ""){
+                        time=300-obj.refreshDate;
+                        timeCount("#getCode");
+                    }
+                    $("#tip").html(obj.flagRemark);
+                    $("#tip").show();
+                }
+            },
+            error:function(obj){
+                alert("error");
+            }
+        });
+
+    }
+
+
+    //绑定提交
+    function bandCard()
+    {
+        var hyUserId="52756cdf-35b6-4cb2-b56c-df35b6ecb2dd";
+        var shopId="4a3779eb-5f27-4515-b779-eb5f27551503";
+        var mobile = $("#mobile").val();
+        var memberName=$("#memberName").val();
+        // 性别
+        //var sex=$("input:radio:checked").val();
+        // 出生日期
+        var birthday=$("#birthday").val();
+        var vercode = $("#vercode").val();
+        if (isEmpty(memberName)) {
+            $("#memberName").next('p').html("姓名不能为空");
+            $("#memberName").next('p').show();
+            return false;
+        }
+        if (isEmpty(birthday)) {
+            $("#birthday").next('p').html("生日不能为空");
+            $("#birthday").next('p').show();
+            return false;
+        } else {
+            $("#birthday").next('p').hide();
+        }
+
+        if (isEmpty(mobile)) {
+            $("#mobile").next('p').html("手机号码不能为空");
+            $("#mobile").next('p').show();
+            return false;
+        }
+        if (isMobile(mobile)) {
+            $("#mobile").next('p').html("手机号码格式不正确！");
+            $("#mobile").next('p').show();
+            return false;
+        }
+
+        if($("#isSub").val() == "false"){
+            $("#tip").html("请获取手机验证码");
+            $("#tip").show();
+            return false;
+        }
+        vercode = $.trim(vercode);
+        if(vercode.length > 0){
+            var regex = /^\d{6}$/;
+            if(!regex.test(vercode)){
+                $("#tip").html("验证码为6位数字，请重新输入");
+                $("#tip").show();
+                return false;
+            }else{
+                $("#tip").html("");
+                $("#tip").show();
+            }
+        }else{
+            $("#tip").html("请输入手机收到的6位数字验证码");
+            $("#tip").show();
+            return false;
+        }
+
+
+        if(isPass){
+            isPass = false; //禁止进入
+
+
+            $.ajax({
+                type: "POST",
+                url: "/wap/dsfapi/checkVercode",
+                async : false,
+                datatype : "json",
+                data: {shopId:shopId,hyUserId:hyUserId,mobile:mobile,vercode:vercode},
+                success:function(data) {
+                    if(data.result == "0"){
+                        $("#tip").html(data.msg);
+                        $("#tip").show();
+                        isPass = true; //允许进入
+                    }else{
+                        $("#mobile").val($.trim(mobile));
+                        document.getElementById("myform").submit();
+                    }
+                },
+                error:function(obj){
+                    alert("error");
+                    isPass = true; //允许进入
+                }
+            });
+        }
+
+    } // end bandCard func
+
+
+    var vt = null, time = 300;
+    //发送验证码倒计时
+    function timeCount(codeIndex) {
+        time--;
+        var val = '获取验证码';
+        if (time <= 0) {
+            time = 300;
+            $(codeIndex).removeAttr("disabled");
+            //$('.' + codeIndex).val(val);
+            $(codeIndex).html(val); // a mark
+            //$(codeIndex).attr('href', "javascript:sendVilidateCode();");
+            $(codeIndex).attr('onclick', "codeForPhone();");
+            return false
+            clearTimeout(vt);
+        } else {
+            val = "剩余"+time+"秒";
+            $(codeIndex).attr({"disabled":"disabled"});
+            //$('.' + codeIndex).val(val);
+            //$('.' + codeIndex).attr('href', "javascript:void(0);");
+            $(codeIndex).html(val); // a mark
+            $(codeIndex).removeAttr('onclick');
+            vt = setTimeout("timeCount('" + codeIndex + "')", 1000);
+        }
+    }
+
+    $(document).ready(function() {
+        setDefault();
+    });
+
+    function setDefault() {
+        // 设置生日年份为当前年份
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth()+1; // 获取当前月份(0-11,0代表1月)
+        var day = d.getDate(); // 获取当前日(1-31)
+        if(month<10) month = '0'+month;
+        if(day<10) day = '0'+day;
+        var birthday =  year +'-'+ month +'-'+ day;
+        //console.log(birthday);
+        $('#birthday').val(birthday);
+    }
+</script>
+</body>
+</html>
+
