@@ -60,6 +60,7 @@
             var e = document.createEvent("MouseEvents");
             e.initEvent("click", true, true);
             document.getElementById("addCard").dispatchEvent(e);
+            alert("dispatchEvent");
             clearInterval(timer);
         },1000);
     };
