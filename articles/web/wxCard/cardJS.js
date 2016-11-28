@@ -504,7 +504,7 @@ wx.ready(function () {
                 alert('已添加卡券：' + JSON.stringify(res.cardList));
             },
             cancel: function (res) {
-                alert(JSON.stringify(res))
+                alert("添加失败"+JSON.stringify(res))
             }
         });
     };
