@@ -34,8 +34,9 @@
         }
 
     </style>
-    <link rel="stylesheet" href="swiper.min.css" />
 
+
+    <link rel="stylesheet" href="swiper.min.css" />
     <style>
         /*<!-- swiper 滑动控件用 -->*/
 
@@ -68,6 +69,73 @@
             align-items: center;
         }
     </style>
+
+    <style>
+        @font-face {
+            font-family: "paoxiao";
+            src: url('../../../fonts/nahan.TTF');
+            /*font-style: normal;*/
+            /*​font-weight: normal;*/
+        }
+        #fontNameChoose ul li:nth-child(1) {
+            font-family: "paoxiao";
+        }
+
+        @font-face {
+            font-family: "hyrys";
+            src: url('../../../fonts/hanyiruiyisong.otf');
+            /*font-style: normal;*/
+            /*​font-weight: normal;*/
+        }
+        #fontNameChoose ul li:nth-child(2) {
+            font-family: "hyrys";
+        }
+
+        @font-face {
+            font-family: "ygytkjt";
+            src: url('../../../fonts/YGYtekaijianti.ttf');
+            /*font-style: normal;*/
+            /*​font-weight: normal;*/
+        }
+        #fontNameChoose ul li:nth-child(3) {
+            font-family: "ygytkjt";
+        }
+
+        @font-face {
+            font-family: "yueyuanti";
+            src: url('../../../fonts/yueyuan.otf');
+            /*font-style: normal;*/
+            /*​font-weight: normal;*/
+        }
+        #fontNameChoose ul li:nth-child(4) {
+            font-family: "yueyuanti";
+        }
+
+        @font-face {
+            font-family: "miaowu";
+            src: url('../../../fonts/miaowu.ttf');
+            /*font-style: normal;*/
+            /*​font-weight: normal;*/
+        }
+        #fontNameChoose ul li:nth-child(5) {
+            font-family: "miaowu";
+        }
+
+        #fontSizeChoose ul li:nth-child(1) {
+            font-size: 12px;
+        }
+        #fontSizeChoose ul li:nth-child(2) {
+            font-size: 12px;
+        }
+        #fontSizeChoose ul li:nth-child(3) {
+             font-size: 12px;
+         }
+        #fontColorChoose .cs-options span{
+
+        }
+
+    </style>
+
 </head>
 <body>
 <div class="wrap page-upload">
@@ -127,7 +195,7 @@
             <div class="item">
                 <input type="text" name="desc1" id="desc1" placeholder="选填,最长18个字符">
             </div>
-            <div class="cs-select cs-skin-elastic" tabindex="0">
+            <div class="cs-select cs-skin-elastic" id="fontNameChoose" tabindex="0">
                 <div class="cs-options">
                    <!-- load后会创建 class=“cs-placeholder” 的span 显示结果  最终结果可从此获取 -->
                 </div>
@@ -140,7 +208,7 @@
                     <option value="方正喵呜体" data-class="flag-safrica">方正喵呜体</option>
                 </select>
             </div>
-            <div class="cs-select cs-skin-elastic" tabindex="0">
+            <div class="cs-select cs-skin-elastic" id="fontSizeChoose" tabindex="0">
                 <div class="cs-options">
                     <!-- load后会创建 class=“cs-placeholder” 的span 显示结果  最终结果可从此获取 -->
 
@@ -152,11 +220,11 @@
                     <option value="大" data-class="flag-brazil">大</option>
                 </select>
             </div>
-            <div class="cs-select cs-skin-elastic" tabindex="0">
+            <div class="cs-select cs-skin-elastic" tabindex="0" id="fontColorChoose">
                 <div class="cs-options">
                     <!-- load后会创建 class=“cs-placeholder” 的span 显示结果  最终结果可从此获取 -->
                 </div>
-                <select class="cs-select cs-skin-elastic">
+                <select class="cs-select cs-skin-elastic" >
                     <option value="" disabled="" selected="">选择颜色</option>
                     <option value="r" data-class="flag-france">深灰</option>
                     <option value="b" data-class="flag-brazil">纯白</option>
@@ -185,9 +253,10 @@
 </div>
 <script src="classie.js"></script>
 <script src="selectFx.js"></script>
-<script src="swiper.min.js"></script>
 
+<script src="swiper.min.js"></script>
 <script>
+    <!--文案样式-->
     window.onload = function() {
         var swiper = new Swiper('.swiper-container', {
 //            pagination: '.swiper-pagination',
@@ -196,10 +265,31 @@
             paginationClickable: true,
             spaceBetween: 30
         })
+
+        var btn = document.getElementsByClassName("J_submit")[0].onclick = function (){
+
+
+//            var slider = document.getElementsByClassName("swiper-slide-active")[0];
+//            var swiper = document.getElementsByClassName("swiper-slide");
+            var index = $(".swiper-slide").index($(".swiper-slide-active"));
+
+            var fontName = document.getElementById("fontNameChoose").getElementsByClassName("cs-placeholder")[0].innerHTML;
+            if(fontName === "选择字体")fontName="预设字体";
+            var fontSize = document.getElementById("fontSizeChoose").getElementsByClassName("cs-placeholder")[0].innerHTML;
+            if(fontSize === "选择字号")fontName="预设字号";
+            var fontColor = document.getElementById("fontColorChoose").getElementsByClassName("cs-placeholder")[0].innerHTML;
+            if(fontColor === "选择颜色")fontName="预设颜色";
+
+            alert("当前选择预设文案为："+index+"\n\n"+"当前选择的字体名为："+fontName +" 字体大小为："+fontSize+" 字体颜色为："+fontColor);
+
+
+
+        };
     }
 
 </script>
 <script>
+    <!--select 样式-->
     (function() {
         [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
             new SelectFx(el);
