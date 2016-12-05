@@ -263,19 +263,19 @@
             <div id="textChoose" class="choosePOPBase " style="transition-duration: 1.2s;display: none;">
                 <ul >
                     <li >
-                        <label class="demo--label"><input class="demo--radio" type="radio" name="demo-radio">相信·改变未来
+                        <label class="demo--label"><input value="相信·改变未来" class="demo--radio" type="radio" name="demo-radio">相信·改变未来
                             <span class="demo--radioInput"></span></label>
                     </li>
                     <li>
-                        <label class="demo--label"><input class="demo--radio" type="radio" name="demo-radio">金融让生活更美好
+                        <label class="demo--label"><input value="金融让生活更美好" class="demo--radio" type="radio" name="demo-radio">金融让生活更美好
                             <span class="demo--radioInput"></span></label>
                     </li>
                     <li>
-                        <label class="demo--label"><input class="demo--radio" type="radio" name="demo-radio">贷款就选摩尔龙
+                        <label class="demo--label"><input value="贷款就选摩尔龙" class="demo--radio" type="radio" name="demo-radio">贷款就选摩尔龙
                             <span class="demo--radioInput"></span></label>
                     </li>
                     <li>
-                        <label class="demo--label"><input class="demo--radio" type="radio" name="demo-radio">您身边的贷款超市
+                        <label class="demo--label"><input value="您身边的贷款超市" class="demo--radio" type="radio" name="demo-radio">您身边的贷款超市
                             <span class="demo--radioInput"></span></label>
                     </li>
                     <li class="btnStyle">
@@ -462,11 +462,23 @@
             }
 
         });
-
+        $(":radio").click(function(){
+          document.getElementById("desc1").value = "";
+        });
 
         $(".choosePOPBase li").click(function (){
             switch (this.parentElement.parentElement.id){
                 case "textChoose":
+                    var index = $("#textChoose li").index(this);
+                    var fontName = "";
+                    if(this.innerText == "确定"){
+                        if(document.getElementById("desc1").value != ""){
+                            toggleChoose("text",this.innerText);
+                        }
+                        else{
+                            toggleChoose("text", $('input:radio:checked').val());
+                        }
+                    }
                     break;
                 case "fontChoose":
                     var index = $("#fontChoose li").index(this);
@@ -507,7 +519,6 @@
             }
         });
         $(".choosePOPBase li:last-child").click(function (){
-            console.log("adsf");
             $("#textChoose").fadeOut();
             $("#fontChoose").fadeOut();
             $("#colorChoose").fadeOut();
@@ -516,6 +527,9 @@
         function toggleChoose(itemName,text){
             console.log(itemName + "  "+text);
             switch (itemName){
+                case "text":
+                    document.getElementById("itemText").innerText  =text;
+                    break;
                 case "font":
 //                    document.getElementById("itemFont").innerText  =text;
                     var index = text+1;
