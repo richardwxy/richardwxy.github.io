@@ -411,7 +411,9 @@ SP.events.init(events);
             if( classes !== '' ) {
                 optclass = 'class="' + classes + '" ';
             }
-
+            //console.log("1 "+el);
+            //alert( '<li ' + optclass + link + ' data-option data-value="' + el.value + '"><span>' +el + '</span></li>'
+            //);
             return '<li ' + optclass + link + ' data-option data-value="' + el.value + '"><span>' + el.textContent + '</span></li>';
         };
 
@@ -424,6 +426,7 @@ SP.events.init(events);
                 options += createOptionHTML(el);
             }
             else if( tag === 'optgroup' ) {
+
                 options += '<li class="cs-optgroup"><span>' + el.label + '</span><ul>';
                 [].slice.call( el.children ).forEach( function(opt) {
                     options += createOptionHTML(opt);
@@ -459,6 +462,11 @@ SP.events.init(events);
                 self._changeOption();
                 // close select elem
                 self._toggleSelect();
+                if("fontNameChoose" == this.parentNode.parentNode.parentNode.parentNode.id){
+                    var index = idx+1;
+                    var imageUrl = $("#fontNameChoose ul li:nth-child("+index+")").css("background-image");
+                    console.log(index+"   "+imageUrl);
+                    $("#fontNameChoose .cs-select .cs-placeholder").css("background-image",imageUrl);}
             } );
         } );
 
@@ -544,15 +552,24 @@ SP.events.init(events);
             if( this.current !== -1 ) {
                 // update placeholder text
                 this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
+
+
+                    $("#fontNameChoose .cs-select .cs-placeholder").css("background-position-x","1em");
+
             }
             classie.remove( this.selEl, 'cs-active' );
         }
         else {
-            if( this.hasDefaultPlaceholder && this.options.stickyPlaceholder ) {
+            if (this.hasDefaultPlaceholder && this.options.stickyPlaceholder) {
                 // everytime we open we wanna see the default placeholder text
                 this.selPlaceholder.textContent = this.selectedOpt.textContent;
             }
+            if (this.selectedOpt.parentNode.parentNode.parentNode.id == "fontNameChoose") {
+
+            $("#fontNameChoose .cs-select .cs-placeholder").css("background-position-x", "-10em");
+        }
             classie.add( this.selEl, 'cs-active' );
+
         }
     }
 

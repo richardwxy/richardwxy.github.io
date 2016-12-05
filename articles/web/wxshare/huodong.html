@@ -71,89 +71,152 @@
     </style>
 
     <style>
-        /*<!--显示自定义选项部分-->*/
-        @font-face {
-            font-family: "paoxiao";
-            src: url('nahan.TTF');
-            /*font-style: normal;*/
-            /*​font-weight: normal;*/
+
+
+
+
+    </style>
+    <style>
+
+        #fontChoose ul li{
+            background-repeat: no-repeat;
+            background-size: 55px;
+            background-position-x: 50px;
+            background-position-y: 13.5px;
         }
-        #fontNameChoose ul li:nth-child(1) {
-            font-family: "paoxiao";
+        #chooseItems li:nth-child(2){
+            background-repeat: no-repeat;
+            background-size: 55px;
+            /*background-position-x: 50px;*/
+            background-position: center;
+            /*background-position-y: 13.5px;*/
+        }
+        #fontChoose ul li:nth-child(1) {
+            background-image: url(fontPre-1.png);
         }
 
-        @font-face {
-            font-family: "hyrys";
-            src: url('hanyiruiyisong.otf');
-            /*font-style: normal;*/
-            /*​font-weight: normal;*/
-        }
-        #fontNameChoose ul li:nth-child(2) {
-            font-family: "hyrys";
+        #fontChoose ul li:nth-child(2) {
+            background-image: url(fontPre-2.png);
         }
 
-        @font-face {
-            font-family: "ygytkjt";
-            src: url('YGYtekaijianti.ttf');
-            /*font-style: normal;*/
-            /*​font-weight: normal;*/
-        }
-        #fontNameChoose ul li:nth-child(3) {
-            font-family: "ygytkjt";
+        #fontChoose ul li:nth-child(3) {
+            background-image: url(fontPre-3.png);
         }
 
-        @font-face {
-            font-family: "yueyuanti";
-            src: url('yueyuan.otf');
-            /*font-style: normal;*/
-            /*​font-weight: normal;*/
-        }
-        #fontNameChoose ul li:nth-child(4) {
-            font-family: "yueyuanti";
+        #fontChoose ul li:nth-child(4) {
+            background-image: url(fontPre-4.png);
         }
 
-        @font-face {
-            font-family: "miaowu";
-            src: url('miaowu.ttf');
-            /*font-style: normal;*/
-            /*​font-weight: normal;*/
-        }
-        #fontNameChoose ul li:nth-child(5) {
-            font-family: "miaowu";
+        #fontChoose ul li:nth-child(5) {
+            background-image: url(fontPre-5.png);
         }
 
-        #fontSizeChoose ul li:nth-child(1) {
-            font-size: 12px;
-        }
-        #fontSizeChoose ul li:nth-child(2) {
-            font-size: 14px;
-        }
-        #fontSizeChoose ul li:nth-child(3) {
-             font-size: 16px;
-         }
 
-        #fontColorChoose ul li:nth-child(1){
-            color: rgb(89,87,87) ;
+        .btnStyle {
+            margin: 24px 24px;
+            border-radius: 19px;
+            border:solid #959595 1px;
+            color:#959595;
+            background-color: #ffffff;
+            height: 36px;
+            font-size: 15px;
+            line-height: 36px;
+            text-align: center;
         }
-        #fontColorChoose ul li:nth-child(2){
-            background: #564f4f;
-            color: rgb(255,255,255) ;
+
+        .btnStyle-active {
+            margin:24px 24px;
+            border-radius: 19px;
+            border:solid #37a393 1px;
+            color: #ffffff;
+            background-color: #37a393;
+            height: 36px;
+            font-size:15px;
+            line-height: 36px;
+            text-align: center;
         }
-        #fontColorChoose ul li:nth-child(3){
-            color: rgb(5,140,121);
+        .choosePOPBase {
+            background-color: #ffffff;
+            width: 89%;
+            position: absolute;
+            top: 150px;
+            margin-right: 5.3%;
+            margin-left: 5.3%;
+            padding-top: 20px;
+            border-radius: 25px;
         }
-        #fontColorChoose ul li:nth-child(4){
-            color: rgb(253,209,106);
+        .choosePOPBase label{
+            border-bottom: solid 1px #aaa9a9;
         }
-        #fontColorChoose ul li:nth-child(5){
-            color: rgb(255,106,106);
+        .choosePOPBase p{
+            border-bottom: solid 1px #aaa9a9;
         }
-        #fontColorChoose ul li:nth-child(6){
-            color: rgb(0,191,255);
+        .choosePOPBase li label {
+            line-height: 39px;
+            height: 39px;
+            font-size: 15px;
+            padding: 0 auto;
+            width: 100%;
+            text-align: center;
         }
-        #fontColorChoose ul li:nth-child(7){
-            color: rgb(255,127,36);
+
+        .choosePOPBase li p {
+            line-height: 39px;
+            height: 39px;
+            font-size: 15px;
+            padding: 0 auto;
+            width: 100%;
+            text-align: center;
         }
+        .choosePOPBase .demo--label span {
+            position: absolute;
+            margin-top: 12.5px;
+            right: 38px;
+        }
+        input[type=text] {
+            margin: 0;
+            border: none;!important;
+            color:#959595;
+            background-color: transparent;
+            height: 36px;
+            font-size: 15px;
+            line-height: 36px;
+            text-align: center;
+        }
+
+
+
+        .demo--label{margin:0px 0px 0 0;display:inline-block}
+        .demo--radio{display:none}
+        .demo--radioInput{
+            background-color:#fff;
+            border:1px solid rgba(0,0,0,0.15);
+            border-radius:100%;
+            display:inline-block;
+
+            /*position: absolute;*/
+            /*margin-top: 12.5px;*/
+            /*right: 38px;*/
+
+            height:16px;
+            margin-right:10px;
+            margin-top:-1px;
+            vertical-align:middle;
+            width:16px;
+            line-height:1}
+        .demo--radio:checked + .demo--radioInput:after{background-color:#37a393;
+            border-radius:100%;
+            content:"";
+            display:inline-block;
+
+            /*position: absolute;*/
+            /*margin-top: 12.5px;*/
+            /*right: 38px;*/
+
+            height:16px;
+            margin:0px;
+            width:16px}
+        .demo--checkbox.demo--radioInput,.demo--radio:checked + .demo--checkbox.demo--radioInput:after{border-radius:0}
 
     </style>
 
@@ -169,8 +232,9 @@
 
 
         <div class="img J_uploadContent">
-            <div class="J_uploadWrap"><img src="icon-photo-morelong.png"></div>
+            <div class="J_uploadWrap"><img src="header-image.png"></div>
         </div>
+
         <div class="preview-img J_preview" style="display: none;">
             <img id="preview-upload-img"></div>
 
@@ -188,84 +252,104 @@
         </ul>
 
         <div class="J_main" id="J_main">
-            <div class="introduce"><p>海报文字</p></div>
+            <!--new-->
+            <ul id="chooseItems" class="checkbox-wrap">
+                <li class="btnStyle"><span id="itemText">海报文字</span></li>
+                <li class="btnStyle"><span id="itemFont">选择字体</span></li>
+                <li class="btnStyle"><span id="itemColor">选择颜色</span></li>
+                <li class="btnStyle-active"><span >生成我的海报</span></li>
+            </ul>
+
+            <div id="textChoose" class="choosePOPBase " style="transition-duration: 1.2s;display: none;">
+                <ul >
+                    <li >
+                        <label class="demo--label"><input class="demo--radio" type="radio" name="demo-radio">相信·改变未来
+                            <span class="demo--radioInput"></span></label>
+                    </li>
+                    <li>
+                        <label class="demo--label"><input class="demo--radio" type="radio" name="demo-radio">金融让生活更美好
+                            <span class="demo--radioInput"></span></label>
+                    </li>
+                    <li>
+                        <label class="demo--label"><input class="demo--radio" type="radio" name="demo-radio">贷款就选摩尔龙
+                            <span class="demo--radioInput"></span></label>
+                    </li>
+                    <li>
+                        <label class="demo--label"><input class="demo--radio" type="radio" name="demo-radio">您身边的贷款超市
+                            <span class="demo--radioInput"></span></label>
+                    </li>
+                    <li class="btnStyle">
+                        <input type="text" name="desc1" id="desc1" placeholder="自定义海报文字">
+                    </li>
+                    <li class="btnStyle-active">
+                        <span>确定</span>
+                    </li>
+                </ul>
+            </div>
+            <div id="fontChoose" class="choosePOPBase " style="transition-duration: 1.2s;display: none;">
+                <ul >
+                    <li>
+                        <p></p>
+                    </li>
+                    <li>
+                        <p></p>
+                    </li>
+                    <li>
+                        <p></p>
+                    </li>
+                    <li>
+                        <p></p>
+                    </li>
+                    <li>
+                        <p></p>
+                    </li>
+
+
+                    <li class="btnStyle-active">
+                        <span>确定</span>
+                    </li>
+                </ul>
+            </div>
+            <div id="colorChoose" class="choosePOPBase " style="transition-duration: 1.2s;display: none;">
+                <ul >
+                    <li>
+                        <p>黑</p>
+                    </li>
+                    <li>
+                        <p>白</p>
+                    </li>
+                    <li>
+                        <p>绿</p>
+                    </li>
+                    <li>
+                        <p>黄</p>
+                    </li>
+                    <li>
+                        <p>红</p>
+                    </li>
+                    <li>
+                        <p>蓝</p>
+                    </li>
+                    <li>
+                        <p>橙</p>
+                    </li>
+                    <li class="btnStyle-active">
+                        <span>确定</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!--<div class="introduce"><p>（用户自定义文案）</p></div>-->
             <!--<div class="item">-->
-                <!--<input type="text" name="manager" id="manager" disabled="yes" placeholder="" value="相信，改变未来-->
-<!--12.16日，发布会见">-->
+                <!--<input type="text" name="desc1" id="desc1" placeholder="选填,最长18个字符">-->
             <!--</div>-->
 
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">相信，改变未来 12.16日，发布会见</div>
-                    <div class="swiper-slide">相信，改变未来 12.16日，发布会见</div>
-                    <div class="swiper-slide">相信，改变未来 12.16日，发布会见</div>
-                    <div class="swiper-slide">相信，改变未来 12.16日，发布会见</div>
-                    <div class="swiper-slide">相信，改变未来 12.16日，发布会见</div>
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-            </div>
 
-
-
-
-
-
-
-            <div class="introduce"><p>（用户自定义文案）</p></div>
-            <div class="item">
-                <input type="text" name="desc1" id="desc1" placeholder="选填,最长18个字符">
-            </div>
-            <div class="cs-select cs-skin-elastic" id="fontNameChoose" tabindex="0">
-                <div class="cs-options">
-                   <!-- load后会创建 class=“cs-placeholder” 的span 显示结果  最终结果可从此获取 -->
-                </div>
-                <select class="cs-select cs-skin-elastic">
-                    <option value="" disabled="" selected="">选择字体</option>
-                    <option value="方正咆哮简体" data-class="flag-france">方正咆哮简体</option>
-                    <option value="汉仪瑞意宋" data-class="flag-brazil">汉仪瑞意宋</option>
-                    <option value="叶根友特楷简体" data-class="flag-brazil">叶根友特楷简体</option>
-                    <option value="造字工房悦圆体" data-class="flag-argentina">造字工房悦圆体</option>
-                    <option value="方正喵呜体" data-class="flag-safrica">方正喵呜体</option>
-                </select>
-            </div>
-            <div class="cs-select cs-skin-elastic" id="fontSizeChoose" tabindex="0">
-                <div class="cs-options">
-                    <!-- load后会创建 class=“cs-placeholder” 的span 显示结果  最终结果可从此获取 -->
-
-                </div>
-                <select class="cs-select cs-skin-elastic">
-                    <option value="" disabled="" selected="">选择字号</option>
-                    <option value="小" data-class="flag-france">小</option>
-                    <option value="标准" data-class="flag-brazil">标准</option>
-                    <option value="大" data-class="flag-brazil">大</option>
-                </select>
-            </div>
-            <div class="cs-select cs-skin-elastic" tabindex="0" id="fontColorChoose">
-                <div class="cs-options">
-                    <!-- load后会创建 class=“cs-placeholder” 的span 显示结果  最终结果可从此获取 -->
-                </div>
-                <select class="cs-select cs-skin-elastic" >
-                    <option value="" disabled="" selected="">选择颜色</option>
-                    <option value="r" data-class="flag-france">深灰</option>
-                    <option value="b" data-class="flag-brazil">纯白</option>
-                    <option value="w" data-class="flag-brazil">生态绿</option>
-                    <option value="g" data-class="flag-argentina">黄</option>
-                    <option value="gr" data-class="flag-safrica">印度红</option>
-                    <option value="gr" data-class="flag-safrica">天蓝</option>
-                    <option value="gr" data-class="flag-safrica">巧克力</option>
-                </select>
-            </div>
+            <!--<button class="btn-submit J_submit">生成我的海报</button>-->
             <br />
             <br />
             <br />
             <br />
-            <br />
-            <br /><br />
-            <br />
-
-            <button class="btn-submit J_submit">生成我的海报</button>
-            <div class="money">此活动金额均由超级图片支持</div>
         </div>
     </div>
 </div>
@@ -277,35 +361,79 @@
 <script>
     <!--文案样式-->
     window.onload = function() {
-        var swiper = new Swiper('.swiper-container', {
-//            pagination: '.swiper-pagination',
-            slidesPerView: 'auto',
-            centeredSlides: true,
-            paginationClickable: true,
-            spaceBetween: 30
-        })
 
         var btn = document.getElementsByClassName("J_submit")[0].onclick = function (){
-
 
 //            var slider = document.getElementsByClassName("swiper-slide-active")[0];
 //            var swiper = document.getElementsByClassName("swiper-slide");
             var index = $(".swiper-slide").index($(".swiper-slide-active"));
+            var finalText = "";
+            var defaultText = "";
+            switch (index) {
+                case 0:
+                    defaultText = "相信，改变未来";
+                    break;
+                case 1:
+                    defaultText = "摩尔龙，您身边的贷款超市";
+                    break;
+                case 2:
+                    defaultText = "贷款就选摩尔龙";
+                    break;
+                case 3:
+                    defaultText = "金融创造更美好的生活";
+                    break;
+                case 4:
+                    defaultText = "创新，为了更好的金融体验";
+                    break;
+            }
 
-            var fontName = document.getElementById("fontNameChoose").getElementsByClassName("cs-placeholder")[0].innerHTML;
-            if(fontName === "选择字体")fontName="预设字体";
+            var inputFieldText = document.getElementById("desc1").value;
+            if(inputFieldText){
+                finalText = inputFieldText;
+            }
+            else
+            {
+                finalText = defaultText;
+            }
+            alert(finalText);
+
+            var fontName = $("#fontNameChoose .cs-placeholder").css("background-image");
+            fontName = fontName.substr(fontName.length-7,1)
+            switch (fontName) {
+                case "1":
+                    fontName = "方正咆哮简体";
+                    break;
+                case "2":
+                    fontName = "汉仪瑞意宋";
+                    break;
+                case "3":
+                    fontName = "叶根友特楷简体";
+                    break;
+                case "4":
+                    fontName = "造字工房悦圆体";
+                    break;
+                case "5":
+                    fontName = "方正喵呜体";
+                    break;
+            }
+            if(fontName === "none")fontName="预设字体";
             var fontSize = document.getElementById("fontSizeChoose").getElementsByClassName("cs-placeholder")[0].innerHTML;
             if(fontSize === "选择字号")fontName="预设字号";
             var fontColor = document.getElementById("fontColorChoose").getElementsByClassName("cs-placeholder")[0].innerHTML;
             if(fontColor === "选择颜色")fontName="预设颜色";
 
-            alert("当前选择预设文案为："+index+"\n\n"+"当前选择的字体名为："+fontName +" 字体大小为："+fontSize+" 字体颜色为："+fontColor);
+//            alert("当前选择预设文案为："+index+"\n\n"+"当前选择的字体名为："+fontName +" 字体大小为："+fontSize+" 字体颜色为："+fontColor);
+
+
+
+
+
+
 
 
 
         };
     }
-
 </script>
 
 
@@ -315,13 +443,105 @@
 
 <script src="active-wx.js"></script>
 <script>
-    <!--select 样式-->
-    (function() {
-        [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
-            new SelectFx(el);
-        } );
-    })();
+    $(document).ready(function(){
+        $("#chooseItems li").click(function(){
+            var index = $("#chooseItems li").index(this);
+            switch (index)
+            {
+                case 0:
+                        $("#textChoose").fadeIn();
+                    break;
+                case 1:
+                        $("#fontChoose").fadeIn();
+                    break;
+                case 2:
+                        $("#colorChoose").fadeIn();
+                    break;
+                case 3:
+                    break;
+            }
+
+        });
+
+
+        $(".choosePOPBase li").click(function (){
+            switch (this.parentElement.parentElement.id){
+                case "textChoose":
+                    break;
+                case "fontChoose":
+                    var index = $("#fontChoose li").index(this);
+                    var fontName = "";
+                    switch (index) {
+                        case 0:
+                            fontName = "方正咆哮简体";
+                            break;
+                        case 1:
+                            fontName = "汉仪瑞意宋";
+                            break;
+                        case 2:
+                            fontName = "叶根友特楷简体";
+                            break;
+                        case 3:
+                            fontName = "造字工房悦圆体";
+                            break;
+                        case 4:
+                            fontName = "方正喵呜体";
+                            break;
+                    }
+                        if(fontName == ""){
+                            alert(index +"请选择字体");
+                            break;
+                            return;
+                        }
+                    $("#fontChoose").fadeOut();
+                    toggleChoose("font",index);
+                    break;
+                case "colorChoose":
+                    if(this.innerText == "确定"){
+                        alert("请选择颜色");
+                        break;
+                    }
+                    $("#colorChoose").fadeOut();
+                    toggleChoose("color",this.innerText);
+                    break;
+            }
+        });
+        $(".choosePOPBase li:last-child").click(function (){
+            console.log("adsf");
+            $("#textChoose").fadeOut();
+            $("#fontChoose").fadeOut();
+            $("#colorChoose").fadeOut();
+        });
+
+        function toggleChoose(itemName,text){
+            console.log(itemName + "  "+text);
+            switch (itemName){
+                case "font":
+//                    document.getElementById("itemFont").innerText  =text;
+                    var index = text+1;
+                    var imageUrl = $("#fontChoose ul li:nth-child("+index+")").css("background-image");
+                    console.log(index+"   "+imageUrl);
+                    $("#chooseItems li:nth-child(2)").css("background-image",imageUrl);
+                    $("#chooseItems li:nth-child(2)").text("");
+                    break;
+                case "color":
+                    document.getElementById("itemColor").innerText  =text;
+                    break;
+            }
+
+        };
+
+
+    });
 </script>
+<!--<script>-->
+    <!--<!--select 样式-->-->
+    <!--(function() {-->
+        <!--[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {-->
+            <!--new SelectFx(el);-->
+        <!--} );-->
+    <!--})();-->
+<!--</script>-->
 
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
