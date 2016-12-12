@@ -29,7 +29,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile,"Name":name};
-     var url = "http://x.htx119.com/04/ajax.php?action=m1";
+     var url = "./ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		
@@ -74,10 +74,10 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile,"Reserve1":name};
-     var url = "http://x.htx119.com/04/ajax.php?action=m1";
+     var url = "./ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
-		
+
 		switch (data.Code)
 {
 case "0":
@@ -102,8 +102,8 @@ if(typeof(tips) == "undefined"){
 		tips="您已操作成功！客服人员会电话联系您，请稍作等待！";
 		}
 	var mobile = $.trim($("[name='"+mobileBox+"']").val());
-	
-	
+
+
 	if(mobile == null || mobile=="" ){
 		layer.tips("请填写手机号码", $("[name='"+mobileBox+"']"), { guide: 2, time: 3 });
 		return;
@@ -114,10 +114,10 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile};
-     var url = "http://x.htx119.com/04/ajax.php?action=m1";
+     var url = "./ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
-		
+
 		switch (data.Code)
 {
 case "0":
@@ -149,7 +149,7 @@ if(typeof(tips) == "undefined"){
 		layer.tips("请填写完整信息", $("[name='"+reserveBox+"']"), { guide: 2, time: 3 });
 		return;
     }
-	
+
 	if(name == null || name=="" ){
 		layer.tips("请填写完整信息", $("[name='"+nameBox+"']"), { guide: 2, time: 3 });
 		return;
@@ -164,10 +164,10 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile,"Name":name,"Reserve1":reserve};
-     var url = "http://x.htx119.com/04/ajax.php?action=m1";
+     var url = "./ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
-		
+
 		switch (data.Code)
 {
 case "0":
@@ -193,13 +193,13 @@ if(typeof(tips) == "undefined"){
 		}
 	var name=$.trim($("[name='"+nameBox+"']").val());
 	var mobile = $.trim($("[name='"+mobileBox+"']").val());
-	
-	
+
+
 	if(name == null || name=="" ){
 		layer.tips("请填写完整信息", $("[name='"+nameBox+"']"), { guide: 2, time: 3 });
 		return;
     }
-	var gpze=/^(((002|000|300|600)[\d]{3})|60[\d]{4})/; 
+	var gpze=/^(((002|000|300|600)[\d]{3})|60[\d]{4})/;
 	if(!gpze.test(name)){
 		alert("股票代码不正确，无法诊断\n请输入6位数的股票代码，以000|002|300|600开头");
 		return;
@@ -214,7 +214,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "Mobile":mobile,"code":name};
-     var url = "http://x.htx119.com/04/ajax.php?action=m1";
+     var url = "./ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		switch (data.Code){
@@ -241,8 +241,8 @@ if(typeof(tips) == "undefined"){
 		}
 	var name=$.trim($("[name='"+nameBox+"']").val());
 	var mobile = $.trim($("[name='"+mobileBox+"']").val());
-	
-	
+
+
 	if(name == null || name=="" ){
 		layer.tips("请填写完整信息", $("[name='"+nameBox+"']"), { guide: 2, time: 3 });
 		return;
@@ -260,7 +260,7 @@ if(typeof(tips) == "undefined"){
      var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
-		
+
 		switch (data.Code)
 {
 case "0":
@@ -294,8 +294,8 @@ if(typeof(tips) == "undefined"){
 		tips="您已操作成功！客服人员会电话联系您，请稍作等待！";
 		}
 	var mobile = $.trim($("[name='"+mobileBox+"']").val());
-	
-	
+
+
 	if(mobile == null || mobile=="" ){
 		layer.tips("请填写手机号码", $("[name='"+mobileBox+"']"), { guide: 2, time: 3 });
 		return;
@@ -306,10 +306,10 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile};
-     var url = "http://x.htx119.com/04/ajax.php?action=m1";
+     var url = "./ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
-		
+
 		switch (data.Code)
 {
 case "0":
@@ -345,8 +345,8 @@ if(typeof(tips) == "undefined"){
 		}
 	var name=$.trim($("[name='"+nameBox+"']").val());
 	var mobile = $.trim($("[name='"+mobileBox+"']").val());
-	
-	
+
+
 	if(name == null || name=="" ){
 		layer.tips("请填写完整信息", $("[name='"+nameBox+"']"), { guide: 2, time: 3 });
 		return;
@@ -361,7 +361,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile,"Reserve1":name};
-     var url = "http://x.htx119.com/04/ajax.php?action=m1";
+     var url = "./ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		
