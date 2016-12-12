@@ -214,7 +214,7 @@ function userOptgpbysem(nameBox, mobileBox,codeBtn,opType,tips) {
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "Mobile":mobile,"code":name};
-     var url = "./ajax.php?action=m1";
+     var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		switch (data.Code){
