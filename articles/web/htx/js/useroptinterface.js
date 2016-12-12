@@ -74,7 +74,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile,"Reserve1":name};
-     var url = "./ajax.php?action=m1";
+     var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		
@@ -114,7 +114,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile};
-     var url = "./ajax.php?action=m1";
+     var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		
@@ -164,7 +164,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile,"Name":name,"Reserve1":reserve};
-     var url = "./ajax.php?action=m1";
+     var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		
@@ -214,7 +214,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "Mobile":mobile,"code":name};
-     var url = "./ajax.php?action=m1";
+     var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		switch (data.Code){
@@ -306,7 +306,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile};
-     var url = "./ajax.php?action=m1";
+     var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		
@@ -361,7 +361,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile,"Reserve1":name};
-     var url = "./ajax.php?action=m1";
+     var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		
