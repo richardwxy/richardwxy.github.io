@@ -29,7 +29,7 @@ if(typeof(tips) == "undefined"){
     }
 	var loadi = layer.load('请稍等…');
 	var params={ "LinkID": opType,"Mobile":mobile,"Name":name};
-     var url = "./ajax.php?action=m1";
+     var url = "http://x.htx119.com/04/ajax.php?action=m1";
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		
