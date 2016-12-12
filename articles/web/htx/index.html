@@ -1,0 +1,124 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta name="screen-orientation" content="portrait">
+<title>机构资金雷达</title>
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/layer.min.js"></script>
+<script type="text/javascript" src="js/insertjs.js"></script>
+<script type="text/javascript">
+			$(function(){
+				
+				$("#sm1,#sm2").click(function(e) {
+        		if($(this).prev("span").children("input").val()==""){
+					alert("请输入正确的股票代码")
+					return false;	
+				}else{
+					$(".zz").fadeIn();	
+					$(".phone").fadeIn();	
+				}
+    			});
+				$('.zz').click(function () {
+              		$(this).fadeOut();
+			  		$(".phone").fadeOut();
+    			});
+
+				
+			})
+		</script>
+
+
+</head>
+
+<body>
+<div style="display:none">
+<script type="text/javascript" src="http://114.215.85.220/sj/stat.php?uid=MjU0" charset="utf-8"></script>
+<img src="http://114.215.85.220/sj/img_e.php?uid=MjU0" width="0" height="0"/>
+</div>
+
+<div class="zj_top"><img src="picture/ld_top.gif" onclick="javascript:void(0)"/></div>
+<div class="zj_p">
+	<img src="picture/ld_cp.jpg" onclick="javascript:void(0)"/>
+	<p>大数据云计算<br />打造真实可靠数据库  实时监控主力成本</p>
+</div>
+<div class="zj_zp">
+	<img src="picture/ld_zp.jpg" onclick="javascript:void(0)"/>
+	<em></em>
+</div>
+<div class="jy">
+	<p><b>平安银行（000001）</b></p>
+	<span>
+		<i>操作建议</i><em>持仓待涨</em>	
+	</span>
+</div>
+<div class="but">
+	<span><input name="tgName" type="tel" maxlength="6"  onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")'  placeholder="请输入你要诊断的个股代码"/></span>
+	<a id="sm1" href="javascript:void(0)">立即扫描</a>
+</div>
+<div class="zj_c">
+	<h4><span><p>平安银行扫描结果</p></span></h4>
+	<div class="zj_cc">
+		<h5><span><em>主力控盘:</em><i></i></span></h5>
+		<p>据统计，近10日内主力集中了一定的筹码，呈中度控盘状态。</p>
+		<img src="picture/ld_c1.jpg" onclick="javascript:void(0)"/>
+	</div>
+	<div class="zj_cc">
+		<h5><span><em>资金面分析:</em><i></i></span></h5>
+		<p>近5日内该股资金总体无进出，远高于行业平均水平，5日共流入7939.58万元。</p>
+		<img src="picture/ld_c2.jpg" onclick="javascript:void(0)"/>
+	</div>
+	<div class="zj_cc">
+		<h5><span><em>机构持仓分析:</em><i></i></span></h5>
+		<p>2016-06-30 与 2016-03-31 相比，主力机构持仓量减少208560.01万股，其中基金净增仓47家，主力净增仓4家，请投资者中长期谨慎为宜。</p>
+		<img src="picture/ld_c3.jpg" onclick="javascript:void(0)"/>
+	</div>
+</div>
+<div class="but">
+	<span><input name="tgName2" type="tel" maxlength="6"  onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")'  placeholder="请输入你要诊断的个股代码"/></span>
+	<a id="sm2" href="javascript:void(0)">立即扫描</a>
+</div>
+<div class="bbg">
+	<p>投资有风险 入市需谨慎</p>
+	<p>从事证券投资或期货交易，请通过合法证券期货经营机构进行。</p>
+	<p>合法机构名单可到中国证监会网站（www.csrc.gov.cn）查询</p>
+    <p>西部证券股份有限公司菏泽人民路证券营业部</p>
+	<p>大连汇天下商品经营有限公司</p>
+</div>
+
+            <input id="tgval" type="hidden" />
+    <div class="zz">
+    </div>
+    <div class="phone">
+        	<p>请正确填写您的手机号，以便能及时接收个股分析诊断结果</p>
+            <input type="tel" name="tgMobile" maxlength="11" onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")' placeholder="请输入接收扫描结果手机号">
+            <a href="javascript:void(0)" id="btnTg" onclick='_taq.push({convert_id:"50711025171", event_type:"button"})'>立即诊股</a>
+            <p>诊断结果我们将会24小时内电话或短信通知(接收短信完全免费)</p>
+        </div>
+        
+<script>
+$(function(){
+	$("#sm1").click(function(){
+			$("#tgval").val("tgName");
+		});
+        $("#sm2").click(function(){
+			$("#tgval").val("tgName2");
+		});
+	
+	
+	$("#btnTg").click(function(){
+		var tgval=$("#tgval").val();
+		userOptgpbysem(tgval, 'tgMobile','btnTg',478);
+		});
+	});
+</script>
+
+<script type="text/javascript" src="js/useroptinterface.js"></script>
+
+
+
+</body>
+</html>

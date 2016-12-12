@@ -135,16 +135,33 @@
             line-height: 36px;
             text-align: center;
         }
-        .choosePOPBase {
-            background-color: #ffffff;
-            width: 89%;
-            position: absolute;
-            top: 150px;
-            margin-right: 5.3%;
-            margin-left: 5.3%;
-            padding-top: 20px;
-            border-radius: 25px;
+
+        @media (max-device-height: 500px) {
+            .choosePOPBase {
+                background-color: #ffffff;
+                width: 89%;
+                position: fixed;
+                top: 110px;
+                margin-right: 5.3%;
+                margin-left: 5.3%;
+                padding-top: 20px;
+                border-radius: 25px;
+            }
         }
+        @media (min-device-height: 501px) {
+            .choosePOPBase {
+                background-color: #ffffff;
+                width: 89%;
+                position: fixed;
+                top: 150px;
+                margin-right: 5.3%;
+                margin-left: 5.3%;
+                padding-top: 20px;
+                border-radius: 25px;
+            }
+        }
+
+
         .choosePOPBase label{
             border-bottom: solid 1px #aaa9a9;
         }
@@ -257,7 +274,7 @@
                 <li class="btnStyle"><span id="itemText">海报文字</span></li>
                 <li class="btnStyle"><span id="itemFont">选择字体</span></li>
                 <li class="btnStyle"><span id="itemColor">选择颜色</span></li>
-                <li class="btnStyle-active"><span >生成我的海报</span></li>
+                <li class=" J_submit btnStyle-active"><span >生成我的海报</span></li>
             </ul>
 
             <div id="textChoose" class="choosePOPBase " style="transition-duration: 1.2s;display: none;">
@@ -458,6 +475,27 @@
                         $("#colorChoose").fadeIn();
                     break;
                 case 3:
+
+                    var finalText = document.getElementById("itemText").innerText;
+                        if(finalText == "海报文字")finalText = "相信·改变未来";
+
+                    var fontName = $("#chooseItems li:nth-child(2)").css("background-image");
+                        console.log("===="+fontName);
+                    if(fontName.indexOf("fontPre-1")!=-1)fontName = "方正咆哮简体";
+                    else if(fontName.indexOf("fontPre-2")!=-1)fontName = "汉仪瑞意宋";
+                    else if(fontName.indexOf("fontPre-3")!=-1)fontName = "叶根友特楷简体";
+                    else if(fontName.indexOf("fontPre-4")!=-1)fontName = "造字工房悦圆体";
+                    else if(fontName.indexOf("fontPre-5")!=-1)fontName = "方正喵呜体";
+                    if(fontName === "none")fontName="预设字体";
+
+                    var colorName = document.getElementById("itemColor").innerText;
+                        if(colorName == "选择颜色")colorName = "黑";
+
+
+                    alert(finalText+" "+
+                        fontName+""+
+                        colorName);
+
                     break;
             }
 
@@ -472,8 +510,9 @@
                     var index = $("#textChoose li").index(this);
                     var fontName = "";
                     if(this.innerText == "确定"){
-                        if(document.getElementById("desc1").value != ""){
-                            toggleChoose("text",this.innerText);
+                        console.log("!!!!!"+document.getElementById("desc1").value+"!!!!!");
+                        if(  document.getElementById("desc1").value.length != 0){
+                            toggleChoose("text",document.getElementById("desc1").value);
                         }
                         else{
                             toggleChoose("text", $('input:radio:checked').val());
@@ -536,13 +575,13 @@
                     var imageUrl = $("#fontChoose ul li:nth-child("+index+")").css("background-image");
                     console.log(index+"   "+imageUrl);
                     $("#chooseItems li:nth-child(2)").css("background-image",imageUrl);
-                    $("#chooseItems li:nth-child(2)").text("");
+                    $("#chooseItems li:nth-child(2)").html('');
+
                     break;
                 case "color":
                     document.getElementById("itemColor").innerText  =text;
                     break;
             }
-
         };
 
 
