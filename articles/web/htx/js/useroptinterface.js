@@ -187,7 +187,7 @@ case "2":
 	});
 }
 
-function userOptgpbysem(nameBox, mobileBox,codeBtn,opType,tips) {
+function userOptgpbysem(nameBox, mobileBox,codeBtn,opType	,tips) {
 if(typeof(tips) == "undefined"){
 		tips="您已操作成功！客服人员会电话联系您，请稍作等待！";
 		}
@@ -218,9 +218,21 @@ if(typeof(tips) == "undefined"){
     $.getJSON(url,params,function(data){
 		layer.close(loadi);
 		switch (data.Code){
-		case 0:
+		  case 0:
 		  alert('您已操作成功！客服人员会电话联系您，请稍作等待！');
-		  location.reload();
+			function getQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]); return null;
+			}
+			var token = getQueryString("token");
+			var wecha_source_id = getQueryString("wecha_source_id");
+			var id = getQueryString("id");
+			var wmarkId = getQueryString("wmarkId");
+
+			window.location.href="http://ali.ichaotu.com/index.php?g=Wap&m=SpreadPackets&a=index&token="+token+"&wecha_source_id="+wecha_source_id+"&id="+id+"&wmarkId="+wmarkId;
+
+		  //location.reload();
 		  break;
 		case "1":
 		  layer.tips("手机号码格式错误！", $("[name='"+mobileBox+"']"), { guide: 2, time: 3 });
