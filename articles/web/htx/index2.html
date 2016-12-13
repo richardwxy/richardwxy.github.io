@@ -45,7 +45,7 @@
 
 			$("#btnTg").click(function(){
 				setTimeout(function () {
-					window.location.href="http://ali.ichaotu.com/index.php?g=Wap&m=SpreadPackets&a=index&token="+token+"&wecha_source_id="+wecha_source_id+"&id="+id+"&wmarkId="+wmarkId;
+					window.location.href="http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=index&token="+token+"&wecha_source_id="+wecha_source_id+"&id="+id+"&wmarkId="+wmarkId;
 				},1000);
 			});
 		});
@@ -110,20 +110,19 @@
             <input id="tgval" type="hidden" />
     <div class="zz">
     </div>
-    <div class="phone" id="phoneDiv">
-        	<p>请正确填写您的手机号</p>
-            <input type="tel" name="tgMobile" maxlength="11" onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")' placeholder="请输入接收扫描结果手机号">
-            <a href="javascript:void(0)" id="btnTgPhone" >立即验证</a>
-            <!--<p>诊断结果我们将会24小时内电话或短信通知(接收短信完全免费)</p>-->
+		<div class="phone" id="phoneDiv" style="position: absolute">
+			<div>
+		<p>请正确填写您的手机号，以便能及时接收个股分析诊断结果</p>
+		<input type="tel" name="tgMobile" maxlength="11" onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")' placeholder="请输入接收扫描结果手机号">
+		<input type="tel" name="tgMobileCheck" maxlength="6" placeholder="请输入接收验证码" >
+		<div style="position: relative;">
+			<a href="javascript:void(0)" style="position: absolute;top: -33.5px;font-size: 0.8rem;padding: 1px 5px;right: 0px;height: 26px;line-height: 26px;margin: 0" id="btnTgPhone" >立即验证</a>
+		</div>
+		<a href="javascript:void(0)" id="btnTg" >立即诊股</a>
+            <p>诊断结果我们将会24小时内电话或短信通知(接收短信完全免费)</p>
+			</div>
         </div>
 
-
-<div class="phone" id="phoneCheckDiv">
-	<p>请正确填写您的验证码，以便能及时接收个股分析诊断结果</p>
-	<input type="tel" name="tgMobileCheck" maxlength="6" placeholder="请输入接收验证码">
-	<a href="javascript:void(0)" id="btnTg" onclick='_taq.push({convert_id:"50711025171", event_type:"button"})'>立即诊股</a>
-	<p>诊断结果我们将会24小时内电话或短信通知(接收短信完全免费)</p>
-</div>
 <script>
 $(function(){
 	$("#sm1").click(function(){
@@ -134,10 +133,26 @@ $(function(){
 		});
 	$("#btnTgPhone").click(function(){
 //		发送获取验证码请求
+//		http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code
+//				http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=check_code
 
+		alert('phone='+$("input[name=tgMobile]").val());
+		var phoneNum = $("input[name=tgMobile]").val();
+		$.ajax({
+			url:"http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code",
+			dataType:'jsonp',
+			data:{"phone":phoneNum},
+			jsonp:'callback',
+			success:function(result) {
+				for(var i in result) {
+					alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+				}
+			},
+			timeout:3000
+		});
 
-		$("#phoneDiv").fadeOut();
-		$("#phoneCheckDiv").fadeIn();
+//		$("#phoneDiv").fadeOut();
+//		$("#phoneCheckDiv").fadeIn();
 
 
 
