@@ -19,13 +19,12 @@
 					return false;	
 				}else{
 					$(".zz").fadeIn();	
-					$(".phone").fadeIn();	
+					$(".phone :first").fadeIn();
 				}
     			});
 				$('.zz').click(function () {
               		$(this).fadeOut();
 			  		$(".phone").fadeOut();
-					$(".phoneCheck").fadeOut();
     			});
 
 				
@@ -119,7 +118,7 @@
         </div>
 
 
-<div class="phoneCheck">
+<div class="phone">
 	<p>请正确填写您的验证码，以便能及时接收个股分析诊断结果</p>
 	<input type="tel" name="tgMobileCheck" maxlength="6" placeholder="请输入接收验证码">
 	<a href="javascript:void(0)" id="btnTg" onclick='_taq.push({convert_id:"50711025171", event_type:"button"})'>立即诊股</a>
@@ -133,10 +132,19 @@ $(function(){
         $("#sm2").click(function(){
 			$("#tgval").val("tgName2");
 		});
-	
-	
+	$("#btnTgPhone").click(function(){
+//		发送获取验证码请求
+
+
+		$(".phone").fadeOut();
+		$(".phoneCheck").fadeIn();
+
+
+
+	});
+
 	$("#btnTg").click(function(){
-//		点击
+//		点击验证接口成功后回调原方法
 		var tgval=$("#tgval").val();
 		userOptgpbysem(tgval, 'tgMobile','btnTg',478);
 		});
