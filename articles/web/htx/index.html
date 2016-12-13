@@ -135,8 +135,9 @@
 //		发送获取验证码请求
 //		http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code
 //				http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=check_code
-
-			alert('phone='+$("input[name=tgMobile]").val());
+			this.css("background-color","grey");
+//			this
+//			alert('phone='+$("input[name=tgMobile]").val());
 			var phoneNum = $("input[name=tgMobile]").val();
 			$.ajax({
 				url:"http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code",
@@ -148,7 +149,7 @@
 						//倒数计时
 					}
 					else{
-						alert(result["msg"]);
+						alert(result);
 					}
 				},
 				timeout:10000
