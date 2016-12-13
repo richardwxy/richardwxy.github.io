@@ -19,7 +19,7 @@
 					return false;	
 				}else{
 					$(".zz").fadeIn();	
-					$(".phone :first").fadeIn();
+					$("#phoneDiv").fadeIn();
 				}
     			});
 				$('.zz').click(function () {
@@ -110,7 +110,7 @@
             <input id="tgval" type="hidden" />
     <div class="zz">
     </div>
-    <div class="phone">
+    <div class="phone" id="phoneDiv">
         	<p>请正确填写您的手机号，以便能及时接收个股分析诊断结果</p>
             <input type="tel" name="tgMobile" maxlength="11" onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")' placeholder="请输入接收扫描结果手机号">
             <a href="javascript:void(0)" id="btnTgPhone" >立即验证</a>
@@ -118,7 +118,7 @@
         </div>
 
 
-<div class="phone">
+<div class="phone" id="phoneCheckDiv">
 	<p>请正确填写您的验证码，以便能及时接收个股分析诊断结果</p>
 	<input type="tel" name="tgMobileCheck" maxlength="6" placeholder="请输入接收验证码">
 	<a href="javascript:void(0)" id="btnTg" onclick='_taq.push({convert_id:"50711025171", event_type:"button"})'>立即诊股</a>
@@ -136,8 +136,8 @@ $(function(){
 //		发送获取验证码请求
 
 
-		$(".phone").fadeOut();
-		$(".phoneCheck").fadeIn();
+		$("#phoneDiv").fadeOut();
+		$("#phoneCheckDiv").fadeIn();
 
 
 
