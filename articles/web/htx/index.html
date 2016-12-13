@@ -116,7 +116,7 @@
 		<input type="tel" name="tgMobile" maxlength="11" onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")' placeholder="请输入接收扫描结果手机号">
 		<input type="tel" name="tgMobileCheck" maxlength="6" placeholder="请输入接收验证码" >
 		<div style="position: relative;">
-			<a href="javascript:void(0)" style="position: absolute;top: -33.5px;font-size: 0.8rem;padding: 1px 5px;right: 0px;height: 26px;line-height: 26px;margin: 0" id="btnTgPhone" >立即验证</a>
+			<a href="javascript:void(0)" style="position: absolute;min-width: 55px;;top: -33.5px;font-size: 0.8rem;padding: 1px 5px;right: 0px;height: 26px;line-height: 26px;margin: 0" id="btnTgPhone" >立即验证</a>
 		</div>
 		<a href="javascript:void(0)" id="btnTg" >立即诊股</a>
 		<p>诊断结果我们将会24小时内电话或短信通知(接收短信完全免费)</p>
@@ -131,11 +131,33 @@
 		$("#sm2").click(function(){
 			$("#tgval").val("tgName2");
 		});
+		isGetPhoneCheckEnalbed = true;
 		$("#btnTgPhone").click(function(){
 //		发送获取验证码请求
 //		http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code
-//
-//			this.css("background-color","grey");
+			if(!isGetPhoneCheckEnalbed){
+
+				return;
+			}
+			$("#btnTgPhone").css("background-color","#BEBEBE");
+			$("#btnTgPhone").css("border-bottom-color","#696969");
+			$("#btnTgPhone").html(180);
+			$("#btnTgPhone").attr('disabled',"disabled");
+			isGetPhoneCheckEnalbed = false;
+			var timer1 = setInterval(function(){
+				$("#btnTgPhone").html($("#btnTgPhone").html()-1);
+			},1000);
+			setTimeout(function(){
+				clearInterval(timer1);
+				$("#btnTgPhone").css("background-color","#e72323");
+				$("#btnTgPhone").css("border-bottom-color","#910d0d");
+				$("#btnTgPhone").html("立即验证");
+				$("#btnTgPhone").removeAttr("disabled");
+				isGetPhoneCheckEnalbed = true;
+			},180000)
+
+
+
 //			this
 //			alert('phone='+$("input[name=tgMobile]").val());
 			var phoneNum = $("input[name=tgMobile]").val();
