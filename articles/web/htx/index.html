@@ -134,7 +134,7 @@
 		$("#btnTgPhone").click(function(){
 //		发送获取验证码请求
 //		http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code
-//				http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=check_code
+//
 //			this.css("background-color","grey");
 //			this
 //			alert('phone='+$("input[name=tgMobile]").val());
@@ -165,8 +165,30 @@
 
 		$("#btnTg").click(function(){
 //		点击验证接口成功后回调原方法
-			var tgval=$("#tgval").val();
-			userOptgpbysem(tgval, 'tgMobile','btnTg',478);
+
+			var phoneNum = $("input[name=tgMobile]").val();
+			var phoneCheckNum = $("input[name=tgMobileCheck]").val();
+
+			$.ajax({
+				url:"http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=check_code",
+				dataType:'jsonp',
+				data:{"phone":phoneNum,"check_code":phoneCheckNum},
+				jsonp:'callback',
+				success:function(result) {
+					if(result["code"]==0){
+						//倒数计时
+						alert(result["msg"]);
+						var tgval=$("#tgval").val();
+						userOptgpbysem(tgval, 'tgMobile','btnTg',478);
+					}
+					else{
+						alert(result["msg"]);
+					}
+				},
+				timeout:10000
+			});
+
+
 		});
 
 
