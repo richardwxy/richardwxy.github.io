@@ -1,35 +1,35 @@
 ﻿<!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="format-detection" content="telephone=no">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-<meta name="screen-orientation" content="portrait">
-<title>机构资金雷达</title>
-<link rel="stylesheet" href="css/style.css">
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/layer.min.js"></script>
-<script type="text/javascript" src="js/insertjs.js"></script>
-<script type="text/javascript">
-			$(function(){
-				
-				$("#sm1,#sm2").click(function(e) {
-        		if($(this).prev("span").children("input").val()==""){
-					alert("请输入正确的股票代码")
-					return false;	
-				}else{
-					$(".zz").fadeIn();	
-					$(".phone").fadeIn();	
-				}
-    			});
-				$('.zz').click(function () {
-              		$(this).fadeOut();
-			  		$(".phone").fadeOut();
-    			});
+	<meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="screen-orientation" content="portrait">
+	<title>机构资金雷达</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/layer.min.js"></script>
+	<script type="text/javascript" src="js/insertjs.js"></script>
+	<script type="text/javascript">
+		$(function(){
 
-				
-			})
-		</script>
+			$("#sm1,#sm2").click(function(e) {
+				if($(this).prev("span").children("input").val()==""){
+					alert("请输入正确的股票代码")
+					return false;
+				}else{
+					$(".zz").fadeIn();
+					$("#phoneDiv").fadeIn();
+				}
+			});
+			$('.zz').click(function () {
+				$(this).fadeOut();
+				$(".phone").fadeOut();
+			});
+
+
+		})
+	</script>
 
 	<script>
 		$(document).ready(function (){
@@ -39,14 +39,13 @@
 				if (r != null) return unescape(r[2]); return null;
 			}
 			var token = getQueryString("token");
-			var source_wecha_id = getQueryString("source_wecha_id");
+			var wecha_source_id = getQueryString("wecha_source_id");
 			var id = getQueryString("id");
 			var wmarkId = getQueryString("wmarkId");
 
 			$("#btnTg").click(function(){
 				setTimeout(function () {
-//					alert("http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=index&token="+token+"&source_wecha_id="+source_wecha_id+"&id="+id+"&wmarkId="+wmarkId);
-					window.location.href="http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=index&token="+token+"&source_wecha_id="+source_wecha_id+"&id="+id+"&wmarkId="+wmarkId;
+					window.location.href="http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=index&token="+token+"&wecha_source_id="+wecha_source_id+"&id="+id+"&wmarkId="+wmarkId;
 				},1000);
 			});
 		});
@@ -55,8 +54,8 @@
 
 <body>
 <div style="display:none">
-<script type="text/javascript" src="http://114.215.85.220/sj/stat.php?uid=MjU0" charset="utf-8"></script>
-<img src="http://114.215.85.220/sj/img_e.php?uid=MjU0" width="0" height="0"/>
+	<script type="text/javascript" src="http://114.215.85.220/sj/stat.php?uid=MjU0" charset="utf-8"></script>
+	<img src="http://114.215.85.220/sj/img_e.php?uid=MjU0" width="0" height="0"/>
 </div>
 
 <div class="zj_top"><img src="picture/ld_top.gif" onclick="javascript:void(0)"/></div>
@@ -104,34 +103,70 @@
 	<p>投资有风险 入市需谨慎</p>
 	<p>从事证券投资或期货交易，请通过合法证券期货经营机构进行。</p>
 	<p>合法机构名单可到中国证监会网站（www.csrc.gov.cn）查询</p>
-    <p>西部证券股份有限公司菏泽人民路证券营业部</p>
+	<p>西部证券股份有限公司菏泽人民路证券营业部</p>
 	<p>大连汇天下商品经营有限公司</p>
 </div>
 
-            <input id="tgval" type="hidden" />
-    <div class="zz">
-    </div>
-    <div class="phone">
-        	<p>请正确填写您的手机号，以便能及时接收个股分析诊断结果</p>
-            <input type="tel" name="tgMobile" maxlength="11" onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")' placeholder="请输入接收扫描结果手机号">
-            <a href="javascript:void(0)" id="btnTg" onclick='_taq.push({convert_id:"50711025171", event_type:"button"})'>立即诊股</a>
-            <p>诊断结果我们将会24小时内电话或短信通知(接收短信完全免费)</p>
-        </div>
+<input id="tgval" type="hidden" />
+<div class="zz">
+</div>
+<div class="phone" id="phoneDiv" style="position: absolute">
+	<div>
+		<p>请正确填写您的手机号，以便能及时接收个股分析诊断结果</p>
+		<input type="tel" name="tgMobile" maxlength="11" onBlur='this.value=this.value.replace(/\D/gi,"")'  onKeyUp='this.value=this.value.replace(/\D/gi,"")' placeholder="请输入接收扫描结果手机号">
+		<input type="tel" name="tgMobileCheck" maxlength="6" placeholder="请输入接收验证码" >
+		<div style="position: relative;">
+			<a href="javascript:void(0)" style="position: absolute;top: -33.5px;font-size: 0.8rem;padding: 1px 5px;right: 0px;height: 26px;line-height: 26px;margin: 0" id="btnTgPhone" >立即验证</a>
+		</div>
+		<a href="javascript:void(0)" id="btnTg" >立即诊股</a>
+		<p>诊断结果我们将会24小时内电话或短信通知(接收短信完全免费)</p>
+	</div>
+</div>
 
 <script>
-$(function(){
-	$("#sm1").click(function(){
+	$(function(){
+		$("#sm1").click(function(){
 			$("#tgval").val("tgName");
 		});
-        $("#sm2").click(function(){
+		$("#sm2").click(function(){
 			$("#tgval").val("tgName2");
 		});
-	
-	
-	$("#btnTg").click(function(){
-		var tgval=$("#tgval").val();
-		userOptgpbysem(tgval, 'tgMobile','btnTg',478);
+		$("#btnTgPhone").click(function(){
+//		发送获取验证码请求
+//		http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code
+//				http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=check_code
+
+			alert('phone='+$("input[name=tgMobile]").val());
+			var phoneNum = $("input[name=tgMobile]").val();
+			$.ajax({
+				url:"http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code",
+				dataType:'jsonp',
+				data:{"phone":phoneNum},
+				jsonp:'callback',
+				success:function(result) {
+					for(var i in result) {
+						alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+					}
+				},
+				timeout:3000
+			});
+
+//		$("#phoneDiv").fadeOut();
+//		$("#phoneCheckDiv").fadeIn();
+
+
+
 		});
+
+		$("#btnTg").click(function(){
+//		点击验证接口成功后回调原方法
+			var tgval=$("#tgval").val();
+			userOptgpbysem(tgval, 'tgMobile','btnTg',478);
+		});
+
+
+
+
 	});
 </script>
 
