@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link  href="cropper.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: #00a0e9;
+        }
+
+    </style>
+</head>
+<body >
+
+<div class="container">
+    <img id="pre" src="" >
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<script src="http://static.ichaotu.com/wx10//dest/js/c/jquery-1.min.js?65"></script>
+<script src="cropper.min.js"></script>
+
+<script>
+    $("#pre").onload = function(){
+        alert(12);
+    };
+    $(document).ready(function () {
+
+
+        $("#pre").cropper({
+            aspectRatio: 1 / 1,
+            crop: function(data) {
+                // Output the result data for cropping image.
+                console.log(data.x);
+            }
+        })
+
+
+
+    });
+    $("html").click(function(){
+//        alert(1);
+
+        var img = document.getElementById('pre');
+        img.setAttribute('src','2.png');
+        img.onload = function(){
+            alert($("#pre").attr("src"));
+            $("#pre").cropper("replace",$("#pre").attr("src"));
+            $("#pre").cropper('crop');
+            $("#pre").cropper("reset");
+        };
+
+
+    })
+
+
+
+//    oImage.onload = function () {
+//        alert("loaded");
+//        /*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {
+//         SP.dialog.tip('请选择宽大于800,高大于900的图片');
+//         return;
+//         }*/
+//
+//        $('.J_uploadContent').hide();
+//        $('.J_viewContent').show();
+//        $('.J_main').hide();
+//        $('.J_preview').hide();
+//        var dataX = $('#dataX');
+//        var dataY = $('#dataY');
+//        var dataHeight = $('#dataHeight');
+//        var dataWidth = $('#dataWidth');
+//        var dataRotate = $('#dataRotate');
+//        alert($("#preview").attr("src"));
+//
+//        $('#preview').cropper({
+//            aspectRatio: 1 / 1,
+//            built: function () {
+//                $('#preview').cropper('reset');
+//            },
+//            crop: function(data) {
+//                $dataX.val(Math.round(data.x));
+//                $dataY.val(Math.round(data.y));
+//                $dataHeight.val(Math.round(data.height));
+//                $dataWidth.val(Math.round(data.width));
+//                $dataRotate.val(Math.round(data.rotate));
+//            }
+//        });
+//
+//        // display some basic image info
+//        $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
+//    }
+
+
+</script>
+
+
+<!--<script>-->
+    <!--$('.J_preview,.J_uploadContent').on('click', function(){-->
+        <!--wx.chooseImage({-->
+            <!--count: 1,-->
+            <!--sizeType: ['original', 'compressed'],-->
+            <!--sourceType: ['album', 'camera'],-->
+            <!--success: function (res) {-->
+                <!--alert(1);-->
+                <!--var localIds = res.localIds;-->
+                <!--wx.uploadImage({-->
+                    <!--localId: localIds[0],-->
+                    <!--isShowProgressTips: 1,-->
+                    <!--success: function (res) {-->
+                        <!--alert(2);-->
+                        <!--$.ajax({-->
+                            <!--type: 'POST',-->
+                            <!--url:'/index.php?g=Wap&m=Youth&a=wxPic',-->
+                            <!--data:{serverId:res.serverId},-->
+                            <!--dataType:'json',-->
+                            <!--success:function(res){-->
+                                <!--alert(3);-->
+                                <!--if(res.code == 0) {-->
+                                    <!--$('#preview').remove();-->
+                                    <!--$('.J_viewContent').append('<img id="preview">');-->
+                                    <!--var oImage = $('#preview')[0];-->
+                                    <!--oImage.src = res.pic;-->
+                                    <!--oImage.onload = function () {-->
+
+                                        <!--/*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {-->
+                                         <!--SP.dialog.tip('请选择宽大于800,高大于900的图片');-->
+                                         <!--return;-->
+                                         <!--}*/-->
+
+                                        <!--alert(4);-->
+                                        <!--$('#image').cropper({-->
+                                            <!--replace:function(res.pic)-->
+                                         <!--});-->
+                                    <!--$('.J_uploadContent').hide();-->
+                                    <!--$('.J_viewContent').show();-->
+                                    <!--$('.J_main').hide();-->
+                                    <!--$('.J_preview').hide();-->
+
+                                    <!--// display some basic image info-->
+                                    <!--$('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);-->
+                                <!--}-->
+                            <!--}else{-->
+                                <!--SP.dialog.tip(res.msg);-->
+                    <!--}-->
+                <!--}-->
+            <!--});-->
+    <!--}-->
+    <!--});-->
+    <!--}-->
+    <!--});-->
+    <!--})-->
+    <!--var dataX = $('#dataX');-->
+    <!--var dataY = $('#dataY');-->
+    <!--var dataHeight = $('#dataHeight');-->
+    <!--var dataWidth = $('#dataWidth');-->
+    <!--var dataRotate = $('#dataRotate');-->
+    <!--$('#preview').cropper({-->
+        <!--aspectRatio: 1 / 1,-->
+        <!--crop: function(data) {-->
+            <!--$dataX.val(Math.round(data.x));-->
+            <!--$dataY.val(Math.round(data.y));-->
+            <!--$dataHeight.val(Math.round(data.height));-->
+            <!--$dataWidth.val(Math.round(data.width));-->
+            <!--$dataRotate.val(Math.round(data.rotate));-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
+
+</body>
+</html>

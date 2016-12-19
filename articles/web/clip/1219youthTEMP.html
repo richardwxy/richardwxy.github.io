@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>【五月.致青春】制作超级海报免费得红包</title>
+    <meta name="keywords" content="【五月.致青春】制作超级海报免费得红包"/>
+    <meta name="description" content="【五月.致青春】制作超级海报免费得红包"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="http://static.ichaotu.com/wx10/dest/js/c/css/active.css?65"/>
+    <link  href="cropper.min.css" rel="stylesheet">
+    <style>
+        #maskLayer{
+            width:100%; height:900px; background-color:#000000; opacity:0.9; -moz-opacity:0.5;position:fixed;z-index:1000;top:0;left:0;display:none;
+        }
+        #maskLayer img{margin:20% auto;border:0;}
+        select{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance:none;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap page-upload">
+    <div class="content">
+        <!-- hidden crop params -->
+        <input type="hidden" id="x1" name="x1" autocomplete="off"/>
+        <input type="hidden" id="y1" name="y1" autocomplete="off"/>
+        <input type="hidden" id="x2" name="x2" autocomplete="off"/>
+        <input type="hidden" id="y2" name="y2" autocomplete="off"/>
+
+
+        <div class="img J_uploadContent">
+            <div class="J_uploadWrap"><img src="http://static.ichaotu.com/wx10/dest/img/icon-photo.png"></div>
+        </div>
+
+
+
+        <div class="preview-img J_preview" style="display: none;">
+            <img id="preview-upload-img"></div>
+
+        <div class="container J_viewContent" style="display: none;">
+            <a href="#J_main" class="btn-goto J_goto">确认裁剪</a>
+            <img id="preview"/>
+        </div>
+
+        <div class="docs-data" style="display: none;">
+            <div class="input-group">
+                <label class="input-group-addon" for="dataX">X</label>
+                <input class="form-control" id="dataX" type="text" placeholder="x">
+                <span class="input-group-addon">px</span>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" for="dataY">Y</label>
+                <input class="form-control" id="dataY" type="text" placeholder="y">
+                <span class="input-group-addon">px</span>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" for="dataWidth">Width</label>
+                <input class="form-control" id="dataWidth" type="text" placeholder="width">
+                <span class="input-group-addon">px</span>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" for="dataHeight">Height</label>
+                <input class="form-control" id="dataHeight" type="text" placeholder="height">
+                <span class="input-group-addon">px</span>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" for="dataRotate">Rotate</label>
+                <input class="form-control" id="dataRotate" type="text" placeholder="rotate">
+                <span class="input-group-addon">deg</span>
+            </div>
+        </div>
+
+
+
+        <ul style="display: none;">
+            <li><label>图像尺寸</label> <input type="text" id="filedim" name="filedim" class="input"
+                                           autocomplete="off"/></li>
+            <li><label>宽度</label> <input type="text" id="w" name="w" class="input" autocomplete="off"/></li>
+            <li><label>高度</label> <input type="text" id="h" name="h" class="input" autocomplete="off"/></li>
+        </ul>
+
+        <div class="J_main" id="J_main">
+            <div class="introduce"><p>请输入介绍文字：</p></div>
+            <div class="item"><input type="text" id = "manager" placeholder="超级图片CEO，余伟华"></div>
+            <div class="item"><input type="text" id = "desc1" placeholder="我是品牌超级速递员"></div>
+            <div class="item"><input type="text" id = "desc2" placeholder="超级海报，让品牌宣传瞬间引爆"></div>
+            <button class="btn-submit J_submit">立即生成</button>
+            <div class="money">此活动金额均由超级图片支持</div>
+        </div>
+    </div>
+</div>
+<div id="maskLayer">
+    <img src="/images/loading.gif?65" />
+</div>
+<script src="http://static.ichaotu.com/wx10//dest/js/c/jquery-1.min.js?65"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/c/jquery.Jcrop.min.js?65"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/c/SP.js?65"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/c/Youth-wx.js?65"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="cropper.min.js"></script>
+
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: 	'wxb36b6b0972dde66f',
+        timestamp: 1482119327,
+        nonceStr: '517283',
+        signature: 'b27f82d4b0e3c052dde808b0fbd23fcd3d084c77',
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'openLocation',
+            'getLocation',
+            'addCard',
+            'chooseCard',
+            'openCard',
+            'hideMenuItems',
+            'previewImage',
+            'chooseImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+</script>
+<script type="text/javascript">
+    wx.ready(function () {
+        // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+        /*document.querySelector('#checkJsApi').onclick = function () {
+         wx.checkJsApi({
+         jsApiList: [
+         'getNetworkType',
+         'previewImage'
+         ],
+         success: function (res) {
+         //alert(JSON.stringify(res));
+         }
+         });
+         };*/
+        // 2. 分享接口
+        // 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareAppMessage({
+            title: window.shareData.tTitle,
+            desc: window.shareData.tContent,
+            link: window.shareData.sendFriendLink,
+            imgUrl: window.shareData.imgUrl,
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                shareHandle('frined');
+            },
+            cancel: function () {
+                //alert('分享朋友失败');
+            }
+        });
+
+
+        // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareTimeline({
+            title: window.shareData.fTitle?window.shareData.fTitle:window.shareData.tTitle,
+            link: window.shareData.sendFriendLink,
+            imgUrl: window.shareData.imgUrl,
+            success: function () {
+                shareHandle('frineds');
+                //alert('分享朋友圈成功');
+            },
+            cancel: function () {
+                //alert('分享朋友圈失败');
+            }
+        });
+
+        // 2.4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareWeibo({
+            title: window.shareData.tTitle,
+            desc: window.shareData.tContent,
+            link: window.shareData.sendFriendLink,
+            imgUrl: window.shareData.imgUrl,
+            success: function () {
+                shareHandle('weibo');
+                //alert('分享微博成功');
+            },
+            cancel: function () {
+                //alert('分享微博失败');
+            }
+        });
+        wx.hideMenuItems({
+            menuList: [
+                'menuItem:share:timeline', //隐藏分享到朋友圈,
+                'menuItem:copyUrl'
+            ],
+        });
+
+        wx.error(function (res) {
+            /*if(res.errMsg == 'config:invalid signature'){
+             wx.hideOptionMenu();
+             }else if(res.errMsg == 'config:invalid url domain'){
+             wx.hideOptionMenu();
+             }else{
+             wx.hideOptionMenu();
+             //alert(res.errMsg);
+             }*/
+            if(res.errMsg){
+                wx.hideOptionMenu();
+            }
+        });
+    });
+
+    function shareHandle(to) {
+        var submitData = {
+            module: window.shareData.moduleName,
+            moduleid: window.shareData.moduleID,
+            token:'yvwrpv1459910246',
+            wecha_id:'oIUBpuGfqKReHEMCjAy1O1mq5qPg',
+            url: window.shareData.sendFriendLink,
+            to:to
+        };
+
+        $.post('index.php?g=Wap&m=Share&a=shareData&token=yvwrpv1459910246&wecha_id=oIUBpuGfqKReHEMCjAy1O1mq5qPg',submitData,function (data) {},'json');
+        if(window.shareData.isShareNum == 1){
+            var ShareNum = {
+                token:'yvwrpv1459910246',
+                ShareNumData:window.shareData.ShareNumData
+            }
+            $.post('index.php?g=Wap&m=Share&a=ShareNum&token=yvwrpv1459910246&wecha_id=oIUBpuGfqKReHEMCjAy1O1mq5qPg',ShareNum,function (data) {if(window.shareData.isShareNumReload == 1){location.reload();}},'json');
+        }
+    }
+</script><script>
+    $('.J_preview,.J_uploadContent').on('click', function(){
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var localIds = res.localIds;
+                wx.uploadImage({
+                    localId: localIds[0],
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        $.ajax({
+                            type: 'POST',
+                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
+                            data:{serverId:res.serverId},
+                            dataType:'json',
+                            success:function(res){
+                                if(res.code == 0) {
+                                    $('#preview').remove();
+                                    $('.J_viewContent').append('<img id="preview">');
+                                    var oImage = $('#preview')[0];
+                                    oImage.src = res.pic;
+                                    oImage.onload = function () {
+
+                                        /*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {
+                                         SP.dialog.tip('请选择宽大于800,高大于900的图片');
+                                         return;
+                                         }*/
+
+                                        var dataX = $('#dataX');
+                                        var dataY = $('#dataY');
+                                        var dataHeight = $('#dataHeight');
+                                        var dataWidth = $('#dataWidth');
+                                        var dataRotate = $('#dataRotate');
+                                        $('.container > img').cropper({
+                                            aspectRatio: 1 / 1,
+                                            crop: function(data) {
+                                                $dataX.val(Math.round(data.x));
+                                                $dataY.val(Math.round(data.y));
+                                                $dataHeight.val(Math.round(data.height));
+                                                $dataWidth.val(Math.round(data.width));
+                                                $dataRotate.val(Math.round(data.rotate));
+                                            }
+                                        });
+
+                                        $('.J_uploadContent').hide();
+                                        $('.J_viewContent').show();
+                                        $('.J_main').hide();
+                                        $('.J_preview').hide();
+
+                                        // display some basic image info
+                                        $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
+                                    }
+                                }else{SP.dialog.tip(res.msg);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    })
+
+
+</script>
+</body>
+</html>
