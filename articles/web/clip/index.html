@@ -14,7 +14,7 @@
 <body >
 
 <div class="container">
-    <img id="pre" src="" >
+    <img id="pre" src="2.png" >
     <br>
     <br>
     <br>
@@ -26,14 +26,16 @@
 <script src="cropper.min.js"></script>
 
 <script>
-    $("#pre").onload = function(){
-        alert(12);
-    };
+
+//    $().cropper({
+//    });
+
     $(document).ready(function () {
 
 
         $("#pre").cropper({
             aspectRatio: 1 / 1,
+                    checkCrossOrigin:true,
             crop: function(data) {
                 // Output the result data for cropping image.
                 console.log(data.x);
@@ -49,13 +51,17 @@
         var img = document.getElementById('pre');
         img.setAttribute('src','2.png');
         img.onload = function(){
-            alert($("#pre").attr("src"));
-            $("#pre").cropper("replace",$("#pre").attr("src"));
-            $("#pre").cropper('crop');
-            $("#pre").cropper("reset");
+//            alert($("#pre").attr("src"));
+//            $("#pre").cropper("replace",$("#pre").attr("src"));
+//            $("#pre").cropper('crop');
+//            $("#pre").cropper("reset");
+
+            $("#pre").cropper("reset", true).cropper("replace", "http://static.ichaotu.com/wx10/dest/img/icon-photo.png").css
+
         };
 
 
+        ("width","100px");
     })
 
 
