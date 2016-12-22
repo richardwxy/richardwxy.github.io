@@ -184,7 +184,7 @@
             menuList: [
                 'menuItem:share:timeline', //隐藏分享到朋友圈,
                 'menuItem:copyUrl'
-            ],
+            ]
         });
 
         wx.error(function (res) {
@@ -292,6 +292,71 @@
 //            }
 //        });
     })
+
+
+
+    function submit() {
+        //var fd = new FormData();
+        var img = $('#preview')[0];
+        if(!img.src){
+            return SP.dialog.tip('请先选择图片，并且截图')
+        }
+        var width = img.naturalWidth;
+        var height = img.naturalHeight;
+        if (window.CORP_TYPE == 'height') {
+            var scale = height / SUBMIT_DATA.h;
+        } else {
+            var scale = width / SUBMIT_DATA.w;
+        }
+        //fd.append('file', img);
+
+
+
+        var w = $('#dataWidth').val();
+        var h = $('#dataHeight').val();
+        var x = $('#dataX').val();
+        var y = $('#dataY').val();
+        var desc1 = $("#desc1").val();
+        var desc2 = $('#desc2').val();
+        var manager = $('#manager').val();
+        $("#maskLayer").show();
+
+
+        $.ajax({
+            type: 'POST',
+            url: CONFIG.URL,
+            data: {
+                desc1:desc1,
+                desc2:desc2,
+                manager:manager,
+                x:x,
+                y:y,
+                w:w,
+                h:h,
+                img: img.src
+            },
+            success: function(data){
+                $("#maskLayer").hide();
+                if(data.code == 0){
+                    WeixinJSBridge.invoke('imagePreview', {
+                        'current' : data.pic,  //这是当前的预览的图片，多图的时候请大家自由发挥，可结合jquery来做
+                        'urls' : [data.pic]   //urls相当于一个图片数组，多图的时候请大家自由发挥，可结合jquery来做
+                    });
+                }else{
+                    SP.dialog.tip(data.msg,5000);
+                }
+            },
+            dataType: 'json'
+        });
+    }
+
+    var CONFIG = {
+        URL: '/index.php?g=Wap&m=Youth&a=save'
+    };
+
+
+
+
 </script>
 </body>
 </html>
