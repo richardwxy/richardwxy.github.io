@@ -34,13 +34,17 @@
         <div class="img J_uploadContent">
             <div class="J_uploadWrap"><img src="http://static.ichaotu.com/wx10/dest/img/icon-photo.png"></div>
         </div>
-        <div class="preview-img J_preview" style="display: none;">
-            <img id="preview-upload-img" style="position:relative;width:100%;height:auto"></div>
 
-        <div class="container J_viewContent" style="display: none;">
-            <a href="#J_main" class="btn-goto J_goto">确认裁剪</a>
-            <img id="preview"/>
+        <div class="preview-img J_preview" style="display: none;overflow: hidden">
+            <div id="preview-upload-img" style="position:relative;overflow: hidden"></div>
         </div>
+        <div class="container J_viewContent" style="display: none;overflow: hidden">
+            <a href="#J_main" class="btn-goto J_goto_new">确认裁剪</a>
+            <img id="preview"/>
+
+
+        </div>
+
 
         <div class="docs-data" style="display:none;">
             <div class="input-group">
@@ -81,7 +85,7 @@
             <div class="item"><input type="text" id = "manager" placeholder="超级图片CEO，余伟华"></div>
             <div class="item"><input type="text" id = "desc1" placeholder="我是品牌超级速递员"></div>
             <div class="item"><input type="text" id = "desc2" placeholder="超级海报，让品牌宣传瞬间引爆"></div>
-            <button class="btn-submit J_submit">立即生成</button>
+            <button class="btn-submit J_submit_new">立即生成</button>
             <div class="money">此活动金额均由超级图片支持</div>
         </div>
     </div>
@@ -222,7 +226,7 @@
         }
     }
 </script><script>
-    $('.J_preview,.J_uploadContent').on('click', function(){
+    $('.J_uploadContent').on('click', function(){
 //        wx.chooseImage({
 //            count: 1,
 //            sizeType: ['original', 'compressed'],
@@ -240,7 +244,6 @@
 //                            dataType:'json',
 //                            success:function(res){
 //                                if(res.code == 0) {
-        var res = {"pic":"http://richardwxy.github.io/articles/web/clip/RedBG.png"};
 
                                     $('#preview').remove();
                                     $('.J_viewContent').append('<img id="preview">');
@@ -252,10 +255,7 @@
                                          return;
                                          }*/
 
-                                        $('.J_uploadContent').hide();
-                                        $('.J_viewContent').show();
-                                        $('.J_main').hide();
-                                        $('.J_preview').hide();
+
                                         var dataX = $('#dataX');
                                         var dataY = $('#dataY');
                                         var dataHeight = $('#dataHeight');
@@ -279,10 +279,19 @@
                                                 dataRotate.val(Math.round(data.rotate));
                                             }
                                         });
-                                        alert("finish");
+                                        $("#preview-upload-img").css({"width":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px","height":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px"});
+                                        $("#preview-upload-img").css("margin","0.16rem 0.15rem 0");
+//                                        console.log(document.getElementsByClassName("J_uploadWrap")[0].clientWidth);
+
+//                                        alert("finish");
                                         $("preview").cropper("reset", true).cropper("replace",res.pic);
                                         // display some basic image info
-                                        $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
+
+
+                                        $('.J_uploadContent').hide();
+                                        $('.J_viewContent').show();
+                                        $('.J_main').hide();
+                                        $('.J_preview').hide();
                                     }
 //                                }
 //                            }
@@ -293,23 +302,19 @@
 //        });
     })
 
+    $(".J_goto_new").click(function(){
+        $(this).parent().hide();
+        $('.J_preview').show();
+        $('.J_main').show();
+    });
 
-
+    $(".J_submit_new").click(submit);
     function submit() {
         //var fd = new FormData();
         var img = $('#preview')[0];
         if(!img.src){
             return SP.dialog.tip('请先选择图片，并且截图')
         }
-        var width = img.naturalWidth;
-        var height = img.naturalHeight;
-        if (window.CORP_TYPE == 'height') {
-            var scale = height / SUBMIT_DATA.h;
-        } else {
-            var scale = width / SUBMIT_DATA.w;
-        }
-        //fd.append('file', img);
-
 
 
         var w = $('#dataWidth').val();
@@ -321,33 +326,33 @@
         var manager = $('#manager').val();
         $("#maskLayer").show();
 
-
-        $.ajax({
-            type: 'POST',
-            url: CONFIG.URL,
-            data: {
-                desc1:desc1,
-                desc2:desc2,
-                manager:manager,
-                x:x,
-                y:y,
-                w:w,
-                h:h,
-                img: img.src
-            },
-            success: function(data){
+        console.log("w:"+w+" h:"+h+" x:"+x+" y:"+y);
+//        $.ajax({
+//            type: 'POST',
+//            url: CONFIG.URL,
+//            data: {
+//                desc1:desc1,
+//                desc2:desc2,
+//                manager:manager,
+//                x:x,
+//                y:y,
+//                w:w,
+//                h:h,
+//                img: img.src
+//            },
+//            success: function(data){
                 $("#maskLayer").hide();
-                if(data.code == 0){
-                    WeixinJSBridge.invoke('imagePreview', {
-                        'current' : data.pic,  //这是当前的预览的图片，多图的时候请大家自由发挥，可结合jquery来做
-                        'urls' : [data.pic]   //urls相当于一个图片数组，多图的时候请大家自由发挥，可结合jquery来做
-                    });
-                }else{
-                    SP.dialog.tip(data.msg,5000);
-                }
-            },
-            dataType: 'json'
-        });
+//                if(data.code == 0){
+//                    WeixinJSBridge.invoke('imagePreview', {
+//                        'current' : data.pic,  //这是当前的预览的图片，多图的时候请大家自由发挥，可结合jquery来做
+//                        'urls' : [data.pic]   //urls相当于一个图片数组，多图的时候请大家自由发挥，可结合jquery来做
+//                    });
+//                }else{
+//                    SP.dialog.tip(data.msg,5000);
+//                }
+//            },
+//            dataType: 'json'
+//        });
     }
 
     var CONFIG = {
