@@ -242,6 +242,8 @@
 //                            success:function(res){
 //                                if(res.code == 0) {
         var res = {pic:"http://pic.ichaotu.com/group2/M00/01/43/ChlgsVhhG2aAX_cQAAFxrakj3DY653.jpg"};
+
+                                    var setNewPic = true;
                                     alert(1);
                                     $('#preview').remove();
                                     $('.J_viewContent').append('<img id="preview">');
@@ -337,7 +339,10 @@
 //                                                });
 //                                            }
                                         }());
-                                        $('#preview').cropper('reset', true).cropper('replace', res.pic);
+                                        if(setNewPic){
+                                            $('#preview').cropper('reset', true).cropper('replace', res.pic);
+                                            setNewPic = false;
+                                        }
 
                                         $("#preview-upload-img").css({"width":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px","height":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px"});
                                         $("#preview-upload-img").css("margin","0.16rem 0.15rem 0");
