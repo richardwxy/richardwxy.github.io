@@ -99,9 +99,9 @@
     wx.config({
         debug: false,
         appId: 	'wxb36b6b0972dde66f',
-        timestamp: 1482758967,
-        nonceStr: '950997',
-        signature: '4eacb1cf50882b565d9f16b86d33c88d2b2aa496',
+        timestamp: 1482767024,
+        nonceStr: '789466',
+        signature: '5ac2f7e13ad3bf88cffd8c7839379e788245266a',
         jsApiList: [
             'checkJsApi',
             'onMenuShareTimeline',
@@ -224,27 +224,24 @@
     }
 </script><script>
     $('.J_uploadContent').on('click', function(){
-//        wx.chooseImage({
-//            count: 1,
-//            sizeType: ['original', 'compressed'],
-//            sourceType: ['album', 'camera'],
-//            success: function (res) {
-//                var localIds = res.localIds;
-//                wx.uploadImage({
-//                    localId: localIds[0],
-//                    isShowProgressTips: 1,
-//                    success: function (res) {
-//                        $.ajax({
-//                            type: 'POST',
-//                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
-//                            data:{serverId:res.serverId},
-//                            dataType:'json',
-//                            success:function(res){
-//                                if(res.code == 0) {
-        var res = {pic:"http://pic.ichaotu.com/group2/M00/01/43/ChlgsVhhG2aAX_cQAAFxrakj3DY653.jpg"};
-
-                                    var setNewPic = true;
-                                    alert(1);
+        var setNewPic  = true;
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var localIds = res.localIds;
+                wx.uploadImage({
+                    localId: localIds[0],
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        $.ajax({
+                            type: 'POST',
+                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
+                            data:{serverId:res.serverId},
+                            dataType:'json',
+                            success:function(res){
+                                if(res.code == 0) {
                                     $('#preview').remove();
                                     $('.J_viewContent').append('<img id="preview">');
                                     var oImage = $('#preview')[0];
@@ -255,36 +252,104 @@
                                          return;
                                          }*/
 
-                                        alert(2);
+                                        (function () {
+                                            var $image = $('#preview'),
+                                                    $dataX = $('#dataX'),
+                                                    $dataY = $('#dataY'),
+                                                    $dataHeight = $('#dataHeight'),
+                                                    $dataWidth = $('#dataWidth'),
+                                                    $dataRotate = $('#dataRotate'),
+                                                    options = {
+                                                        strict: true,
+                                                        // responsive: false,
+                                                        // checkImageOrigin: false
 
-                                        var dataX = $('#dataX');
-                                        var dataY = $('#dataY');
-                                        var dataHeight = $('#dataHeight');
-                                        var dataWidth = $('#dataWidth');
-                                        var dataRotate = $('#dataRotate');
-                                        $('#preview').cropper({
-                                            aspectRatio: 1 / 1,
-                                            crop: function(data) {
-                                                $dataX.val(Math.round(data.x));
-                                                $dataY.val(Math.round(data.y));
-                                                $dataHeight.val(Math.round(data.height));
-                                                $dataWidth.val(Math.round(data.width));
-                                                $dataRotate.val(Math.round(data.rotate));
-                                            }
-                                        });
+                                                        // modal: false,
+                                                        // guides: false,
+                                                        // highlight: false,
+                                                        // background: false,
+
+                                                        // autoCrop: false,
+                                                        // autoCropArea: 0.5,
+                                                        // dragCrop: false,
+                                                        // movable: false,
+                                                        // resizable: false,
+                                                        // rotatable: false,
+                                                        // zoomable: false,
+                                                        // touchDragZoom: false,
+                                                        // mouseWheelZoom: false,
+
+                                                        // minCanvasWidth: 320,
+                                                        // minCanvasHeight: 180,
+                                                        // minCropBoxWidth: 160,
+                                                        // minCropBoxHeight: 90,
+                                                        // minContainerWidth: 320,
+                                                        // minContainerHeight: 180,
+
+                                                        // build: null,
+                                                        // built: null,
+                                                        // dragstart: null,
+                                                        // dragmove: null,
+                                                        // dragend: null,
+                                                        // zoomin: null,
+                                                        // zoomout: null,
+                                                        viewMode:2,
+                                                        minCanvasWidth: 320,
+                                                        minCanvasHeight: 180,
+                                                        minCropBoxWidth: 160,
+                                                        minCropBoxHeight: 90,
+                                                        minContainerWidth: 320,
+                                                        minContainerHeight: 180,
+                                                        aspectRatio: 1 / 1,
+                                                        preview:"#preview-upload-img",
+                                                        crop: function (data) {
+                                                            $dataX.val(Math.round(data.x));
+                                                            $dataY.val(Math.round(data.y));
+                                                            $dataHeight.val(Math.round(data.height));
+                                                            $dataWidth.val(Math.round(data.width));
+                                                            $dataRotate.val(Math.round(data.rotate));
+                                                        }
+                                                    };
+                                            //               $image.cropper('reset', true).cropper('replace', res.pic);
+                                            /*
+                                             // Import image
+                                             var $inputImage = $('#inputImage'),
+                                             URL = window.URL || window.webkitURL,
+                                             blobURL;
+
+                                             $image.one('built.cropper', function () {
+                                             URL.revokeObjectURL(blobURL); // Revoke when load complete
+                                             }).cropper('reset', true).cropper('replace', res.pic);
+                                             $inputImage.val('');
+
+                                             if (URL) {
+                                             $inputImage.change(function () {
+                                             var files = this.files,
+                                             file;
+
+                                             if (files && files.length) {
+                                             file = files[0];
+
+                                             if (/^image\/\w+$/.test(file.type)) {
+                                             blobURL = URL.createObjectURL(file);
+
+                                             } else {
+                                             showMessage('Please choose an image file.');
+                                             }
+                                             }
+                                             });
+                                             }*/
+
+                                        }());
                                         if(setNewPic){
-                                            $('#preview').cropper('reset', true);
+                                            $('#preview').cropper('reset', true).cropper('replace', res.pic);
                                             setNewPic = false;
                                         }
 
                                         $("#preview-upload-img").css({"width":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px","height":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px"});
                                         $("#preview-upload-img").css("margin","0.16rem 0.15rem 0");
-//                                        console.log(document.getElementsByClassName("J_uploadWrap")[0].clientWidth);
-                                        alert(3);
 
-//                                        alert("finish");
-//                                        $("preview").cropper("reset", true).cropper("replace",res.pic);
-                                        // display some basic image info
+
 
 
                                         $('.J_uploadContent').hide();
@@ -292,13 +357,13 @@
                                         $('.J_main').hide();
                                         $('.J_preview').hide();
                                     }
-//                                }
-//                            }
-//                        });
-//                    }
-//                });
-//            }
-//        });
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
     })
 
     $(".J_goto_new").click(function(){
