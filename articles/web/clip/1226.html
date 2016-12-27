@@ -225,24 +225,23 @@
 </script><script>
     $('.J_uploadContent').on('click', function(){
         var setNewPic  = true;
-//        wx.chooseImage({
-//            count: 1,
-//            sizeType: ['original', 'compressed'],
-//            sourceType: ['album', 'camera'],
-//            success: function (res) {
-//                var localIds = res.localIds;
-//                wx.uploadImage({
-//                    localId: localIds[0],
-//                    isShowProgressTips: 1,
-//                    success: function (res) {
-//                        $.ajax({
-//                            type: 'POST',
-//                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
-//                            data:{serverId:res.serverId},
-//                            dataType:'json',
-//                            success:function(res){
-//                                if(res.code == 0) {
-        var res = {pic:"http://pic.ichaotu.com/group2/M00/01/43/ChlgsVhhG2aAX_cQAAFxrakj3DY653.jpg"};
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var localIds = res.localIds;
+                wx.uploadImage({
+                    localId: localIds[0],
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        $.ajax({
+                            type: 'POST',
+                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
+                            data:{serverId:res.serverId},
+                            dataType:'json',
+                            success:function(res){
+                                if(res.code == 0) {
 
                                     $('#preview').remove();
                                     $('.J_viewContent').append('<img id="preview">');
@@ -452,13 +451,13 @@
                                         $('.J_main').hide();
                                         $('.J_preview').hide();
                                     }
-//                                }
-//                            }
-//                        });
-//                    }
-//                });
-//            }
-//        });
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
     })
 
     $(".J_goto_new").click(function(){
