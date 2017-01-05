@@ -242,9 +242,8 @@
 //                            dataType:'json',
 //                            success:function(res){
 //                                if(res.code == 0) {
-
+var res = {pic:"http://pic.ichaotu.com/group2/M00/01/6D/Ci_QZlhuAa6ANMZxAAGc2-L-Vvs801.jpg"};
         setTimeout(function () {
-            var res = {pic:"http://pic.ichaotu.com/group2/M00/01/44/ChlgsVhife-AHhR5AAHsofUS84g059.jpg"};
             $('#preview').remove();
             $('.J_viewContent').append('<img id="preview">');
             var oImage = $('#preview')[0];
@@ -424,7 +423,7 @@
                     } else {
                         $inputImage.parent().remove();
                     }
-
+                    $image.cropper('replace', res.pic);
 
                     // Options
                     $('.docs-options :checkbox').on('change', function () {
@@ -453,7 +452,7 @@
                 $('.J_main').hide();
                 $('.J_preview').hide();
             }
-        },1000);
+        },100);
 
 //                                }
 //                            }
