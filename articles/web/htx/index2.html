@@ -14,18 +14,20 @@
 			$(function(){
 				
 				$("#sm1,#sm2").click(function(e) {
-        		if($(this).prev("span").children("input").val()==""){
-					alert("请输入正确的股票代码")
-					return false;	
-				}else{
-					$(".zz").fadeIn();	
-					$("#phoneDiv").fadeIn();
-				}
+//        		if($(this).prev("span").children("input").val()==""){
+//					alert("请输入正确的股票代码")
+//					return false;
+//				}else{
+//					$(".zz").fadeIn();
+//					$("#phoneDiv").fadeIn();
+//				}
+					location.href = "http://ali.ichaotu.com/index.php?g=Wap&m=Activity&a=index&token=yvwrpv1459910246&source_wecha_id=oIUBpuFVAWJofgETlLzIlxPXBcVY";
     			});
-				$('.zz').click(function () {
-              		$(this).fadeOut();
-			  		$(".phone").fadeOut();
-    			});
+//				$('.zz').click(function () {
+//              		$(this).fadeOut();
+//			  		$(".phone").fadeOut();
+//    			});
+
 
 				
 			})
