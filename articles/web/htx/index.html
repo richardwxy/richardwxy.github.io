@@ -26,9 +26,10 @@
 				$(this).fadeOut();
 				$(".phone").fadeOut();
 			});
+			var result = {"msg":""};
+			alert(result["msg"]);
 
-
-		})
+		})()
 	</script>
 
 	<script>
@@ -153,9 +154,6 @@
 				$("#btnTgPhone").removeAttr("disabled");
 				isGetPhoneCheckEnalbed = true;
 			},180000)
-
-
-
 			var phoneNum = $("input[name=tgMobile]").val();
 			$.ajax({
 				url:"http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=send_code",
@@ -173,15 +171,11 @@
 				},
 				timeout:10000
 			});
-
 //		$("#phoneDiv").fadeOut();
 //		$("#phoneCheckDiv").fadeIn();
-
 		});
-
 		$("#btnTg").click(function(){
 //		点击验证接口成功后回调原方法
-
 			var phoneNum = $("input[name=tgMobile]").val();
 			var phoneCheckNum = $("input[name=tgMobileCheck]").val();
 			$.ajax({
@@ -201,13 +195,7 @@
 				},
 				timeout:10000
 			});
-
-
 		});
-
-
-
-
 	});
 </script>
 

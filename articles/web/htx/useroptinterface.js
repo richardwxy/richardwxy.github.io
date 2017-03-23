@@ -225,9 +225,12 @@ if(typeof(tips) == "undefined"){
 				var r = window.location.search.substr(1).match(reg);
 				if (r != null) return unescape(r[2]); return null;
 			}
-			var str = getQueryString("str");
+			var token = getQueryString("token");
+			var wecha_source_id = getQueryString("wecha_source_id");
+			var id = getQueryString("id");
+			var wmarkId = getQueryString("wmarkId");
 
-			window.location.href="http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=index&str="+str;
+			window.location.href="http://ali.ichaotu.com/index.php?g=Wap&m=Huitx&a=index&token="+token+"&wecha_source_id="+wecha_source_id+"&id="+id+"&wmarkId="+wmarkId;
 
 		  //location.reload();
 		  break;

@@ -227,79 +227,78 @@
     }
 </script><script>
     $('.J_uploadContent').on('click', function(){
-//        wx.chooseImage({
-//            count: 1,
-//            sizeType: ['original', 'compressed'],
-//            sourceType: ['album', 'camera'],
-//            success: function (res) {
-//                var localIds = res.localIds;
-//                wx.uploadImage({
-//                    localId: localIds[0],
-//                    isShowProgressTips: 1,
-//                    success: function (res) {
-//                        $.ajax({
-//                            type: 'POST',
-//                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
-//                            data:{serverId:res.serverId},
-//                            dataType:'json',
-//                            success:function(res){
-//                                if(res.code == 0) {
-var res = {"pic":"http://pic.ichaotu.com/group2/M00/01/3C/ChlgsVhb7juAHPG2AAhn2Ihxuj8447.jpg"};
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var localIds = res.localIds;
+                wx.uploadImage({
+                    localId: localIds[0],
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        $.ajax({
+                            type: 'POST',
+                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
+                            data:{serverId:res.serverId},
+                            dataType:'json',
+                            success:function(res){
+                                if(res.code == 0) {
+//var res = {"pic":"http://pic.ichaotu.com/group2/M00/01/3C/ChlgsVhb7juAHPG2AAhn2Ihxuj8447.jpg"};
                                     $('#preview').remove();
                                     $('.J_viewContent').append('<img id="preview">');
+                                    $('.J_uploadContent').hide();
+                                    $('.J_viewContent').show();
+                                    $('.J_main').hide();
+                                    $('.J_preview').hide();
                                     var oImage = $('#preview')[0];
-                                    oImage.src = res.pic;
                                     oImage.onload = function () {
                                         /*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {
                                          SP.dialog.tip('请选择宽大于800,高大于900的图片');
                                          return;
                                          }*/
-
-
-                                        var dataX = $('#dataX');
-                                        var dataY = $('#dataY');
-                                        var dataHeight = $('#dataHeight');
-                                        var dataWidth = $('#dataWidth');
-                                        var dataRotate = $('#dataRotate');
-                                        $("#preview").cropper({
-                                            viewMode:2,
-                                            minCanvasWidth: 320,
-                                            minCanvasHeight: 180,
-                                            minCropBoxWidth: 160,
-                                            minCropBoxHeight: 90,
-                                            minContainerWidth: 320,
-                                            minContainerHeight: 180,
-                                            aspectRatio: 1 / 1,
-                                            preview:"#preview-upload-img",
-                                            crop: function(data) {
-                                                dataX.val(Math.round(data.x));
-                                                dataY.val(Math.round(data.y));
-                                                dataHeight.val(Math.round(data.height));
-                                                dataWidth.val(Math.round(data.width));
-                                                dataRotate.val(Math.round(data.rotate));
-                                            }
-                                        });
-                                        $("#preview-upload-img").css({"width":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px","height":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px"});
-                                        $("#preview-upload-img").css("margin","0.16rem 0.15rem 0");
+                                            var dataX = $('#dataX');
+                                            var dataY = $('#dataY');
+                                            var dataHeight = $('#dataHeight');
+                                            var dataWidth = $('#dataWidth');
+                                            var dataRotate = $('#dataRotate');
+                                            console.log("start");
+                                            $("#preview").cropper({
+                                                viewMode:2,
+                                                minCanvasWidth: 320,
+                                                minCanvasHeight: 180,
+                                                minCropBoxWidth: 160,
+                                                minCropBoxHeight: 90,
+                                                minContainerWidth: 320,
+                                                minContainerHeight: 180,
+                                                aspectRatio: 1 / 1,
+                                                preview:"#preview-upload-img",
+                                                crop: function(data) {
+                                                    dataX.val(Math.round(data.x));
+                                                    dataY.val(Math.round(data.y));
+                                                    dataHeight.val(Math.round(data.height));
+                                                    dataWidth.val(Math.round(data.width));
+                                                    dataRotate.val(Math.round(data.rotate));
+                                                }
+                                            });
+                                            $("#preview-upload-img").css({"width":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px","height":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px"});
+                                            $("#preview-upload-img").css("margin","0.16rem 0.15rem 0");
 //                                        console.log(document.getElementsByClassName("J_uploadWrap")[0].clientWidth);
 
 //                                        alert("finish");
-                                        $("preview").cropper("reset", true).cropper("replace",res.pic);
+                                            $("preview").cropper("reset", true).cropper("replace",res.pic);
+
                                         // display some basic image info
-
-
-                                        $('.J_uploadContent').hide();
-                                        $('.J_viewContent').show();
-                                        $('.J_main').hide();
-                                        $('.J_preview').hide();
                                     }
-//                                }
-//                            }
-//                        });
-//                    }
-//                });
-//            }
-//        });
+                                    oImage.src = res.pic;
+
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
     })
 
     $(".J_goto_new").click(function(){
@@ -362,6 +361,84 @@ var res = {"pic":"http://pic.ichaotu.com/group2/M00/01/3C/ChlgsVhb7juAHPG2AAhn2I
 
 
 
+</script>
+<script>
+    $('.J_uploadContent').on('click', function(){
+        var setNewPic  = true;
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var localIds = res.localIds;
+                wx.uploadImage({
+                    localId: localIds[0],
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        $.ajax({
+                            type: 'POST',
+                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
+                            data:{serverId:res.serverId},
+                            dataType:'json',
+                            success:function(res){
+                                if(res.code == 0) {
+
+
+                                    $('#preview').remove();
+                                    $('.J_viewContent').append('<img id="preview">');
+                                    var oImage = $('#preview')[0];
+                                    oImage.src = res.pic;
+                                    oImage.onload = function () {
+                                        /*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {
+                                         SP.dialog.tip('请选择宽大于800,高大于900的图片');
+                                         return;
+                                         }*/
+
+
+                                        var dataX = $('#dataX');
+                                        var dataY = $('#dataY');
+                                        var dataHeight = $('#dataHeight');
+                                        var dataWidth = $('#dataWidth');
+                                        var dataRotate = $('#dataRotate');
+                                        $("#preview").cropper({
+                                            viewMode:2,
+                                            minCanvasWidth: 320,
+                                            minCanvasHeight: 180,
+                                            minCropBoxWidth: 160,
+                                            minCropBoxHeight: 90,
+                                            minContainerWidth: 320,
+                                            minContainerHeight: 180,
+                                            aspectRatio: 1 / 1,
+                                            preview:"#preview-upload-img",
+                                            crop: function(data) {
+                                                dataX.val(Math.round(data.x));
+                                                dataY.val(Math.round(data.y));
+                                                dataHeight.val(Math.round(data.height));
+                                                dataWidth.val(Math.round(data.width));
+                                                dataRotate.val(Math.round(data.rotate));
+                                            }
+                                        });
+                                        $("#preview-upload-img").css({"width":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px","height":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px"});
+                                        $("#preview-upload-img").css("margin","0.16rem 0.15rem 0");
+//                                        console.log(document.getElementsByClassName("J_uploadWrap")[0].clientWidth);
+
+//                                        alert("finish");
+                                        $("preview").cropper("reset", true).cropper("replace",res.pic);
+                                        // display some basic image info
+
+
+                                        $('.J_uploadContent').hide();
+                                        $('.J_viewContent').show();
+                                        $('.J_main').hide();
+                                        $('.J_preview').hide();
+                                    }}
+                                }
+                            });
+                    }
+                });
+            }
+        });
+    })
 </script>
 </body>
 </html>

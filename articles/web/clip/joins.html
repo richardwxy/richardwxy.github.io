@@ -1,308 +1,502 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>【五月.致青春】制作超级海报免费得红包</title>
-    <meta name="keywords" content="【五月.致青春】制作超级海报免费得红包"/>
-    <meta name="description" content="【五月.致青春】制作超级海报免费得红包"/>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="http://static.ichaotu.com/wx10/dest/js/c/css/active.css?65"/>
-    <link rel="stylesheet" href="http://static.ichaotu.com/wx10/dest/css/cropper.min.css?65"/>
+<!doctype html>
+<html><head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Tencent-TGideas">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link href="/audi-video/css/audi2.css" rel="stylesheet" type="text/css" />
+    <title>来自全新奥迪A4L车主的来电</title>
+    <script src="/js/jquery-1.8.0.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var share_title = '来自全新奥迪A4L车主的来电';
+        var share_desc = '来自全新奥迪A4L车主的来电';
+        var share_img = 'http://api.daogou.bjzzcb.com/audi-video/image/no3.jpg';
+        var share_link = 'http://api.daogou.bjzzcb.com/daogou/activity/a4lVideo?num=3';
+        wx.config({
+            debug: false,
+            appId: 'wxe162b3be20988071',
+            timestamp: 1482995757,
+            nonceStr: 'ci6Rpq42KiHH2eNJ',
+            signature: '5a982acc747706e8ef7c9859ca7100a7b9442e2d',
+            jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ']
+        });
+        wx.ready(function(){
+            wx.onMenuShareTimeline({
+                title: share_title, // 分享标题
+                link: share_link, // 分享链接
+                imgUrl: share_img, // 分享图标
+                success: function () {
+// 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+// 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareAppMessage({
+                title: share_title, // 分享标题
+                desc: share_desc, // 分享描述
+                link: share_link, // 分享链接
+                imgUrl: share_img, // 分享图标
+                type: 'link', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+// 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+// 用户取消分享后执行的回调函数
+                }
+            });
+            wx.onMenuShareQQ({
+                title: share_title, // 分享标题
+                desc: share_desc, // 分享描述
+                link: share_link, // 分享链接
+                imgUrl: share_img, // 分享图标
+                success: function () {
+// 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+// 用户取消分享后执行的回调函数
+                }
+            });
+        });
+
+        $(function(){
+
+            $(".sex span").click(function(){
+                $(this).addClass("checked").siblings("span").removeClass("checked");
+            });
+
+            audioAutoPlay('ringringring');
+
+        });
+
+
+    </script>
     <style>
-        #maskLayer{
-            width:100%; height:900px; background-color:#000000; opacity:0.9; -moz-opacity:0.5;position:fixed;z-index:1000;top:0;left:0;display:none;
-        }
-        #maskLayer img{margin:20% auto;border:0;}
-        select{
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance:none;
-        }
+        .on{background-color:#999;cursor:default}
     </style>
+
 </head>
 <body>
-<div class="wrap page-upload">
-    <div class="content">
-        <!-- hidden crop params -->
-        <input type="hidden" id="x1" name="x1" autocomplete="off"/>
-        <input type="hidden" id="y1" name="y1" autocomplete="off"/>
-        <input type="hidden" id="x2" name="x2" autocomplete="off"/>
-        <input type="hidden" id="y2" name="y2" autocomplete="off"/>
+<div class="yuyue" style="display:none;">
+    <div class="shijia_box">
+        <h1>预约试驾领取现金红包</h1>
+        <form class="yysj">
+            <p><name>姓名</name><input id="username" type="text" class="textstyle"></p>
+            <p class="sex"><name>性别</name><span class="usex checked" value="先生">先生</span><span class="usex" value="女士">女士</span></p>
+            <p><name>手机</name><input id="mobile" type="text" class="textstyle"></p>
+            <p class="yzm"><name>验证码</name><input id="code" type="text" class="textstyle"><span id="codeBtn" class="yanzma" onclick="sendCode();">获取验证码</span></p>
+            <p>
+                <name>预约车型</name>
+                <select id="chexing" name="chexing" class="selectstyle">
+                    <option value="" >请选择</option>
+                    <option value="奥迪A4L 40 TFSI 进取型">奥迪A4L 40 TFSI 进取型</option>
+                    <option value="奥迪A4L 40 TFSI 时尚型">奥迪A4L 40 TFSI 时尚型</option>
+                    <option value="奥迪A4L 40 TFSI 风尚型">奥迪A4L 40 TFSI 风尚型</option>
+                    <option value="奥迪A4L 40 TFSI 运动型">奥迪A4L 40 TFSI 运动型</option>
+                    <option value="奥迪A4L 45 TFSI quattro 风尚型">奥迪A4L 45 TFSI quattro 风尚型</option>
+                    <option value="奥迪A4L 45 TFSI quattro 运动型">奥迪A4L 45 TFSI quattro 运动型</option>
+                </select>
+            </p>
 
-
-        <div class="img J_uploadContent">
-            <div class="J_uploadWrap"><img src="RedBG.png"></div>
-        </div>
-        <div class="preview-img J_preview" style="display:none;">
-            <img id="preview-upload-img"></div>
-
-        <div class="container J_viewContent" style="display:none;">
-            <a href="#J_main" class="btn-goto J_goto">确认裁剪</a>
-            <img id="preview" src="http://static.ichaotu.com/wx10/dest/img/icon-photo.png"/>
-        </div>
-
-        <div class="docs-data" style="display:none;">
-            <div class="input-group">
-                <label class="input-group-addon" for="dataX">X</label>
-                <input class="form-control" id="dataX" type="text" placeholder="x">
-                <span class="input-group-addon">px</span>
-            </div>
-            <div class="input-group">
-                <label class="input-group-addon" for="dataY">Y</label>
-                <input class="form-control" id="dataY" type="text" placeholder="y">
-                <span class="input-group-addon">px</span>
-            </div>
-            <div class="input-group">
-                <label class="input-group-addon" for="dataWidth">Width</label>
-                <input class="form-control" id="dataWidth" type="text" placeholder="width">
-                <span class="input-group-addon">px</span>
-            </div>
-            <div class="input-group">
-                <label class="input-group-addon" for="dataHeight">Height</label>
-                <input class="form-control" id="dataHeight" type="text" placeholder="height">
-                <span class="input-group-addon">px</span>
-            </div>
-            <div class="input-group">
-                <label class="input-group-addon" for="dataRotate">Rotate</label>
-                <input class="form-control" id="dataRotate" type="text" placeholder="rotate">
-                <span class="input-group-addon">deg</span>
-            </div>
-        </div>
-
-        <ul style="display: none;">
-            <li><label>图像尺寸</label> <input type="text" id="filedim" name="filedim" class="input"
-                                           autocomplete="off"/></li>
-            <li><label>宽度</label> <input type="text" id="w" name="w" class="input" autocomplete="off"/></li>
-            <li><label>高度</label> <input type="text" id="h" name="h" class="input" autocomplete="off"/></li>
-        </ul>
-
-        <div class="J_main" id="J_main">
-            <div class="introduce"><p>请输入介绍文字：</p></div>
-            <div class="item"><input type="text" id = "manager" placeholder="超级图片CEO，余伟华"></div>
-            <div class="item"><input type="text" id = "desc1" placeholder="我是品牌超级速递员"></div>
-            <div class="item"><input type="text" id = "desc2" placeholder="超级海报，让品牌宣传瞬间引爆"></div>
-            <button class="btn-submit J_submit">立即生成</button>
-            <div class="money">此活动金额均由超级图片支持</div>
-        </div>
+            <p><name>省份</name>
+                <select class="selectstyle" id="province">
+                    <option value="">请选择</option>
+                    <option value="上海">上海</option>
+                    <option value="云南">云南</option>
+                    <option value="内蒙古">内蒙古</option>
+                    <option value="北京">北京</option>
+                    <option value="吉林">吉林</option>
+                    <option value="四川">四川</option>
+                    <option value="天津">天津</option>
+                    <option value="宁夏">宁夏</option>
+                    <option value="安徽">安徽</option>
+                    <option value="山东">山东</option>
+                    <option value="山西">山西</option>
+                    <option value="广东">广东</option>
+                    <option value="广西">广西</option>
+                    <option value="新疆">新疆</option>
+                    <option value="江苏">江苏</option>
+                    <option value="江西">江西</option>
+                    <option value="河北">河北</option>
+                    <option value="河南">河南</option>
+                    <option value="浙江">浙江</option>
+                    <option value="海南">海南</option>
+                    <option value="湖北">湖北</option>
+                    <option value="湖南">湖南</option>
+                    <option value="甘肃">甘肃</option>
+                    <option value="福建">福建</option>
+                    <option value="西藏">西藏</option>
+                    <option value="贵州">贵州</option>
+                    <option value="辽宁">辽宁</option>
+                    <option value="重庆">重庆</option>
+                    <option value="陕西">陕西</option>
+                    <option value="青海">青海</option>
+                    <option value="黑龙江">黑龙江</option>
+                </select>
+            </p>
+            <p><name>城市</name><select class="selectstyle" id="city"><option value="">请选择</option></select></p>
+            <p><name>预约经销商</name><select class="selectstyle" id="shops"><option value="">请选择</option></select></p>
+            <p><name>预购车时间</name><select class="selectstyle" id="time"><option value="">请选择</option><option value="三个月内">三个月内</option><option value="4至6个月">4至6个月</option><option value="7个月到1年内">7个月到1年内</option><option value="不确定">不确定</option></select></p>
+            <p><em id="error_line" style="color:red;"></em></p>
+            <a href="javascript:submitYY();" class="hongbao">领取红包</a>
+        </form>
     </div>
 </div>
-<div id="maskLayer">
-    <img src="/images/loading.gif?65" />
+
+<div class="wrap">
+    <div class="page page3" style="background: url(/audi-video/image/bg_vcall1.jpg) no-repeat 0px 0px;background-size: cover;">
+        <div class="page3-content">
+            <div class="hd">
+                <span class="avatar"><img src="/audi-video/image/head1.jpg" /></span>
+                <div class="txt"><img src="/audi-video/image/t1.png"></div>
+            </div>
+            <div class="fd">
+                <div class="yuyin"><img src="/audi-video/image/text2.png"></div>
+                <div class="btnBox">
+                    <div class="repulse"><a href="javascript:showYY();sendStep(3);" class="icon sp"></a>拒绝</div>
+                    <div class="answer"><a  href="javascript:sendStep(2);" class="icon sp btn-answer"></a>接听</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page page4">
+        <div class="videobox">
+            <video style="" x5-video-player-type="h5" x5-video-player-fullscreen="true" class="video-box" data-index="3" id="videoIndex3" playsinline="true" x-webkit-airplay="true" webkit-playsinline="true" preload="auto"  src="http://cdn.carguide.com.cn/1.mp4"></video>
+        </div>
+        <!--<div class="front_camera"><video id="camera" style="width:100%;height:100%;" autoplay="autoplay"></video></div>-->
+        <span id="video_time" class="second-span"></span>
+        <a href="javascript:showYY();sendStep(4);" class="btn-off"><span class="icon sp"></span>挂断</a>
+    </div>
+
 </div>
-<script src="http://static.ichaotu.com/wx10//dest/js/c/jquery-1.min.js?65"></script>
-<script src="http://static.ichaotu.com/wx10//dest/js/c/SP.js?65"></script>
-<script src="http://static.ichaotu.com/wx10//dest/js/cropper.min.js?65"></script>
-<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript">
-    wx.config({
-        debug: false,
-        appId: 	'wxb36b6b0972dde66f',
-        timestamp: 1482153643,
-        nonceStr: '764596',
-        signature: '21b079a9e500e10bfa5d6dc8959b568036fbefa1',
-        jsApiList: [
-            'checkJsApi',
-            'onMenuShareTimeline',
-            'onMenuShareAppMessage',
-            'onMenuShareQQ',
-            'onMenuShareWeibo',
-            'openLocation',
-            'getLocation',
-            'addCard',
-            'chooseCard',
-            'openCard',
-            'hideMenuItems',
-            'previewImage',
-            'chooseImage',
-            'uploadImage',
-            'downloadImage'
-        ]
-    });
-</script>
-<script type="text/javascript">
-    wx.ready(function () {
-        // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
-        /*document.querySelector('#checkJsApi').onclick = function () {
-         wx.checkJsApi({
-         jsApiList: [
-         'getNetworkType',
-         'previewImage'
-         ],
-         success: function (res) {
-         //alert(JSON.stringify(res));
-         }
-         });
-         };*/
-        // 2. 分享接口
-        // 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
-        wx.onMenuShareAppMessage({
-            title: window.shareData.tTitle,
-            desc: window.shareData.tContent,
-            link: window.shareData.sendFriendLink,
-            imgUrl: window.shareData.imgUrl,
-            type: '', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function () {
-                shareHandle('frined');
-            },
-            cancel: function () {
-                //alert('分享朋友失败');
-            }
-        });
 
 
-        // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
-        wx.onMenuShareTimeline({
-            title: window.shareData.fTitle?window.shareData.fTitle:window.shareData.tTitle,
-            link: window.shareData.sendFriendLink,
-            imgUrl: window.shareData.imgUrl,
-            success: function () {
-                shareHandle('frineds');
-                //alert('分享朋友圈成功');
-            },
-            cancel: function () {
-                //alert('分享朋友圈失败');
-            }
-        });
 
-        // 2.4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
-        wx.onMenuShareWeibo({
-            title: window.shareData.tTitle,
-            desc: window.shareData.tContent,
-            link: window.shareData.sendFriendLink,
-            imgUrl: window.shareData.imgUrl,
-            success: function () {
-                shareHandle('weibo');
-                //alert('分享微博成功');
-            },
-            cancel: function () {
-                //alert('分享微博失败');
-            }
-        });
-        wx.hideMenuItems({
-            menuList: [
-                'menuItem:share:timeline', //隐藏分享到朋友圈,
-                'menuItem:copyUrl'
-            ],
-        });
+<audio id="ringringring" src="http://cdn.carguide.com.cn/ring.mp3" class="ring-bg" loop="loop"></audio>
+<script src="/audi-video/js/zepto.min.js"></script>
+<script src="/audi-video/js/WXJssdk.js"></script>
+<script src="/audi-video/js/qqapi.js?t=2013120901"></script>
+<script src="/audi-video/js/ping_tcss_ied.js"></script>
 
-        wx.error(function (res) {
-            /*if(res.errMsg == 'config:invalid signature'){
-             wx.hideOptionMenu();
-             }else if(res.errMsg == 'config:invalid url domain'){
-             wx.hideOptionMenu();
-             }else{
-             wx.hideOptionMenu();
-             //alert(res.errMsg);
-             }*/
-            if(res.errMsg){
-                wx.hideOptionMenu();
-            }
-        });
-    });
+<script>
 
-    function shareHandle(to) {
-        var submitData = {
-            module: window.shareData.moduleName,
-            moduleid: window.shareData.moduleID,
-            token:'yvwrpv1459910246',
-            wecha_id:'oIUBpuGfqKReHEMCjAy1O1mq5qPg',
-            url: window.shareData.sendFriendLink,
-            to:to
-        };
-
-        $.post('index.php?g=Wap&m=Share&a=shareData&token=yvwrpv1459910246&wecha_id=oIUBpuGfqKReHEMCjAy1O1mq5qPg',submitData,function (data) {},'json');
-        if(window.shareData.isShareNum == 1){
-            var ShareNum = {
-                token:'yvwrpv1459910246',
-                ShareNumData:window.shareData.ShareNumData
-            }
-            $.post('index.php?g=Wap&m=Share&a=ShareNum&token=yvwrpv1459910246&wecha_id=oIUBpuGfqKReHEMCjAy1O1mq5qPg',ShareNum,function (data) {if(window.shareData.isShareNumReload == 1){location.reload();}},'json');
+    $('#province').change(function(){
+        var province = $(this).val();
+        $('#city').html('<option value="">请选择</option>');
+        $('#shops').html('<option value="">请选择</option>');
+        if(province==''){
+            return false;
         }
-    }
-</script><script>
-    $('.J_preview,.J_uploadContent').on('click', function(){
-        wx.chooseImage({
-            count: 1,
-            sizeType: ['original', 'compressed'],
-            sourceType: ['album', 'camera'],
-            success: function (res) {
-                var localIds = res.localIds;
-                wx.uploadImage({
-                    localId: localIds[0],
-                    isShowProgressTips: 1,
-                    success: function (res) {
-                        $.ajax({
-                            type: 'POST',
-                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
-                            data:{serverId:res.serverId},
-                            dataType:'json',
-                            success:function(res){
-                                if(res.code == 0) {
-                                    var oImage = document.getElementById("preview");
-                                    oImage.src = res.pic;
-                                    oImage.onload = function () {
-
-                                        /*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {
-                                         SP.dialog.tip('请选择宽大于800,高大于900的图片');
-                                         return;
-                                         }*/
-                                        setTimeout(function(){
-                                            var img = document.getElementById('preview');
-                                            var src = img.getAttribute('src');
-                                            img.setAttribute('src',res.pic);
-                                            img.onload = function(){
-                                                $("#preview").cropper("replace",$("#preview").attr("src"));
-                                                $("#preview").cropper('crop');
-                                                $("#preview").cropper("reset");
-                                                alert($("#preview").attr("src"));
-                                            };
-                                            $("#preview").cropper('replace',res.pic);
-                                            $('.J_uploadContent').hide();
-                                            $('.J_viewContent').show();
-                                            $('.J_main').hide();
-                                            $('.J_preview').hide();
-
-                                            // display some basic image info
-                                            // $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
-                                        },500);
-                                    }
-                                }else{
-                                    SP.dialog.tip(res.msg);
-                                }
-                            }
-                        });
-                    }
-                });
+        var url = '/daogou/activity/Q3GetCityByProvince';
+        var data = {'province' : province};
+        $.get(url,data,function(response){
+            var options = response.result;
+            for(var i =0;i<options.length;i++){
+                var str = '<option value="'+options[i].name+'">'+options[i].val+'</option>';
+                $('#city').append(str);
             }
-        });
-    })
-//    var dataX = $('#dataX');
-//    var dataY = $('#dataY');
-//    var dataHeight = $('#dataHeight');
-//    var dataWidth = $('#dataWidth');
-//    var dataRotate = $('#dataRotate');
-//    $('#preview').cropper({
-//        aspectRatio: 1 / 1,
-//        crop: function(data) {
-//            dataX.val(Math.round(data.x));
-//            dataY.val(Math.round(data.y));
-//            dataHeight.val(Math.round(data.height));
-//            dataWidth.val(Math.round(data.width));
-//            dataRotate.val(Math.round(data.rotate));
-//        }
-//    });
-    $(document).ready(function() {
-        console.log($(".J_uploadWrap img").attr("src"));
-        $(".J_uploadWrap img").cropper({
-            aspectRatio: 1 / 1,
-            crop: function (data) {
-                // Output the result data for cropping image.
-                console.log(data.x);
-            }
-        });
+        },'json');
+
     });
+
+    $('#city').change(function(){
+        var city = $(this).val();
+        $('#shops').html('<option value="">请选择</option>');
+        if(city==''){
+            return false;
+        }
+        var url = '/daogou/activity/Q3GetShopsByCity';
+        var data = {'city' : city};
+        $.get(url,data,function(response){
+            var options = response.result;
+            for(var i =0;i<options.length;i++){
+                var str = '<option value="'+options[i].name+'">'+options[i].val+'</option>';
+                $('#shops').append(str);
+            }
+        },'json');
+    });
+
+
+
+    var video = document.querySelector('video');
+    var audio, audioType;
+
+    var canvas1 = document.getElementById('canvas1');
+    var context1 = canvas1.getContext('2d');
+
+    var canvas2 = document.getElementById('canvas2');
+    var context2 = canvas2.getContext('2d');
+
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+    var exArray = []; //存储设备源ID
+    MediaStreamTrack.getSources(function (sourceInfos) {
+        for (var i = 0; i != sourceInfos.length; ++i) {
+            var sourceInfo = sourceInfos[i];
+            //这里会遍历audio,video，所以要加以区分
+            if (sourceInfo.kind === 'video') {
+                exArray.push(sourceInfo.id);
+            }
+        }
+    });
+
+
+
+    // 将视频帧绘制到Canvas对象上,Canvas每60ms切换帧，形成肉眼视频效果
+    function drawVideoAtCanvas(video,context) {
+        window.setInterval(function () {
+            context.drawImage(video, 0, 0,90,120);
+        }, 60);
+    }
+
+    //获取音频格式
+    function getAudioType(element) {
+        if (element.canPlayType) {
+            if (element.canPlayType('audio/mp4; codecs="mp4a.40.5"') !== '') {
+                return ('aac');
+            } else if (element.canPlayType('audio/ogg; codecs="vorbis"') !== '') {
+                return ("ogg");
+            }
+        }
+        return false;
+    }
+
+
+
+</script>
+<script>
+    var query = function(selector){
+        return document.querySelector(selector);
+    };
+    var browser={
+        versions:function(){
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return {
+                webKit: u.indexOf('AppleWebKit') > -1,
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                weixin: u.indexOf('MicroMessenger') > -1,
+            };
+        }(),
+        language:(navigator.browserLanguage || navigator.language).toLowerCase()
+    };
+
+
+
+    //scale
+    var a = document.documentElement.clientHeight, s = document.documentElement.clientWidth;
+    function e(e, n) {
+        var t, i = s / a, r = 320 / 504;
+        t = i > r ? a / 504 :s / 320, $(e).css({
+            "-webkit-transform-origin":n,
+            "transform-origin":n,
+            "-webkit-transform":"scale(" + t + ");",
+            transform:"scale(" + t + ");"
+        });
+    }
+
+    function d(e, n) {
+        var t, i = s / a, r = 320 / 504;
+        t = i < r ? a / 504 :s / 320, $(e).css({
+            "-webkit-transform-origin":n,
+            "transform-origin":n,
+            "-webkit-transform":"scale(" + t + ");",
+            transform:"scale(" + t + ");"
+        });
+    }
+
+    e(".page3-content",'center center');
+    d(".videobox",'center center');
+
+    var videoPlay=document.querySelector("#videoIndex3");
+    videoPlay.addEventListener("ended",function(){
+        showYY();
+        sendStep(5);
+    });
+
+
+    function timeToStr(time) {
+        var h = 0,
+                m = 0,
+                s = 0,
+                _h = '00',
+                _m = '00',
+                _s = '00';
+        h = Math.floor(time / 3600);
+        time = Math.floor(time % 3600);
+        m = Math.floor(time / 60);
+        s = Math.floor(time % 60);
+        _s = s < 10 ? '0' + s : s + '';
+        _m = m < 10 ? '0' + m : m + '';
+        _h = h < 10 ? '0' + h : h + '';
+        return _h + ":" + _m + ":" + _s;
+    }
+
+
+
+    // 获取 id="videoIndex3" 的 video 元素
+    var aodiVideo = document.getElementById("videoIndex3");
+    // 向 video 元素添加 ontimeupdate 事件，然后再当前播放位置发生改变时执行函数
+    aodiVideo.addEventListener("timeupdate", myFunction);
+    function myFunction() {
+        // 显示 id="video_time" 的 span 元素中视频的当前播放位置
+        document.getElementById("video_time").innerHTML = timeToStr(aodiVideo.currentTime);
+    }
+
+
+    //获取摄像头
+    var camera = document.querySelector('#camera');
+
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+
+    function errorFunc(e) {
+        alert('Error！'+e);
+    }
+
+
+    $('.btn-answer').click(function(){
+        query(".ring-bg").pause();
+        if (browser.versions.android){
+            $(".video-box").attr("controls",true)
+        }
+        $(".page3").hide();
+        query("#videoIndex3").play();
+    });
+
+    function audioAutoPlay(id){
+        var audio = document.getElementById(id);
+        audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+        }, false);
+    }
+    function stopAutoPlay(id){
+        var audio = document.getElementById(id);
+        audio.pause();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.pause();
+        }, false);
+
+    }
+
+    var postCode = 0;
+    function submitYY(){
+        var username = $('#username').val();
+        var username = $.trim(username);
+        var sex = '先生';
+        $('.usex').each(function(){
+            if($(this).hasClass('checked')){
+                sex = $(this).attr('value');
+            }
+        });
+
+        var mobile = $('#mobile').val();
+        var code = $('#code').val();
+        var chexing = $('#chexing').val();
+        var shop = $('#shops').val();
+        var time = $('#time').val();
+        if(username==''){
+            $('#error_line').html('请输入预约人姓名');
+            return false;
+        }
+        if(! /^1\d{10}$/.test(mobile)){
+            $('#error_line').html('请输入正确的手机号');
+            return false;
+        }
+        if(code==''){
+            $('#error_line').html('请输入验证码');
+            return false;
+        }
+        if(chexing ==''){
+            $('#error_line').html('请选择预约车型');
+            return false;
+        }
+        if(shop==''){
+            $('#error_line').html('请选择经销商');
+            return false;
+        }
+        if(time==''){
+            $('#error_line').html('请选择预购车时间');
+            return false;
+        }
+        $('#error_line').html('');
+        $('.hongbao').addClass('on');
+
+        $.ajax({
+            url:"/daogou/activity/A4lVideoBooking",
+            dataType:'json',
+            type:'POST',
+            timeout:3000,
+            beforeSend: function(XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("sid",'');
+                XMLHttpRequest.setRequestHeader("os",'');
+                XMLHttpRequest.setRequestHeader("deviceid",'');
+                XMLHttpRequest.setRequestHeader("version",'');
+            },
+            data : {'username':username,'mobile':mobile,'code':code,'chexing':chexing,'sex':sex,'shop':shop,'time':time},
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert('当前访问人数过多，请重新提交');
+                $('.hongbao').removeClass('on');
+                return;
+            },
+            success:function(response){
+                if(response.result.error==0){
+                    location.href="http://ali.ichaotu.com/index.php?g=Wap&m=Activity&a=index&token=mvvjwf1465780872";
+                }else{
+                    $('#error_line').html(response.result.msg);
+                    $('.hongbao').removeClass('on');
+                }
+            }
+        });
+    }
+    function sendCode(){
+        if(postCode == 1){
+            $('#error_line').html('验证码已发送，请查看手机');
+            return false;
+        }
+        var mobile = $('#mobile').val();
+        if(! /^1\d{10}$/.test(mobile)){
+            $('#error_line').html('请输入正确的手机号');
+            return false;
+        }
+
+        var url = '/v2/user/getCode';
+        var data = {'userphone':mobile};
+        $.post(url,data,function(response){
+            if(response.code == 0){
+                postCode = 1;
+                $('#codeBtn').addClass('on');
+            }else{
+                $('#error_line').html(response.message);
+            }
+
+
+        },'json');
+
+
+    }
+    function showYY(){
+        query("#videoIndex3").pause();
+        query(".ring-bg").pause();
+        stopAutoPlay('ringringring');
+        $('.wrap').hide();
+        $('.yuyue').show();
+
+    }
+
+    function sendStep(type){
+        $.get('/daogou/activity/a4lVideoTest',{'type':type});
+    }
+    sendStep(1);
+
 
 </script>
 </body>

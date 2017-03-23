@@ -1,182 +1,427 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <link  href="cropper.min.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>【五月.致青春】制作超级海报免费得红包</title>
+    <meta name="keywords" content="【五月.致青春】制作超级海报免费得红包"/>
+    <meta name="description" content="【五月.致青春】制作超级海报免费得红包"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="http://static.ichaotu.com/wx10/dest/js/c/css/active.css?67"/>
+    <link rel="stylesheet" href="http://static.ichaotu.com/wx10/dest/css/cropper.min.css"/>
     <style>
-        body{
-            background-color: #00a0e9;
+        #maskLayer{
+            width:100%; height:900px; background-color:#000000; opacity:0.9; -moz-opacity:0.5;position:fixed;z-index:1000;top:0;left:0;display:none;
         }
-
+        #maskLayer img{margin:20% auto;border:0;}
+        select{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance:none;
+        }
     </style>
 </head>
-<body >
+<body>
+<div class="wrap page-upload">
+    <div class="content">
+        <!-- hidden crop params -->
+        <input type="hidden" id="x1" name="x1" autocomplete="off"/>
+        <input type="hidden" id="y1" name="y1" autocomplete="off"/>
+        <input type="hidden" id="x2" name="x2" autocomplete="off"/>
+        <input type="hidden" id="y2" name="y2" autocomplete="off"/>
 
-<div class="container">
-    <img id="pre" src="2.png" >
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
+        <div class="img J_uploadContent">
+            <div class="J_uploadWrap"><img src="http://static.ichaotu.com/wx10/dest/img/icon-photo.png"></div>
+        </div>
+        <div class="preview-img J_preview" style="display: none;overflow:hidden">
+            <div id="preview-upload-img" style="position:relative;overflow:hidden"></div>
+        </div>
+        <div class="container J_viewContent" style="display: none;overflow:hidden">
+            <a href="#J_main" class="btn-goto J_goto_new">确认裁剪</a>
+            <img id="preview"/>
+        </div>
+
+        <div class="docs-data" style="display:none;">
+            <div class="input-group">
+                <label class="input-group-addon" for="dataX">X</label>
+                <input class="form-control" id="dataX" type="text" placeholder="x">
+                <span class="input-group-addon">px</span>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" for="dataY">Y</label>
+                <input class="form-control" id="dataY" type="text" placeholder="y">
+                <span class="input-group-addon">px</span>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" for="dataWidth">Width</label>
+                <input class="form-control" id="dataWidth" type="text" placeholder="width">
+                <span class="input-group-addon">px</span>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" for="dataHeight">Height</label>
+                <input class="form-control" id="dataHeight" type="text" placeholder="height">
+                <span class="input-group-addon">px</span>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" for="dataRotate">Rotate</label>
+                <input class="form-control" id="dataRotate" type="text" placeholder="rotate">
+                <span class="input-group-addon">deg</span>
+            </div>
+        </div>
+
+        <ul style="display: none;">
+            <li><label>图像尺寸</label> <input type="text" id="filedim" name="filedim" class="input"
+                                           autocomplete="off"/></li>
+            <li><label>宽度</label> <input type="text" id="w" name="w" class="input" autocomplete="off"/></li>
+            <li><label>高度</label> <input type="text" id="h" name="h" class="input" autocomplete="off"/></li>
+        </ul>
+
+        <div class="J_main" id="J_main">
+            <div class="introduce"><p>请输入介绍文字：</p></div>
+            <div class="item"><input type="text" id = "manager" placeholder="超级图片CEO，余伟华"></div>
+            <div class="item"><input type="text" id = "desc1" placeholder="我是品牌超级速递员"></div>
+            <div class="item"><input type="text" id = "desc2" placeholder="超级海报，让品牌宣传瞬间引爆"></div>
+            <button class="btn-submit J_submit_new">立即生成</button>
+            <div class="money">此活动金额均由超级图片支持</div>
+        </div>
+    </div>
 </div>
-
-<script src="http://static.ichaotu.com/wx10//dest/js/c/jquery-1.min.js?65"></script>
-<script src="cropper.min.js"></script>
-
-<script>
-
-//    $().cropper({
-//    });
-
-    $(document).ready(function () {
-
-
-        $("#pre").cropper({
-            aspectRatio: 1 / 1,
-                    checkCrossOrigin:true,
-            crop: function(data) {
-                // Output the result data for cropping image.
-                console.log(data.x);
-            }
-        })
-
-
-
+<div id="maskLayer">
+    <img src="/images/loading.gif?67" />
+</div>
+<script src="http://static.ichaotu.com/wx10//dest/js/c/jquery-1.min.js?67"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/c/SP.js?67"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/c/Youth-wx.js?67"></script>
+<script src="http://static.ichaotu.com/wx10//dest/js/cropper.min.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: 	'wxb36b6b0972dde66f',
+        timestamp: 1482767024,
+        nonceStr: '789466',
+        signature: '5ac2f7e13ad3bf88cffd8c7839379e788245266a',
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'openLocation',
+            'getLocation',
+            'addCard',
+            'chooseCard',
+            'openCard',
+            'hideMenuItems',
+            'previewImage',
+            'chooseImage',
+            'uploadImage',
+            'downloadImage'
+        ]
     });
-    $("html").click(function(){
-//        alert(1);
+</script>
+<script type="text/javascript">
+    wx.ready(function () {
+        // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+        /*document.querySelector('#checkJsApi').onclick = function () {
+         wx.checkJsApi({
+         jsApiList: [
+         'getNetworkType',
+         'previewImage'
+         ],
+         success: function (res) {
+         //alert(JSON.stringify(res));
+         }
+         });
+         };*/
+        // 2. 分享接口
+        // 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareAppMessage({
+            title: window.shareData.tTitle,
+            desc: window.shareData.tContent,
+            link: window.shareData.sendFriendLink,
+            imgUrl: window.shareData.imgUrl,
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                shareHandle('frined');
+            },
+            cancel: function () {
+                //alert('分享朋友失败');
+            }
+        });
 
-        var img = document.getElementById('pre');
-        img.setAttribute('src','2.png');
-        img.onload = function(){
-//            alert($("#pre").attr("src"));
-//            $("#pre").cropper("replace",$("#pre").attr("src"));
-//            $("#pre").cropper('crop');
-//            $("#pre").cropper("reset");
 
-            $("#pre").cropper("reset", true).cropper("replace", "http://pic.ichaotu.com/group2/M00/01/3C/ChlgsVhbbdqALkdZAAHsofUS84g705.jpg").css
+        // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareTimeline({
+            title: window.shareData.fTitle?window.shareData.fTitle:window.shareData.tTitle,
+            link: window.shareData.sendFriendLink,
+            imgUrl: window.shareData.imgUrl,
+            success: function () {
+                shareHandle('frineds');
+                //alert('分享朋友圈成功');
+            },
+            cancel: function () {
+                //alert('分享朋友圈失败');
+            }
+        });
 
+        // 2.4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareWeibo({
+            title: window.shareData.tTitle,
+            desc: window.shareData.tContent,
+            link: window.shareData.sendFriendLink,
+            imgUrl: window.shareData.imgUrl,
+            success: function () {
+                shareHandle('weibo');
+                //alert('分享微博成功');
+            },
+            cancel: function () {
+                //alert('分享微博失败');
+            }
+        });
+        wx.hideMenuItems({
+            menuList: [
+                'menuItem:share:timeline', //隐藏分享到朋友圈,
+                'menuItem:copyUrl'
+            ],
+        });
+
+        wx.error(function (res) {
+            /*if(res.errMsg == 'config:invalid signature'){
+             wx.hideOptionMenu();
+             }else if(res.errMsg == 'config:invalid url domain'){
+             wx.hideOptionMenu();
+             }else{
+             wx.hideOptionMenu();
+             //alert(res.errMsg);
+             }*/
+            if(res.errMsg){
+                wx.hideOptionMenu();
+            }
+        });
+    });
+
+    function shareHandle(to) {
+        var submitData = {
+            module: window.shareData.moduleName,
+            moduleid: window.shareData.moduleID,
+            token:'yvwrpv1459910246',
+            wecha_id:'oIUBpuGfqKReHEMCjAy1O1mq5qPg',
+            url: window.shareData.sendFriendLink,
+            to:to
         };
 
+        $.post('index.php?g=Wap&m=Share&a=shareData&token=yvwrpv1459910246&wecha_id=oIUBpuGfqKReHEMCjAy1O1mq5qPg',submitData,function (data) {},'json');
+        if(window.shareData.isShareNum == 1){
+            var ShareNum = {
+                token:'yvwrpv1459910246',
+                ShareNumData:window.shareData.ShareNumData
+            }
+            $.post('index.php?g=Wap&m=Share&a=ShareNum&token=yvwrpv1459910246&wecha_id=oIUBpuGfqKReHEMCjAy1O1mq5qPg',ShareNum,function (data) {if(window.shareData.isShareNumReload == 1){location.reload();}},'json');
+        }
+    }
+</script><script>
+    $('.J_uploadContent').on('click', function(){
+        var setNewPic  = true;
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var localIds = res.localIds;
+                wx.uploadImage({
+                    localId: localIds[0],
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        $.ajax({
+                            type: 'POST',
+                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
+                            data:{serverId:res.serverId},
+                            dataType:'json',
+                            success:function(res){
+                                if(res.code == 0) {
+                                    $('#preview').remove();
+                                    $('.J_viewContent').append('<img id="preview">');
+                                    var oImage = $('#preview')[0];
+                                    oImage.src = res.pic;
+                                    oImage.onload = function () {
+                                        /*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {
+                                         SP.dialog.tip('请选择宽大于800,高大于900的图片');
+                                         return;
+                                         }*/
 
-        ("width","100px");
+                                        (function () {
+                                            var $image = $('#preview'),
+                                                    $dataX = $('#dataX'),
+                                                    $dataY = $('#dataY'),
+                                                    $dataHeight = $('#dataHeight'),
+                                                    $dataWidth = $('#dataWidth'),
+                                                    $dataRotate = $('#dataRotate'),
+                                                    options = {
+                                                        strict: true,
+                                                        // responsive: false,
+                                                        // checkImageOrigin: false
+
+                                                        // modal: false,
+                                                        // guides: false,
+                                                        // highlight: false,
+                                                        // background: false,
+
+                                                        // autoCrop: false,
+                                                        // autoCropArea: 0.5,
+                                                        // dragCrop: false,
+                                                        // movable: false,
+                                                        // resizable: false,
+                                                        // rotatable: false,
+                                                        // zoomable: false,
+                                                        // touchDragZoom: false,
+                                                        // mouseWheelZoom: false,
+
+                                                        // minCanvasWidth: 320,
+                                                        // minCanvasHeight: 180,
+                                                        // minCropBoxWidth: 160,
+                                                        // minCropBoxHeight: 90,
+                                                        // minContainerWidth: 320,
+                                                        // minContainerHeight: 180,
+
+                                                        // build: null,
+                                                        // built: null,
+                                                        // dragstart: null,
+                                                        // dragmove: null,
+                                                        // dragend: null,
+                                                        // zoomin: null,
+                                                        // zoomout: null,
+                                                        viewMode:2,
+                                                        minCanvasWidth: 320,
+                                                        minCanvasHeight: 180,
+                                                        minCropBoxWidth: 160,
+                                                        minCropBoxHeight: 90,
+                                                        minContainerWidth: 320,
+                                                        minContainerHeight: 180,
+                                                        aspectRatio: 1 / 1,
+                                                        preview:"#preview-upload-img",
+                                                        crop: function (data) {
+                                                            $dataX.val(Math.round(data.x));
+                                                            $dataY.val(Math.round(data.y));
+                                                            $dataHeight.val(Math.round(data.height));
+                                                            $dataWidth.val(Math.round(data.width));
+                                                            $dataRotate.val(Math.round(data.rotate));
+                                                        }
+                                                    };
+                                            //               $image.cropper('reset', true).cropper('replace', res.pic);
+                                            /*
+                                             // Import image
+                                             var $inputImage = $('#inputImage'),
+                                             URL = window.URL || window.webkitURL,
+                                             blobURL;
+
+                                             $image.one('built.cropper', function () {
+                                             URL.revokeObjectURL(blobURL); // Revoke when load complete
+                                             }).cropper('reset', true).cropper('replace', res.pic);
+                                             $inputImage.val('');
+
+                                             if (URL) {
+                                             $inputImage.change(function () {
+                                             var files = this.files,
+                                             file;
+
+                                             if (files && files.length) {
+                                             file = files[0];
+
+                                             if (/^image\/\w+$/.test(file.type)) {
+                                             blobURL = URL.createObjectURL(file);
+
+                                             } else {
+                                             showMessage('Please choose an image file.');
+                                             }
+                                             }
+                                             });
+                                             }*/
+
+                                        }());
+                                        if(setNewPic){
+                                            $('#preview').cropper('reset', true).cropper('replace', res.pic);
+                                            setNewPic = false;
+                                        }
+
+                                        $("#preview-upload-img").css({"width":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px","height":document.getElementsByClassName("J_uploadWrap")[0].clientWidth+"px"});
+                                        $("#preview-upload-img").css("margin","0.16rem 0.15rem 0");
+
+
+
+
+                                        $('.J_uploadContent').hide();
+                                        $('.J_viewContent').show();
+                                        $('.J_main').hide();
+                                        $('.J_preview').hide();
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
     })
 
+    $(".J_goto_new").click(function(){
+        $(this).parent().hide();
+        $('.J_preview').show();
+        $('.J_main').show();
+    });
+
+    $(".J_submit_new").click(submit);
+    function submit() {
+        //var fd = new FormData();
+        var img = $('#preview')[0];
+        if(!img.src){
+            return SP.dialog.tip('请先选择图片，并且截图')
+        }
 
 
-//    oImage.onload = function () {
-//        alert("loaded");
-//        /*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {
-//         SP.dialog.tip('请选择宽大于800,高大于900的图片');
-//         return;
-//         }*/
-//
-//        $('.J_uploadContent').hide();
-//        $('.J_viewContent').show();
-//        $('.J_main').hide();
-//        $('.J_preview').hide();
-//        var dataX = $('#dataX');
-//        var dataY = $('#dataY');
-//        var dataHeight = $('#dataHeight');
-//        var dataWidth = $('#dataWidth');
-//        var dataRotate = $('#dataRotate');
-//        alert($("#preview").attr("src"));
-//
-//        $('#preview').cropper({
-//            aspectRatio: 1 / 1,
-//            built: function () {
-//                $('#preview').cropper('reset');
-//            },
-//            crop: function(data) {
-//                $dataX.val(Math.round(data.x));
-//                $dataY.val(Math.round(data.y));
-//                $dataHeight.val(Math.round(data.height));
-//                $dataWidth.val(Math.round(data.width));
-//                $dataRotate.val(Math.round(data.rotate));
-//            }
-//        });
-//
-//        // display some basic image info
-//        $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
-//    }
+        var w = $('#dataWidth').val();
+        var h = $('#dataHeight').val();
+        var x = $('#dataX').val();
+        var y = $('#dataY').val();
+        var desc1 = $("#desc1").val();
+        var desc2 = $('#desc2').val();
+        var manager = $('#manager').val();
+        $("#maskLayer").show();
 
+        console.log("w:"+w+" h:"+h+" x:"+x+" y:"+y);
+        $.ajax({
+            type: 'POST',
+            url: CONFIG.URL,
+            data: {
+                desc1:desc1,
+                desc2:desc2,
+                manager:manager,
+                x:x,
+                y:y,
+                w:w,
+                h:h,
+                img: img.src
+            },
+            success: function(data){
+                $("#maskLayer").hide();
+                if(data.code == 0){
+                    WeixinJSBridge.invoke('imagePreview', {
+                        'current' : data.pic,  //这是当前的预览的图片，多图的时候请大家自由发挥，可结合jquery来做
+                        'urls' : [data.pic]   //urls相当于一个图片数组，多图的时候请大家自由发挥，可结合jquery来做
+                    });
+                }else{
+                    SP.dialog.tip(data.msg,5000);
+                }
+            },
+            dataType: 'json'
+        });
+    }
 
+    var CONFIG = {
+        URL: '/index.php?g=Wap&m=Youth&a=save'
+    };
 </script>
-
-
-<!--<script>-->
-    <!--$('.J_preview,.J_uploadContent').on('click', function(){-->
-        <!--wx.chooseImage({-->
-            <!--count: 1,-->
-            <!--sizeType: ['original', 'compressed'],-->
-            <!--sourceType: ['album', 'camera'],-->
-            <!--success: function (res) {-->
-                <!--alert(1);-->
-                <!--var localIds = res.localIds;-->
-                <!--wx.uploadImage({-->
-                    <!--localId: localIds[0],-->
-                    <!--isShowProgressTips: 1,-->
-                    <!--success: function (res) {-->
-                        <!--alert(2);-->
-                        <!--$.ajax({-->
-                            <!--type: 'POST',-->
-                            <!--url:'/index.php?g=Wap&m=Youth&a=wxPic',-->
-                            <!--data:{serverId:res.serverId},-->
-                            <!--dataType:'json',-->
-                            <!--success:function(res){-->
-                                <!--alert(3);-->
-                                <!--if(res.code == 0) {-->
-                                    <!--$('#preview').remove();-->
-                                    <!--$('.J_viewContent').append('<img id="preview">');-->
-                                    <!--var oImage = $('#preview')[0];-->
-                                    <!--oImage.src = res.pic;-->
-                                    <!--oImage.onload = function () {-->
-
-                                        <!--/*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {-->
-                                         <!--SP.dialog.tip('请选择宽大于800,高大于900的图片');-->
-                                         <!--return;-->
-                                         <!--}*/-->
-
-                                        <!--alert(4);-->
-                                        <!--$('#image').cropper({-->
-                                            <!--replace:function(res.pic)-->
-                                         <!--});-->
-                                    <!--$('.J_uploadContent').hide();-->
-                                    <!--$('.J_viewContent').show();-->
-                                    <!--$('.J_main').hide();-->
-                                    <!--$('.J_preview').hide();-->
-
-                                    <!--// display some basic image info-->
-                                    <!--$('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);-->
-                                <!--}-->
-                            <!--}else{-->
-                                <!--SP.dialog.tip(res.msg);-->
-                    <!--}-->
-                <!--}-->
-            <!--});-->
-    <!--}-->
-    <!--});-->
-    <!--}-->
-    <!--});-->
-    <!--})-->
-    <!--var dataX = $('#dataX');-->
-    <!--var dataY = $('#dataY');-->
-    <!--var dataHeight = $('#dataHeight');-->
-    <!--var dataWidth = $('#dataWidth');-->
-    <!--var dataRotate = $('#dataRotate');-->
-    <!--$('#preview').cropper({-->
-        <!--aspectRatio: 1 / 1,-->
-        <!--crop: function(data) {-->
-            <!--$dataX.val(Math.round(data.x));-->
-            <!--$dataY.val(Math.round(data.y));-->
-            <!--$dataHeight.val(Math.round(data.height));-->
-            <!--$dataWidth.val(Math.round(data.width));-->
-            <!--$dataRotate.val(Math.round(data.rotate));-->
-        <!--}-->
-    <!--});-->
-<!--</script>-->
-
 </body>
 </html>

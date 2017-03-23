@@ -248,8 +248,8 @@
                             dataType:'json',
                             success:function(res){
                                 if(res.code == 0) {
-                                    $('#preview').remove();
-                                    $('.J_viewContent').append('<img id="preview">');
+//                                    $('#preview').remove();
+//                                    $('.J_viewContent').append('<img id="preview">');
                                     var oImage = $('#preview')[0];
                                     oImage.src = res.pic;
                                     oImage.onload = function () {
@@ -264,7 +264,7 @@
                                         var dataHeight = $('#dataHeight');
                                         var dataWidth = $('#dataWidth');
                                         var dataRotate = $('#dataRotate');
-                                        $('.container > img').cropper({
+                                        $('#preview').cropper({
                                             aspectRatio: 1 / 1,
                                             crop: function(data) {
                                                 $dataX.val(Math.round(data.x));
@@ -293,7 +293,78 @@
         });
     })
 
+    $('.J_preview,.J_uploadContent').on('click', function(){
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var localIds = res.localIds;
+                wx.uploadImage({
+                    localId: localIds[0],
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        $.ajax({
+                            type: 'POST',
+                            url:'/index.php?g=Wap&m=Youth&a=wxPic',
+                            data:{serverId:res.serverId},
+                            dataType:'json',
+                            success:function(res) {
+                                if (res.code == 0) {
+//                                    $('#preview').remove();
+//                                    $('.J_viewContent').append('<img id="preview">');
+                                    var oImage = $('#preview')[0];
+                                    oImage.src = res.pic;
+                                    oImage.onload = function () {
 
+                                        /*if (oImage.naturalWidth < 800 || oImage.naturalHeight < 900) {
+                                         SP.dialog.tip('请选择宽大于800,高大于900的图片');
+                                         return;
+                                         }*/
+
+
+
+
+                                        var dataX = ;
+                                        var dataY = ;
+                                        var dataHeight = ;
+                                        var dataWidth = ;
+                                        var dataRotate = ;
+                                        $('#preview').cropper({
+                                            aspectRatio: 1 / 1,
+                                            crop: function (data) {
+                                                $('#dataX').val();
+                                                $('#dataY').val();
+                                                $('#dataHeight').val();
+                                                $('#dataWidth').val();
+                                                $('#dataRotate').val();
+                                            }
+                                        });
+
+                                        minCanvasWidth: 320,
+                                        minCanvasHeight: 180,
+                                        minCropBoxWidth: 160,
+                                        minCropBoxHeight: 90,
+                                        minContainerWidth: 320,
+                                        minContainerHeight: 180,
+
+                                        $('.J_uploadContent').hide();
+                                        $('.J_viewContent').show();
+                                        $('.J_main').hide();
+                                        $('.J_preview').hide();
+
+                                        // display some basic image info
+                                        $('#filedim').val(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
+                                    }
+                                }
+                            }
+                            });
+
+                    }
+                });
+            }
+        });
+    })
 </script>
 </body>
 </html>
