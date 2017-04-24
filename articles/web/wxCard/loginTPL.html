@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <title></title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(245,247,246)!important;
+        }
+        #name{
+            background: url("http://static.ichaotu.com/wx10/dest/img/jrtt-reg-head.png") no-repeat ;
+            background-position: 5px 8px ;
+            padding-left: 25px;
+            background-color: #ffffff;
+        }
+        #phone{
+            background: url("http://static.ichaotu.com/wx10/dest/img/jrtt-reg-phone.png") no-repeat ;
+            background-position: 5px 8px ;
+            padding-left: 25px;
+            background-color: #ffffff;
+        }
+		#tel_number{
+            background: url("http://static.ichaotu.com/wx10/dest/img/jrtt-reg-card.png") no-repeat ;
+            background-position: 5px 8px ;
+            padding-left: 25px;
+            background-color: #ffffff;
+        }
+        #address{
+            background: url("http://static.ichaotu.com/wx10/dest/img/jrtt-reg-address.png") no-repeat ;
+            background-position: 5px 8px ;
+            padding-left: 25px;
+            background-color: #ffffff;
+        }
+        .inputItem input {
+            width: 80%;
+            height: 30px;
+            margin: 10px 5% 0;
+            border: solid 1px #333;
+
+        }
+        #formDiv {
+            border-top: solid 0.5px #8e8e8e;
+        }
+        #formDiv .checkImg:before{
+            content:url("http://www.easyicon.net/api/resizeApi.php?id=1119800&size=12");
+            position: relative;
+            top: 2px;
+        }
+        a {
+            text-decoration: none;
+        }
+        input {
+            width: 95%;
+            height: 30px;
+            background: #fcfcfc;
+            border: 1px solid #ddd;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
+            -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1) inset;
+            font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+            color: #888;
+            font-size: 16px;
+        }
+
+    </style>
+    <link href="https://cdn.bootcss.com/bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="headerDiv" >
+    <div style="overflow: hidden;width: 100%;background-color: #ffffff">
+        <img id="headerImg" style="max-width: 100%;" src='http://www.orcacert.com/images/onaylama.jpg'>
+    </div>
+    <!-- <span alt="adf" style="display: block;font-size: 13px;line-height: 15px;padding: 5px 3px;background-color: #ffffff">说明文字：Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velitNeque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</span> -->
+</div>
+<div id="formDiv" style="background-color: rgb(245,247,246)">
+    <!-- <span style="font-size: 12px ; margin-left: 5%">截至今日 已有<span style="color: rgb(254,197,46);"> 23333</span>人预约</span> -->
+    <div class="inputItem">
+        <input type="text" placeholder="请输入姓名" id="name">
+    </div>
+    <div class="inputItem">
+        <input type="text" placeholder="请输入手机号" id="phone">
+    </div>
+	<div class="inputItem">
+        <input type="text" placeholder="请输入身份证号" id="tel_number">
+    </div>
+    <div class="inputItem">
+        <input type="text" placeholder="请输入地址" id="address">
+    </div>
+    <span class="checkImg" style="font-size: 12px;margin:0 0 0 5% ">预约即默认同意<a style="color: rgb(254,197,46);" href="http://www.baidu.com">《超级海报注册协议》</a></span>
+    <input class="btn-danger" type="button" style="width: 90%;height: 30px;background-image: linear-gradient(to bottom,#666,#000);background-color: rgb(34,34,34)!important;color: rgb(254,197,46); margin: 10px auto 10px;display: block;border-width: 0px" value="立即预约">
+</div>
+<script>
+
+    function checkPhone(phone){
+        if(!(/^1(3|4|5|8)\d{9}$/.test(phone))){
+            return false;
+        }
+        if(phone.length!=11){
+            return false;
+        }
+        return true;
+    }
+
+	function chinaID(StrNo){
+		var num = StrNo;
+		num = num.toUpperCase();
+		StrNo = num.toString();
+		if (StrNo.length == 15) {
+			var arrSplit1 = StrNo.substring(6, 8);
+			var arrSplit2 = StrNo.substring(8, 10);
+			var arrSplit3 = StrNo.substring(10, 12);
+			// 检查生日日期是否正确
+			var dtmBirth = "19" + arrSplit1 + "-" + arrSplit2 + "-"
+					+ arrSplit3;
+			//if (!isValidDate(dtmBirth)) {
+			//    return false;
+			//}
+		} else if (StrNo.length == 18) {
+			var arrSplit1 = StrNo.substring(6, 10);
+			var arrSplit2 = StrNo.substring(10, 12);
+			var arrSplit3 = StrNo.substring(12, 14);
+			// 检查生日日期是否正确
+			var dtmBirth = arrSplit1 + "-" + arrSplit2 + "-" + arrSplit3;
+			//if (!isValidDate(dtmBirth)) {
+			//    return false;
+			//}
+		} else {
+			//alert("输入的身份证号码必须为15位或者18位！");
+			return false;
+		}
+		if (StrNo.length == 18) {
+			// var a, b, c
+			var a = 0;
+			var b = 0;
+			var c1 = "";
+			var c = 0;
+			var regexp = /\D/;
+
+			if (regexp.test(StrNo.substring(0, 17))) {
+				// "身份证号码错误,前17位不能含有英文字母！");
+				return false;
+			}
+			a = parseInt(StrNo.substring(0, 1)) * 7
+			+ parseInt(StrNo.substring(1, 2)) * 9
+			+ parseInt(StrNo.substring(2, 3)) * 10;
+
+			a = a + parseInt(StrNo.substring(3, 4)) * 5
+			+ parseInt(StrNo.substring(4, 5)) * 8
+			+ parseInt(StrNo.substring(5, 6)) * 4;
+
+			a = a + parseInt(StrNo.substring(6, 7)) * 2
+			+ parseInt(StrNo.substring(7, 8)) * 1
+			+ parseInt(StrNo.substring(8, 9)) * 6;
+
+			a = a + parseInt(StrNo.substring(9, 10)) * 3
+			+ parseInt(StrNo.substring(10, 11)) * 7
+			+ parseInt(StrNo.substring(11, 12)) * 9;
+
+			a = a + parseInt(StrNo.substring(12, 13)) * 10
+			+ parseInt(StrNo.substring(13, 14)) * 5
+			+ parseInt(StrNo.substring(14, 15)) * 8;
+
+			a = a + parseInt(StrNo.substring(15, 16)) * 4
+			+ parseInt(StrNo.substring(16, 17)) * 2;
+			b = a % 11;
+			if (b == 2) // 最后一位为校验位
+			{
+				c1 = StrNo.substring(17, 18).toUpperCase(); // 转为大写X
+			} else {
+				var c2 = parseInt(StrNo.substring(17, 18));
+				c = c2;
+			}
+			switch (b) {
+				case 0:
+					if (c != 1) {
+						// "身份证号码校验位错:最后一位应该为:1");
+						return false;
+					}
+					break;
+				case 1:
+					if (c != 0) {
+						// "身份证号码校验位错:最后一位应该为:0");
+						return false;
+					}
+					break;
+				case 2:
+					if (!("X" === c1)) {
+
+						// "身份证号码校验位错:最后一位应该为:X");
+						return false;
+					}
+					break;
+				case 3:
+					if (c != 9) {
+						// "身份证号码校验位错:最后一位应该为:9");
+						return false;
+					}
+					break;
+				case 4:
+					if (c != 8) {
+						// "身份证号码校验位错:最后一位应该为:8");
+						return false;
+					}
+					break;
+				case 5:
+					if (c != 7) {
+						// "身份证号码校验位错:最后一位应该为:7");
+						return false;
+					}
+					break;
+				case 6:
+					if (c != 6) {
+						// "身份证号码校验位错:最后一位应该为:6");
+						return false;
+					}
+					break;
+				case 7:
+					if (c != 5) {
+						// "身份证号码校验位错:最后一位应该为:5");
+						return false;
+					}
+					break;
+				case 8:
+
+					if (c != 4) {
+						// "身份证号码校验位错:最后一位应该为:4");
+						return false;
+					}
+					break;
+				case 9:
+					if (c != 3) {
+						// "身份证号码校验位错:最后一位应该为:3");
+						return false;
+					}
+					break;
+				case 10:
+					if (c != 2) {
+						// "身份证号码校验位错:最后一位应该为:2");
+						return false;
+					}
+			}
+		} else {// 15位身份证号
+			var regexp = /\D/;
+			if (regexp.test(StrNo)) {
+				//alert("身份证号码错误,前15位不能含有英文字母！");
+				return false;
+			}
+		}
+		return true;
+
+	}
+
+
+    $("#submit").click(function(){
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var address = $("#address").val();
+        var tel_number = $("#tel_number").val();
+
+        if(name == ""){
+            alert("姓名不能为空！");
+            return;
+        }
+		if(!checkPhone(phone)){
+            alert("wrong num");
+            return ;
+        }
+		//alert(chinaID(tel_number)?"成功":"失败");
+		if(chinaID(tel_number)){
+
+		}else{
+			alert("身份证号效验失败！");
+			return;
+		}
+        if(address == ""){
+            alert("地址不能为空！");
+            return;
+        }
+        alert(name+phone+address+tel_number);
+        $ajax({
+            type:"post",
+            url:"",
+            dataType:"json",
+            data:{
+                name:name,
+                phone:phone,
+                address:address,
+                tel_number:tel_number
+            },
+            success:function(res){
+
+            },
+            error:function(res){
+
+            }
+        })
+    })
+
+</script>
+</body>
+</html>
