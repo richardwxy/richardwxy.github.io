@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-    <script src="data.js"></script>
-    <script src="jquery.city.select.min.js"></script>
+    <script src="{pigcms::STATIC_PATH}/dest/js/data.js?{pigcms::RANDOM}"></script>
+    <script src="{pigcms::STATIC_PATH}/dest/js/jquery.city.select.min.js?{pigcms::RANDOM}"></script>
     <title></title>
     <style>
         html,body{
@@ -79,7 +79,7 @@
         <!--<input type="text" placeholder="请输入地址" id="address">-->
             <label class="control-label" for="province" style="font-size: 12px">省份</label>
 
-                <select id="province" style="">
+                <select id="province">
                     <option value="载入中">载入中</option>
                 </select>
 
@@ -107,7 +107,9 @@
     $("#submit").click(function(){
         var name = $("#name").val();
         var phone = $("#phone").val();
-        var address = $("#address").val();
+        var province = $("#province").val();
+        var city = $("#city").val();
+        var address = province +" "+ city;
         if(!checkPhone(phone)){
             alert("请填写正确的手机号！");
             return ;
